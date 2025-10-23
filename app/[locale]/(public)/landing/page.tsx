@@ -1,14 +1,13 @@
-import SignOutLayout from '@/features/signOutLayout/layout'
 import HeroImage from '@/features/landing/components/HeroImage'
 import Content from '@/features/landing/components/Content'
 
-const Home = () => {
+const LandingPage = () => {
   return (
-    <SignOutLayout>
+    <>
       <HeroImage />
-      <Content />
-    </SignOutLayout>
+      <Content /> 
+    </>
   )
 }
 
-export default Home
+export default LandingPage

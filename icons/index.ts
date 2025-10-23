@@ -1,0 +1,8 @@
+export { default as ChevronIcon } from './ChevronIcon'
+export { default as FacebookIcon } from './FacebookIcon'
+export { default as GithubIcon } from './GithubIcon'
+export { default as InstagramIcon } from './InstagramIcon'
+export { default as LinkedinIcon } from './LinkedinIcon'
+export { default as SmallArrowIcon } from './SmallArrowIcon'
+export { default as TikTokIcon } from './TikTokIcon'
+export { default as YouTubeIcon } from './YouTubeIcon'
