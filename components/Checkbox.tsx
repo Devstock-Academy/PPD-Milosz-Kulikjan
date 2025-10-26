@@ -1,9 +1,7 @@
 import React from 'react'
 
 const Checkbox = () => {
-  return (
-    <div>Checkbox</div>
-  )
+  return <div>Checkbox</div>
 }
 
 export default Checkbox

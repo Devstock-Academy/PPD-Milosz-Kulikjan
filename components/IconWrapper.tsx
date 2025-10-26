@@ -1,12 +1,16 @@
-import { ReactNode, FC } from "react";
+import { ReactNode, FC } from 'react'
 
 type IconWrapperProps = {
-  children: ReactNode;      
-  size?: number | string;   
-  className?: string;       
+  children: ReactNode
+  size?: number | string
+  className?: string
 }
 
-const IconWrapper: FC<IconWrapperProps> = ({ children, size = 24, className = "" }) => {
+const IconWrapper: FC<IconWrapperProps> = ({
+  children,
+  size = 24,
+  className = '',
+}) => {
   return (
     <span
       className={`inline-block ${className}`}
@@ -14,7 +18,7 @@ const IconWrapper: FC<IconWrapperProps> = ({ children, size = 24, className = ""
     >
       {children}
     </span>
-  );
-};
+  )
+}
 
-export default IconWrapper;
+export default IconWrapper

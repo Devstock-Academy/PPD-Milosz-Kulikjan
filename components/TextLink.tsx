@@ -1,8 +1,15 @@
-import React from 'react'
+import Link from 'next/link'
 
-const TextLink = () => {
+type TextLinkProps = {
+  href: string
+  children: React.ReactNode
+}
+
+const TextLink = ({ href, children }: TextLinkProps) => {
   return (
-    <div>TextLink</div>
+    <Link href={href} className='cursor-pointer text-white'>
+      {children}
+    </Link>
   )
 }
 

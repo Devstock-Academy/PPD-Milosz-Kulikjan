@@ -1,20 +1,35 @@
-"use client"; 
+'use client'
 
-import Button from "@/components/Button";
+import Image from 'next/image'
+import { Divider, TextLink, NavButton } from '@/components'
+import Link from 'next/link'
 
 const SignOutTopbar = () => {
   return (
-    <div className="flex w-full justify-between bg-grayBg px-10 py-4.5 shadow-custom">
-      SignOutTopbar
-      <Button
-        onClick={() => console.log("kliknięto przycisk")}
-        size="sm"
-        className="bg-buttonDefault text-white hover:opacity-80 py-2 px-8.125"
-      >
-        Rejestracja
-      </Button>
-    </div>
-  );
-};
+    <div className='flex w-full items-center justify-between bg-grayBg px-10 py-4.5 shadow-header'>
+      <Link href={'/landing'}>
+        <div>
+          <Image
+            src='https://i.ibb.co/twkszbxR/Component-7.webp'
+            alt='Component 7'
+            width={120}
+            height={44}
+            className='object-contain'
+            priority
+          />
+        </div>
+      </Link>
 
-export default SignOutTopbar;
+      <div className='flex items-center gap-x-10'>
+        <p className='text-white'>Devstock.pl</p>
+        <Divider />
+        <TextLink href='/login'>Logowanie</TextLink>
+        <NavButton href='/register' variant='blue'>
+          Rejestracja
+        </NavButton>
+      </div>
+    </div>
+  )
+}
+
+export default SignOutTopbar

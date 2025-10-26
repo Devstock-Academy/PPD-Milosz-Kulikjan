@@ -82,7 +82,7 @@ jobs:
           extract_numbers() {
             echo "$1" | awk -F '/' '{print $2}' | grep -o '[0-9]*'
           }
- 
+
           run_pnpm_test() {
             number=$(echo "$1" | sed 's/^0*//')
             if [ "$number" -ge 1 ] && [ "$number" -le 22 ]; then
