@@ -10,8 +10,8 @@ const SignOutTopbar = () => {
       <Link href={'/landing'}>
         <div>
           <Image
-            src='https://i.ibb.co/twkszbxR/Component-7.webp'
-            alt='Component 7'
+            src='/images/SignOutLogo.webp'
+            alt='Hero Image'
             width={120}
             height={44}
             className='object-contain'
