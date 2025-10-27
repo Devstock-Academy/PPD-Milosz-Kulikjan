@@ -2,6 +2,7 @@
 
 import { TextLink } from '@/components'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
+import { useTranslations } from 'next-intl'
 
 type ContentProps = {
   paragraphs?: string[]
@@ -9,11 +10,11 @@ type ContentProps = {
 }
 
 const Content = ({ paragraphs = [], videoId }: ContentProps) => {
+  const t = useTranslations('Content')
   const hasParagraphs = paragraphs.length > 0
 
   return (
     <div>
-      {' '}
       <div
         className={`flex flex-col gap-8 py-15 lg:gap-x-30 ${
           hasParagraphs
@@ -27,7 +28,7 @@ const Content = ({ paragraphs = [], videoId }: ContentProps) => {
           }`}
         >
           <h1 className='text-text-heading font-extrabold text-black'>
-            Czego możesz się nauczyć?
+            {t('header')}
           </h1>
           {hasParagraphs &&
             paragraphs.map((text, i) => (
@@ -59,17 +60,13 @@ const Content = ({ paragraphs = [], videoId }: ContentProps) => {
           </div>
         )}
       </div>
-      <div className='mx-72 my-10 flex flex-col  gap-2 rounded-lg border-2 p-8 shadow-contentDiv'>
-        <h1 className='text-3xl font-extralight'>
-          Zaufało nam już 400+ kursantów z całego kraju
-        </h1>
-        <span className='font-extralight'>
-          Rozwijamy produkty edukacyjne, prowadzimy akademię programowania,
-          tworzymy software dla klientów komercyjnych, prowadzimy body leasing i
-          promujemy sport
-        </span>
+      <div className='mx-72 my-10 flex flex-col gap-2 rounded-lg border-2 p-8 shadow-contentDiv'>
+        <h1 className='text-3xl font-extralight'>{t('bottomCardTitle')}</h1>
+        <span className='font-extralight'>{t('bottomCardText')}</span>
         <TextLink href='/'>
-          <span className='text-link'>Poznaj nas {'>'}</span>
+          <span className='text-link'>
+            {t('bottomCardLink')} {'>'}
+          </span>
         </TextLink>
       </div>
     </div>

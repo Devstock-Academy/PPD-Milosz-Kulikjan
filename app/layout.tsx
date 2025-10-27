@@ -3,6 +3,7 @@ import { Lexend_Deca } from 'next/font/google'
 import { ThemeInit } from '../.flowbite-react/init'
 import './globals.css'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
+import { NextIntlClientProvider } from 'next-intl'
 
 const lexendDeca = Lexend_Deca({
   subsets: ['latin'],
@@ -24,7 +25,7 @@ export default function RootLayout({
     <html lang='pl' className={lexendDeca.className}>
       <body>
         <ThemeInit />
-        {children}
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   )

@@ -3,11 +3,16 @@
 import Image from 'next/image'
 import { Divider, TextLink, NavButton } from '@/components'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
 
 const SignOutTopbar = () => {
+  const t = useTranslations('SignOutTopbar')
+  const locale = useLocale()
+
   return (
     <div className='flex w-full items-center justify-between bg-grayBg px-10 py-4.5 shadow-header'>
-      <Link href={'/landing'}>
+      <Link href={`/${locale}/landing`}>
         <div>
           <Image
             src='/images/SignOutLogo.webp'
@@ -23,9 +28,9 @@ const SignOutTopbar = () => {
       <div className='flex items-center gap-x-10'>
         <p className='text-white'>Devstock.pl</p>
         <Divider />
-        <TextLink href='/login'>Logowanie</TextLink>
-        <NavButton href='/register' variant='blue'>
-          Rejestracja
+        <TextLink href={`/${locale}/login`}>{t('loginButton')}</TextLink>
+        <NavButton href={`/${locale}/register`} variant='blue'>
+          {t('registerButton')}
         </NavButton>
       </div>
     </div>
