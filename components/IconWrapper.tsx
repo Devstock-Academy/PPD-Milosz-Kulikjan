@@ -1,4 +1,5 @@
-import { ReactNode, FC } from 'react'
+import { ReactNode } from 'react'
+import clsx from 'clsx'
 
 type IconWrapperProps = {
   children: ReactNode
@@ -6,14 +7,10 @@ type IconWrapperProps = {
   className?: string
 }
 
-const IconWrapper: FC<IconWrapperProps> = ({
-  children,
-  size = 24,
-  className = '',
-}) => {
+function IconWrapper({ children, size = 24, className }: IconWrapperProps) {
   return (
     <span
-      className={`inline-block ${className}`}
+      className={clsx('inline-block', className)}
       style={{ width: size, height: size }}
     >
       {children}

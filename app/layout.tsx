@@ -1,4 +1,3 @@
-// app/layout.tsx lub app/layout.jsx
 import { Lexend_Deca } from 'next/font/google'
 import { ThemeInit } from '../.flowbite-react/init'
 import './globals.css'

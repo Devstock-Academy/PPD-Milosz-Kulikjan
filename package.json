@@ -38,6 +38,7 @@
     "test-sprint-6": "vitest run __tests__/sprint-6/"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "flowbite": "^1.6.5",

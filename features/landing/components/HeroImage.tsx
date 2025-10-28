@@ -10,7 +10,7 @@ const HeroImage = () => {
 
   return (
     <div className='relative w-full'>
-      <div className='relative mx-auto h-[30rem] w-full'>
+      <div className='relative mx-auto h-120 w-full'>
         <Image
           src='/images/HeroImage.webp'
           alt='Hero Background'
@@ -18,7 +18,7 @@ const HeroImage = () => {
           className='object-cover'
           priority
         />
-        <div className='absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#1B2124E5] text-white'>
+        <div className='absolute inset-0 flex flex-col items-center justify-center gap-3 bg-heroOverlay/90 text-white'>
           <h1 className='text-5xl font-bold md:text-6xl'>{t('headline')}</h1>
           <p className='text-2xl font-extralight'>by</p>
           <div className='flex items-center gap-2'>

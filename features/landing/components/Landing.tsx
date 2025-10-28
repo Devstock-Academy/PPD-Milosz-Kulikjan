@@ -6,12 +6,14 @@ const Landing = () => {
   const t = useTranslations('Content')
 
   return (
-    <div>
+    <div className="w-full">
       <HeroImage />
-      <Content
-        paragraphs={[t('paragraph1'), t('paragraph2')]}
-        videoId='NKsma2XgjL4'
-      />
+      <section className="mx-auto w-full max-w-container px-4">
+        <Content
+          paragraphs={[t('paragraph1'), t('paragraph2')]}
+          videoId="NKsma2XgjL4"
+        />
+      </section>
     </div>
   )
 }

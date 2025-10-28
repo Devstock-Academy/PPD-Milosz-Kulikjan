@@ -3,6 +3,7 @@
 import { TextLink } from '@/components'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import { useTranslations } from 'next-intl'
+import clsx from 'clsx'
 
 type ContentProps = {
   paragraphs?: string[]
@@ -14,22 +15,25 @@ const Content = ({ paragraphs = [], videoId }: ContentProps) => {
   const hasParagraphs = paragraphs.length > 0
 
   return (
-    <div>
+    <div className='mx-10'>
       <div
-        className={`flex flex-col gap-8 py-15 lg:gap-x-30 ${
+        className={clsx(
+          'flex flex-col gap-8 py-15 xl:gap-x-30',
           hasParagraphs
-            ? 'items-start justify-between lg:flex-row'
-            : 'items-center justify-center text-center lg:flex-row-reverse'
-        }`}
+            ? 'items-center justify-between xl:flex-row'
+            : 'items-center justify-center text-center xl:flex-row-reverse'
+        )}
       >
         <div
-          className={`flex flex-1 flex-col gap-8.1875 ${
-            !hasParagraphs ? 'items-center justify-center' : ''
-          }`}
+          className={clsx(
+            'flex flex-1 flex-col gap-8.1875',
+            !hasParagraphs && 'items-center justify-center'
+          )}
         >
           <h1 className='text-text-heading font-extrabold text-black'>
             {t('header')}
           </h1>
+
           {hasParagraphs &&
             paragraphs.map((text, i) => (
               <p key={i} className='text-xl font-extralight text-black'>
@@ -37,9 +41,9 @@ const Content = ({ paragraphs = [], videoId }: ContentProps) => {
               </p>
             ))}
         </div>
-
+        
         {videoId && (
-          <div className='relative w-[643px]'>
+          <div className='relative w-full max-w-[643px]'>
             <div className='aspect-video w-full overflow-hidden rounded-lg shadow-videoShadow'>
               <div className='relative h-full w-full'>
                 <LiteYouTubeEmbed
@@ -60,7 +64,8 @@ const Content = ({ paragraphs = [], videoId }: ContentProps) => {
           </div>
         )}
       </div>
-      <div className='mx-72 my-10 flex flex-col gap-2 rounded-lg border-2 p-8 shadow-contentDiv'>
+
+      <div className='mx-0 xl:mx-72 my-10 flex flex-col gap-2 rounded-lg border-2 p-8 shadow-contentDiv'>
         <h1 className='text-3xl font-extralight'>{t('bottomCardTitle')}</h1>
         <span className='font-extralight'>{t('bottomCardText')}</span>
         <TextLink href='/'>

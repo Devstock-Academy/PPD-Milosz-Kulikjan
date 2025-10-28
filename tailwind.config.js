@@ -18,7 +18,8 @@ module.exports = {
         grayBg: '#222426',
         buttonBlue: '#0074F0',
         buttonRed: '#F74746',
-        link: '#1C64F2'
+        link: '#1C64F2',
+        heroOverlay: '#1B2124',
       },
       spacing: {
         4.5: '1.125rem', // 18px
@@ -28,6 +29,10 @@ module.exports = {
         30: '7.5rem', // 120px
         8.1875: '2.0625rem', // 33px
         72: '18rem', // 288px
+        120: '30rem', //480px
+      },
+      maxWidth: {
+         container: '85.375rem', // 1366px
       },
       boxShadow: {
         contentDiv: '0px 2px 4px -2px #0000000D, 0px 4px 6px -1px #0000001A',

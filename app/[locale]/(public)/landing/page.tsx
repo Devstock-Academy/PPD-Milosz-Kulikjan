@@ -4,7 +4,7 @@ import { Landing } from '@/features/landing'
 
 const LandingPage = () => {
   return (
-    <div className='mx-auto w-full max-w-[1366px]'>
+    <div className='mx-auto w-full max-w-container'>
       <Landing />
     </div>
   )
