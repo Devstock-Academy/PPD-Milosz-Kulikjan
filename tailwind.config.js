@@ -1,5 +1,4 @@
 const flowbiteReact = require('flowbite-react/plugin/tailwindcss')
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -32,7 +31,8 @@ module.exports = {
         120: '30rem', //480px
       },
       maxWidth: {
-         container: '85.375rem', // 1366px
+        container: '85.375rem', // 1366px
+        videoMax: '40.1875rem', // 643px
       },
       boxShadow: {
         contentDiv: '0px 2px 4px -2px #0000000D, 0px 4px 6px -1px #0000001A',

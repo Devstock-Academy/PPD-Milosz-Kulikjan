@@ -24,12 +24,11 @@ const SignOutTopbar = () => {
           />
         </div>
       </Link>
-
       <div className='flex items-center gap-x-10'>
         <p className='text-white'>Devstock.pl</p>
         <Divider />
-        <TextLink href={`/${locale}/login`}>{t('loginButton')}</TextLink>
-        <NavButton href={`/${locale}/register`} variant='blue'>
+        <TextLink href={`/${locale}/`}>{t('loginButton')}</TextLink>
+        <NavButton href={`/${locale}/`} variant='blue'>
           {t('registerButton')}
         </NavButton>
       </div>
