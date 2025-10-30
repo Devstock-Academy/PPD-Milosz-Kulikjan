@@ -1,8 +1,14 @@
-import { Inter } from 'next/font/google'
-
+import { Lexend_Deca } from 'next/font/google'
+import { ThemeInit } from '../.flowbite-react/init'
 import './globals.css'
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
+import { NextIntlClientProvider } from 'next-intl'
 
-const inter = Inter({ subsets: ['latin'] })
+const lexendDeca = Lexend_Deca({
+  subsets: ['latin'],
+  weight: ['200', '500'],
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,8 +21,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>{children}</body>
+    <html lang='pl' className={lexendDeca.className}>
+      <body>
+        <ThemeInit />
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      </body>
     </html>
   )
 }
