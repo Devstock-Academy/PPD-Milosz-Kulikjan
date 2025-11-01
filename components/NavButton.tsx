@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Button from './Button'
+import clsx from 'clsx'
 
 type NavButtonProps = {
   href: string
@@ -23,7 +24,11 @@ export default function NavButton({
 
   return (
     <Link href={href}>
-      <Button onClick={() => {}} size={size} className={`px-8.125 ${bgClass}`}>
+      <Button
+        onClick={() => {}}
+        size={size}
+        className={clsx('px-8.125', bgClass)}
+      >
         {children}
       </Button>
     </Link>
