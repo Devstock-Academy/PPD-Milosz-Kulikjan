@@ -5,7 +5,7 @@ import clsx from 'clsx'
 type NavButtonProps = {
   href: string
   children: React.ReactNode
-  variant?: 'blue' | 'red' | 'transparent'
+  variant?: 'blue' | 'red' | 'orange' | 'transparent'
   size?: 'sm' | 'md' | 'lg'
 }
 
@@ -18,6 +18,7 @@ export default function NavButton({
   const bgClass = {
     blue: 'bg-buttonBlue text-white hover:bg-buttonBlue/80',
     red: 'bg-buttonRed text-white hover:bg-buttonRed/80',
+    orange: 'bg-buttonOrange text-white hover:bg-buttonOrange/80',
     transparent:
       'bg-transparent text-white border border-white hover:bg-white/10',
   }[variant]
