@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.66.0(react@18.2.0))
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -35,6 +38,9 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      react-hook-form:
+        specifier: ^7.66.0
+        version: 7.66.0(react@18.2.0)
       react-lite-youtube-embed:
         specifier: ^2.5.6
         version: 2.5.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -44,6 +50,9 @@ importers:
       vite-tsconfig-paths:
         specifier: ^4.3.2
         version: 4.3.2(typescript@5.0.4)(vite@5.2.13(@types/node@20.2.5)(terser@5.39.2))
+      zod:
+        specifier: ^4.1.12
+        version: 4.1.12
     devDependencies:
       '@commitlint/cli':
         specifier: ^17.6.5
@@ -602,6 +611,11 @@ packages:
   '@formatjs/intl-localematcher@0.6.2':
     resolution: {integrity: sha512-XOMO2Hupl0wdd172Y06h6kLpBz6Dv+J4okPLl4LPtzbr8f66WbIoy4ev98EBuZ6ZK4h5ydTN6XneT4QVpD7cdA==}
 
+  '@hookform/resolvers@5.2.2':
+    resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
+    peerDependencies:
+      react-hook-form: ^7.55.0
+
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -843,6 +857,9 @@ packages:
 
   '@schummar/icu-type-parser@1.21.5':
     resolution: {integrity: sha512-bXHSaW5jRTmke9Vd0h5P7BtWZG9Znqb8gSDxZnxaGSJnGwPLDPfS+3g0BKzeWqzgZPsIVZkM7m2tbo18cm5HBw==}
+
+  '@standard-schema/utils@0.3.0':
+    resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
 
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
@@ -3033,6 +3050,12 @@ packages:
     peerDependencies:
       react: ^18.2.0
 
+  react-hook-form@7.66.0:
+    resolution: {integrity: sha512-xXBqsWGKrY46ZqaHDo+ZUYiMUgi8suYu5kdrS20EG8KiL7VRQitEbNjm+UcrDYrNi1YLyfpmAeGjCZYXLT9YBw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -3918,6 +3941,9 @@ packages:
     resolution: {integrity: sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==}
     engines: {node: '>=12.20'}
 
+  zod@4.1.12:
+    resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
+
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
@@ -4392,6 +4418,11 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
+  '@hookform/resolvers@5.2.2(react-hook-form@7.66.0(react@18.2.0))':
+    dependencies:
+      '@standard-schema/utils': 0.3.0
+      react-hook-form: 7.66.0(react@18.2.0)
+
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
@@ -4568,6 +4599,8 @@ snapshots:
   '@rushstack/eslint-patch@1.11.0': {}
 
   '@schummar/icu-type-parser@1.21.5': {}
+
+  '@standard-schema/utils@0.3.0': {}
 
   '@swc/counter@0.1.3': {}
 
@@ -7006,6 +7039,10 @@ snapshots:
       react: 18.2.0
       scheduler: 0.23.2
 
+  react-hook-form@7.66.0(react@18.2.0):
+    dependencies:
+      react: 18.2.0
+
   react-is@16.13.1: {}
 
   react-is@17.0.2: {}
@@ -7981,3 +8018,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yocto-queue@1.2.1: {}
+
+  zod@4.1.12: {}

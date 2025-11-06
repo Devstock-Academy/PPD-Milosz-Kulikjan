@@ -3,12 +3,15 @@
 import Image from 'next/image'
 import { Divider, TextLink, NavButton } from '@/components'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
-import { useLocale } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+import { usePathname } from 'next/navigation'
 
 const SignOutTopbar = () => {
   const t = useTranslations('SignOutTopbar')
   const locale = useLocale()
+  const pathname = usePathname()
+
+  const isRegisterPage = pathname.includes('/register')
 
   return (
     <div className='flex w-full items-center justify-between bg-grayBg px-10 py-4.5 shadow-header'>
@@ -24,11 +27,16 @@ const SignOutTopbar = () => {
           />
         </div>
       </Link>
+
       <div className='flex items-center gap-x-10'>
         <p className='text-white'>Devstock.pl</p>
         <Divider />
-        <TextLink href={`/${locale}/`}>{t('loginButton')}</TextLink>
-        <NavButton href={`/${locale}/`} variant='blue'>
+        <TextLink href={`/${locale}/login`}>{t('loginButton')}</TextLink>
+
+        <NavButton
+          href={`/${locale}/register`}
+          variant={isRegisterPage ? 'orange' : 'blue'}
+        >
           {t('registerButton')}
         </NavButton>
       </div>

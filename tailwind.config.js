@@ -19,6 +19,7 @@ module.exports = {
         buttonRed: '#F74746',
         link: '#1C64F2',
         heroOverlay: '#1B2124',
+        buttonOrange: '#F5A22E',
       },
       spacing: {
         4.5: '1.125rem', // 18px
@@ -29,10 +30,15 @@ module.exports = {
         8.1875: '2.0625rem', // 33px
         72: '18rem', // 288px
         120: '30rem', //480px
+        75: '18.75rem', // 300px
       },
       maxWidth: {
         container: '85.375rem', // 1366px
         videoMax: '40.1875rem', // 643px
+        form: '43.75rem', // 700px
+      },
+      maxHeight: {
+        form: '40.875rem', // 654px w rem
       },
       boxShadow: {
         contentDiv: '0px 2px 4px -2px #0000000D, 0px 4px 6px -1px #0000001A',
@@ -40,12 +46,17 @@ module.exports = {
         footer: '0px -4px 4px 0px rgba(0, 0, 0, 0.25)',
         videoShadow:
           '0px 10px 10px 0px #0000000A, 0px 20px 25px -5px #0000001A',
+        formShadow: '0px 0px 10px 0px #00000099',
       },
+
       fontSize: {
         'text-heading': [
           '64px',
           { lineHeight: '60px', letterSpacing: '-0.01em' },
         ],
+      },
+      backgroundImage: {
+        hero: "url('/images/HeroImage.webp')",
       },
     },
   },

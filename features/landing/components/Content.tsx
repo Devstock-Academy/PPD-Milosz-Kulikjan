@@ -17,11 +17,12 @@ const Content = ({ paragraphs = [], videoId }: ContentProps) => {
   return (
     <div className='mx-10'>
       <div
-        className={clsx('flex flex-col gap-8 py-15 xl:gap-x-30', {
-          'items-center justify-between xl:flex-row': hasParagraphs,
-          'items-center justify-center text-center xl:flex-row-reverse':
-            !hasParagraphs,
-        })}
+        className={clsx(
+          'flex flex-col items-center gap-8 py-15 xl:gap-x-30',
+          hasParagraphs
+            ? 'justify-between xl:flex-row'
+            : 'justify-center text-center xl:flex-row-reverse'
+        )}
       >
         <div
           className={clsx('flex flex-1 flex-col gap-8.1875', {
