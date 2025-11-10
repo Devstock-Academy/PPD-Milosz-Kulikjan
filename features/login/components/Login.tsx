@@ -1,6 +1,6 @@
 import LoginForm from './LoginForm'
 
-const Register = () => {
+const Login = () => {
   return (
     <div className='relative min-h-screen w-full'>
       <div className='absolute inset-0 z-0 bg-hero bg-cover bg-center' />
@@ -11,4 +11,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login

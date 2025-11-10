@@ -65,7 +65,7 @@ const RegistrationForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='flex h-full max-h-form w-full max-w-form flex-col gap-3 bg-grayBg p-8 shadow-formShadow'
+      className='flex h-full max-h-registerForm w-full max-w-registerForm flex-col gap-3 bg-grayBg p-8 shadow-formShadow'
       noValidate
     >
       <div className='mb-5 flex'>
@@ -146,7 +146,7 @@ const RegistrationForm = () => {
         type='submit'
         size='lg'
         disabled={isSubmitting}
-        className='mb-5 h-[40px] w-full bg-buttonBlue hover:bg-buttonBlue/80'
+        className='mb-5 h-10 w-full bg-buttonBlue hover:bg-buttonBlue/80'
       >
         {isSubmitting ? 'Rejestrowanie...' : 'Zarejestruj się'}
       </Button>
