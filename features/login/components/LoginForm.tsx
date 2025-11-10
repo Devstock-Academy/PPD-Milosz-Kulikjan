@@ -42,6 +42,7 @@ const LoginForm = () => {
       </div>
 
       <Input
+        testId='email'
         label='Twój e-mail'
         type='email'
         autoComplete='email'
@@ -51,6 +52,7 @@ const LoginForm = () => {
       />
 
       <Input
+        testId='password'
         label='Hasło'
         type='password'
         autoComplete='current-password'
@@ -61,6 +63,7 @@ const LoginForm = () => {
 
       <Checkbox id='remember' label='Zapamiętaj mnie' />
       <Button
+        testId='submit'
         type='submit'
         size='lg'
         className='h-10 w-full bg-buttonBlue hover:bg-buttonBlue/80'

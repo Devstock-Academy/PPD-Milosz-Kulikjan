@@ -75,6 +75,7 @@ const RegistrationForm = () => {
       <div className='flex gap-9'>
         <div className='flex-1'>
           <Input
+            testId='nick'
             label='Pseudonim'
             placeholder='Pseudonim'
             {...register('pseudonim')}
@@ -83,6 +84,7 @@ const RegistrationForm = () => {
         </div>
         <div className='flex-1'>
           <Input
+            testId='name'
             label='Imię'
             placeholder='Imię'
             {...register('imie')}
@@ -94,6 +96,7 @@ const RegistrationForm = () => {
       <div className='flex gap-9'>
         <div className='flex-1'>
           <Input
+            testId='lastName'
             label='Nazwisko'
             placeholder='Nazwisko'
             {...register('nazwisko')}
@@ -102,6 +105,7 @@ const RegistrationForm = () => {
         </div>
         <div className='flex-1'>
           <Input
+            testId='email'
             label='Twój e-mail'
             autoComplete='email'
             placeholder='name@example.com'
@@ -113,6 +117,7 @@ const RegistrationForm = () => {
 
       <div>
         <Input
+          testId='password'
           label='Hasło'
           type='password'
           autoComplete='new-password'
@@ -124,6 +129,7 @@ const RegistrationForm = () => {
 
       <div>
         <Input
+          testId='confirmPassword'
           label='Potwierdź hasło'
           type='password'
           autoComplete='new-password'
@@ -134,6 +140,7 @@ const RegistrationForm = () => {
       </div>
 
       <Checkbox
+        testId='acceptTerms'
         id='rules'
         label='Akceptuję'
         linkText='zasady i warunki'
@@ -143,6 +150,7 @@ const RegistrationForm = () => {
       />
 
       <Button
+        testId='registrationSubmit'
         type='submit'
         size='lg'
         disabled={isSubmitting}

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
-interface ModalProps {
+type ModalProps = {
   email: string
   onClose: () => void
 }
@@ -26,7 +26,10 @@ const Modal: React.FC<ModalProps> = ({ email, onClose }) => {
   }, [onClose])
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center bg-grayBg bg-opacity-50'>
+    <div
+      className='fixed inset-0 flex items-center justify-center bg-grayBg bg-opacity-50'
+      data-testid='modal'
+    >
       <div
         ref={modalRef}
         className='flex flex-col gap-8 rounded-2xl bg-grayBg p-8 text-center shadow-lg'
@@ -42,7 +45,7 @@ const Modal: React.FC<ModalProps> = ({ email, onClose }) => {
 
         <button
           onClick={onClose}
-          className='w-75 mt-4 self-center rounded bg-buttonBlue px-4 py-2 text-white hover:bg-buttonBlue/80'
+          className='mt-4 w-75 self-center rounded bg-buttonBlue px-4 py-2 text-white hover:bg-buttonBlue/80'
         >
           Prześlij ponownie
         </button>

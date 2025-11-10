@@ -10,6 +10,7 @@ type CheckboxProps = {
   linkText?: string
   linkHref?: string
   error?: string
+  testId?: string
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
