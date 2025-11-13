@@ -5,10 +5,10 @@ import Footer from './components/Footer'
 
 const SignOutLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className='flex min-h-screen flex-col'>
+    <div className='flex h-full min-h-screen flex-col'>
       <SocialMediaBar />
       <SignOutTopbar />
-      <main className='flex-1'>{children}</main>
+      <main className='flex flex-1 flex-col'>{children}</main>
       <Footer />
     </div>
   )

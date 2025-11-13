@@ -25,7 +25,6 @@ const SignOutTopbar = () => {
             width={120}
             height={44}
             className='object-contain'
-            priority
           />
         </div>
       </Link>
