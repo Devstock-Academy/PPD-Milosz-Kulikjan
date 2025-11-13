@@ -4,7 +4,7 @@ import { Login } from '@/features/login'
 
 const Home = () => {
   return (
-    <div className='mx-auto w-full'>
+    <div className='mx-auto h-full w-full'>
       <Login />
     </div>
   )

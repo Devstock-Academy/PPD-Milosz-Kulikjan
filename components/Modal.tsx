@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 
 type ModalProps = {
   email: string
@@ -6,6 +7,7 @@ type ModalProps = {
 }
 
 const Modal: React.FC<ModalProps> = ({ email, onClose }) => {
+  const t = useTranslations('Modal')
   const modalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -34,20 +36,14 @@ const Modal: React.FC<ModalProps> = ({ email, onClose }) => {
         ref={modalRef}
         className='flex flex-col gap-8 rounded-2xl bg-grayBg p-8 text-center shadow-lg'
       >
-        <h2 className='mb-2 text-xl font-extralight'>Potwierdź rejestrację!</h2>
-        <span className='text-sm font-medium'>
-          Przesłaliśmy link aktywacyjny na adres{' '}
-          <span className='font-medium'>{email}</span>, prosimy o weryfikację :)
-        </span>
-        <span className='text-sm font-medium'>
-          Mail aktywacyjny nie dotarł?
-        </span>
-
+        <h2 className='mb-2 text-xl font-extralight'>{t('title')}</h2>
+        <span className='text-sm font-medium'>{t('line1', { email })}</span>
+        <span className='text-sm font-medium'>{t('line2')}</span>
         <button
           onClick={onClose}
           className='mt-4 w-75 self-center rounded bg-buttonBlue px-4 py-2 text-white hover:bg-buttonBlue/80'
         >
-          Prześlij ponownie
+          {t('resend')}
         </button>
       </div>
     </div>

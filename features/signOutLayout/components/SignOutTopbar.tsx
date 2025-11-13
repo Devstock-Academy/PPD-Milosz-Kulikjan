@@ -29,7 +29,6 @@ const SignOutTopbar = () => {
           />
         </div>
       </Link>
-
       <div className='flex items-center gap-x-10'>
         <p className='text-white'>Devstock.pl</p>
         <Divider />
@@ -39,7 +38,6 @@ const SignOutTopbar = () => {
         >
           {t('loginButton')}
         </TextLink>
-
         <NavButton
           href={`/${locale}/register`}
           variant={isRegisterPage ? 'orange' : 'blue'}

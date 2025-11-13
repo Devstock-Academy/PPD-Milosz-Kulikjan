@@ -4,7 +4,7 @@ import { Register } from '@/features/register'
 
 const Home = () => {
   return (
-    <div className='mx-auto w-full'>
+    <div className='mx-auto flex h-full w-full'>
       <Register />
     </div>
   )

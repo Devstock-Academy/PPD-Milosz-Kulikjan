@@ -61,7 +61,6 @@ const Content = ({ paragraphs = [], videoId }: ContentProps) => {
           </div>
         )}
       </div>
-
       <div className='mx-0 my-10 flex flex-col gap-2 rounded-lg border-2 p-8 shadow-contentDiv xl:mx-72'>
         <h1 className='text-3xl font-extralight'>{t('bottomCardTitle')}</h1>
         <span className='font-extralight'>{t('bottomCardText')}</span>

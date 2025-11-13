@@ -19,7 +19,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {label}
           </label>
         )}
-
         <input
           ref={ref}
           {...props}
@@ -30,7 +29,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className
           )}
         />
-
         <span
           data-testid={testId ? `${testId}Error` : undefined}
           className='mt-1 min-h-[1rem] text-xs font-extralight text-red-500'
