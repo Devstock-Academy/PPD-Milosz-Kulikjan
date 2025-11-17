@@ -3,50 +3,44 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
-const formSchema = z
-  .object({
-    pseudonim: z
-      .string()
-      .min(1, 'Pseudonim musi zawierać odpowiednią ilość znaków'),
-    imie: z.string().min(1, 'Imię musi zawierać odpowiednią ilość znaków'),
-    nazwisko: z
-      .string()
-      .min(1, 'Nazwisko musi zawierać odpowiednią ilość znaków'),
-    email: z
-      .string()
-      .min(1, 'Email jest wymagany')
-      .email('E-mail musi mieć poprawny format'),
-    password: z
-      .string()
-      .min(8, 'Hasło musi zawierać odpowiednią ilość znaków')
-      .regex(/[A-Z]/, 'Hasło musi zawierać co najmniej jedną dużą literę')
-      .regex(/[a-z]/, 'Hasło musi zawierać co najmniej jedną małą literę')
-      .regex(/[0-9]/, 'Hasło musi zawierać co najmniej jedną liczbę')
-      .regex(
-        /[!@#$%^&*(),.?":{}|<>]/,
-        'Hasło musi zawierać co najmniej jeden znak specjalny'
-      ),
-    confirmPassword: z.string().min(1, 'Hasło jest niezgodne'),
-    rulesAccepted: z.boolean().refine((val) => val === true, {
-      message: 'Musisz zaakceptować zasady i warunki świadczenia usług!',
-    }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    path: ['confirmPassword'],
-    message: 'Hasło jest niezgodne',
-  })
+const createFormSchema = (tv: ReturnType<typeof useTranslations>) =>
+  z
+    .object({
+      pseudonim: z.string().min(1, tv('nick.required')),
+      imie: z.string().min(1, tv('firstName.required')),
+      nazwisko: z.string().min(1, tv('lastName.required')),
+      email: z.string().min(1, tv('email.required')).email(tv('email.invalid')),
+      password: z
+        .string()
+        .min(8, tv('password.min'))
+        .regex(/[A-Z]/, tv('password.uppercase'))
+        .regex(/[a-z]/, tv('password.lowercase'))
+        .regex(/[0-9]/, tv('password.number'))
+        .regex(/[!@#$%^&*(),.?":{}|<>]/, tv('password.special')),
+      confirmPassword: z.string().min(1, tv('confirm.required')),
+      rulesAccepted: z.boolean().refine((val) => val === true, {
+        message: tv('rules.accept'),
+      }),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      path: ['confirmPassword'],
+      message: tv('confirm.mismatch'),
+    })
 
-type FormData = z.infer<typeof formSchema>
+type FormData = z.infer<ReturnType<typeof createFormSchema>>
 
 const RegistrationForm = () => {
+  const t = useTranslations('RegistrationForm')
+  const tv = useTranslations('Validation')
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(createFormSchema(tv)),
     mode: 'onBlur',
   })
 
@@ -65,99 +59,99 @@ const RegistrationForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='flex h-full max-h-form w-full max-w-form flex-col gap-3 bg-grayBg p-8 shadow-formShadow'
+      className='flex max-h-registerForm w-full max-w-registerForm flex-col gap-3 bg-grayBg p-8 shadow-formShadow'
       noValidate
     >
       <div className='mb-5 flex'>
-        <span className='text-2xl font-extralight'>Zarejestruj się</span>
+        <span className='text-2xl font-extralight'>{t('title')}</span>
       </div>
-
       <div className='flex gap-9'>
         <div className='flex-1'>
           <Input
-            label='Pseudonim'
-            placeholder='Pseudonim'
+            testId='nick'
+            label={t('nick.label')}
+            placeholder={t('nick.placeholder')}
             {...register('pseudonim')}
             error={errors.pseudonim?.message}
           />
         </div>
         <div className='flex-1'>
           <Input
-            label='Imię'
-            placeholder='Imię'
+            testId='name'
+            label={t('firstName.label')}
+            placeholder={t('firstName.placeholder')}
             {...register('imie')}
             error={errors.imie?.message}
           />
         </div>
       </div>
-
       <div className='flex gap-9'>
         <div className='flex-1'>
           <Input
-            label='Nazwisko'
-            placeholder='Nazwisko'
+            testId='lastName'
+            label={t('lastName.label')}
+            placeholder={t('lastName.placeholder')}
             {...register('nazwisko')}
             error={errors.nazwisko?.message}
           />
         </div>
         <div className='flex-1'>
           <Input
-            label='Twój e-mail'
+            testId='email'
+            label={t('email.label')}
             autoComplete='email'
-            placeholder='name@example.com'
+            placeholder={t('email.placeholder')}
             {...register('email')}
             error={errors.email?.message}
           />
         </div>
       </div>
-
       <div>
         <Input
-          label='Hasło'
+          testId='password'
+          label={t('password.label')}
           type='password'
           autoComplete='new-password'
-          placeholder='••••••••••'
+          placeholder={t('password.placeholder')}
           {...register('password')}
           error={errors.password?.message}
         />
       </div>
-
       <div>
         <Input
-          label='Potwierdź hasło'
+          testId='confirmPassword'
+          label={t('confirm.label')}
           type='password'
           autoComplete='new-password'
-          placeholder='••••••••••'
+          placeholder={t('confirm.placeholder')}
           {...register('confirmPassword')}
           error={errors.confirmPassword?.message}
         />
       </div>
-
       <Checkbox
+        testId='acceptTerms'
         id='rules'
-        label='Akceptuję'
-        linkText='zasady i warunki'
+        label={t('rules.label')}
+        linkText={t('rules.linkText')}
         linkHref='register'
         {...register('rulesAccepted')}
         error={errors.rulesAccepted?.message}
       />
-
       <Button
+        testId='registrationSubmit'
         type='submit'
         size='lg'
         disabled={isSubmitting}
-        className='mb-5 h-[40px] w-full bg-buttonBlue hover:bg-buttonBlue/80'
+        className='mb-5 h-10 w-full bg-buttonBlue hover:bg-buttonBlue/80'
       >
-        {isSubmitting ? 'Rejestrowanie...' : 'Zarejestruj się'}
+        {isSubmitting ? t('submitting') : t('submit')}
       </Button>
-
       <div className='flex items-center gap-1'>
-        <span className='text-sm font-medium'>Już masz konto?</span>
+        <span className='text-sm font-medium'>{t('hasAccount')}</span>
         <TextLink href='login' variant='blue' className='text-sm font-medium'>
-          Zaloguj się
+          {t('loginLink')}
         </TextLink>
       </div>
-
       {showModal && <Modal email={email} onClose={() => setShowModal(false)} />}
     </form>
   )

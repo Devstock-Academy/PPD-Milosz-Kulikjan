@@ -21,5 +21,68 @@
   "Footer": {
     "privacyPolicy": "Polityka prywatności",
     "contact": "Kontakt"
+  },
+  "LoginForm": {
+    "title": "Zaloguj się",
+    "email": {
+      "label": "Twój e-mail",
+      "placeholder": "name@example.com"
+    },
+    "password": {
+      "label": "Hasło",
+      "placeholder": "••••••••••"
+    },
+    "remember": "Zapamiętaj mnie",
+    "submit": "Zaloguj się",
+    "forgotLink": "Nie pamiętam hasła",
+    "oauthGithub": "Logowanie przez Github",
+    "noAccount": "Nie masz jeszcze konta?",
+    "registerLink": "Zarejestruj się"
+  },
+  "RegistrationForm": {
+    "title": "Zarejestruj się",
+    "nick": { "label": "Pseudonim", "placeholder": "Pseudonim" },
+    "firstName": { "label": "Imię", "placeholder": "Imię" },
+    "lastName": { "label": "Nazwisko", "placeholder": "Nazwisko" },
+    "email": { "label": "Twój e-mail", "placeholder": "name@example.com" },
+    "password": { "label": "Hasło", "placeholder": "••••••••••" },
+    "confirm": { "label": "Potwierdź hasło", "placeholder": "••••••••••" },
+    "rules": { "label": "Akceptuję", "linkText": "zasady i warunki" },
+    "submit": "Zarejestruj się",
+    "submitting": "Rejestrowanie...",
+    "hasAccount": "Już masz konto?",
+    "loginLink": "Zaloguj się"
+  },
+  "Validation": {
+    "email": {
+      "required": "Email jest wymagany",
+      "invalid": "E-mail musi mieć poprawny format"
+    },
+    "password": {
+      "required": "Hasło jest wymagane",
+      "min": "Hasło musi zawierać odpowiednią ilość znaków",
+      "uppercase": "Hasło musi zawierać co najmniej jedną dużą literę",
+      "lowercase": "Hasło musi zawierać co najmniej jedną małą literę",
+      "number": "Hasło musi zawierać co najmniej jedną liczbę",
+      "special": "Hasło musi zawierać co najmniej jeden znak specjalny"
+    },
+    "nick": { "required": "Pseudonim musi zawierać odpowiednią ilość znaków" },
+    "firstName": { "required": "Imię musi zawierać odpowiednią ilość znaków" },
+    "lastName": {
+      "required": "Nazwisko musi zawierać odpowiednią ilość znaków"
+    },
+    "confirm": {
+      "required": "Hasło jest niezgodne",
+      "mismatch": "Hasło jest niezgodne"
+    },
+    "rules": {
+      "accept": "Musisz zaakceptować zasady i warunki świadczenia usług!"
+    }
+  },
+  "Modal": {
+    "title": "Potwierdź rejestrację!",
+    "line1": "Przesłaliśmy link aktywacyjny na adres {email}, prosimy o weryfikację :)",
+    "line2": "Mail aktywacyjny nie dotarł?",
+    "resend": "Prześlij ponownie"
   }
 }

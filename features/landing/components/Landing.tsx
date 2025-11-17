@@ -6,7 +6,7 @@ const Landing = () => {
   const t = useTranslations('Content')
 
   return (
-    <div className='w-full'>
+    <div className='flex w-full flex-1 flex-col'>
       <HeroImage />
       <section className='mx-auto w-full max-w-container px-4'>
         <Content
