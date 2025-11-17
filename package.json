@@ -38,15 +38,21 @@
     "test-sprint-6": "vitest run __tests__/sprint-6/"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "clsx": "^2.1.1",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "flowbite": "^1.6.5",
-    "flowbite-react": "^0.4.7",
+    "flowbite-react": "^0.12.9",
     "next": "14.2.24",
+    "next-intl": "^4.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.66.0",
+    "react-lite-youtube-embed": "^2.5.6",
     "vite-plugin-require": "^1.2.14",
-    "vite-tsconfig-paths": "^4.3.2"
+    "vite-tsconfig-paths": "^4.3.2",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",
