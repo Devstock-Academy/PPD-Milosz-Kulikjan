@@ -10,6 +10,7 @@ type CheckboxProps = {
   linkText?: string
   linkHref?: string
   error?: string
+  testId?: string
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
@@ -20,6 +21,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       linkText,
       linkHref,
       error,
+      testId,
       ...props
     },
     ref
@@ -30,6 +32,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           <FlowbiteCheckbox
             id={id}
             ref={ref}
+            data-testid={testId}
             {...props}
             className='
               peer h-5 w-5 cursor-pointer border-0 bg-gray-700 text-white
@@ -38,7 +41,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               focus-visible:outline-none focus-visible:ring-0
               focus-visible:ring-transparent'
           />
-
           <Label htmlFor={id} className='flex gap-1 text-white'>
             {label}
             {linkText && linkHref && (
@@ -52,8 +54,10 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             )}
           </Label>
         </div>
-
-        <span className='min-h-1 mt-1 text-xs font-extralight text-red-500'>
+        <span
+          data-testid={testId ? `${testId}Error` : undefined}
+          className='min-h-1 mt-1 text-xs font-extralight text-red-500'
+        >
           {error ? error : '\u00A0'}
         </span>
       </div>

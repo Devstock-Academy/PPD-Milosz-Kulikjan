@@ -3,11 +3,7 @@
 import { Register } from '@/features/register'
 
 const Home = () => {
-  return (
-    <div className='mx-auto w-full'>
-      <Register />
-    </div>
-  )
+  return <Register />
 }
 
 export default Home

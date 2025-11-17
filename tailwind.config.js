@@ -31,14 +31,16 @@ module.exports = {
         72: '18rem', // 288px
         120: '30rem', //480px
         75: '18.75rem', // 300px
+        
       },
       maxWidth: {
         container: '85.375rem', // 1366px
         videoMax: '40.1875rem', // 643px
-        form: '43.75rem', // 700px
+        registerForm: '43.75rem', // 700px
+        loginForm: '28rem', // 448px
       },
       maxHeight: {
-        form: '40.875rem', // 654px w rem
+        registerForm: '40.875rem', // 654px w rem
       },
       boxShadow: {
         contentDiv: '0px 2px 4px -2px #0000000D, 0px 4px 6px -1px #0000001A',

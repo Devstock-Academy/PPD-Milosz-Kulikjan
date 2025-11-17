@@ -4,9 +4,7 @@ import { Landing } from '@/features/landing'
 const Home = () => {
   return (
     <SignOutLayout>
-      <div className='mx-auto w-full'>
-        <Landing />
-      </div>
+      <Landing />
     </SignOutLayout>
   )
 }

@@ -4,7 +4,7 @@ import clsx from 'clsx'
 type TextLinkProps = {
   href: string
   children: React.ReactNode
-  variant?: 'default' | 'blue'
+  variant?: 'default' | 'blue' | 'orange'
   className?: string
 }
 
@@ -20,6 +20,7 @@ const TextLink = ({
       className={clsx(
         variant === 'default' && 'cursor-pointer text-white',
         variant === 'blue' && 'text-buttonBlue underline',
+        variant === 'orange' && 'text-buttonOrange',
         className
       )}
       onClick={(e) => e.stopPropagation()}

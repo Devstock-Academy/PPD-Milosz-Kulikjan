@@ -3,6 +3,7 @@ import { ThemeInit } from '../.flowbite-react/init'
 import './globals.css'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import { NextIntlClientProvider } from 'next-intl'
+import clsx from 'clsx'
 
 const lexendDeca = Lexend_Deca({
   subsets: ['latin'],
@@ -21,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='pl' className={lexendDeca.className}>
-      <body>
+    <html lang='pl' className={clsx(lexendDeca.className, 'h-full')}>
+      <body className='h-full min-h-screen'>
         <ThemeInit />
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>

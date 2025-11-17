@@ -1,11 +1,7 @@
 import { Landing } from '@/features/landing'
 
 const LandingPage = () => {
-  return (
-    <div className='mx-auto w-full'>
-      <Landing />
-    </div>
-  )
+  return <Landing />
 }
 
 export default LandingPage

@@ -9,7 +9,7 @@ const HeroImage = () => {
   const t = useTranslations('HeroImage')
 
   return (
-    <div className='relative w-full'>
+    <div className='relative w-full' data-testid='hero-image'>
       <div className='relative h-120 w-full'>
         <Image
           src='/images/HeroImage.webp'
