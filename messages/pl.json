@@ -84,5 +84,17 @@
     "line1": "Przesłaliśmy link aktywacyjny na adres {email}, prosimy o weryfikację :)",
     "line2": "Mail aktywacyjny nie dotarł?",
     "resend": "Prześlij ponownie"
+  },
+  "SignInTopbar": {
+    "logoutButton": "Wyloguj się"
+  },
+  "Sidebar": {
+    "dashboard": "Panel główny",
+    "ranking": "Ranking",
+    "lessons": "Lekcje",
+    "calendar": "Kalendarz",
+    "task": "Zadanie",
+    "settings": "Ustawienia",
+    "admin": "Panel admina"
   }
 }
