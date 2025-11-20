@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { Tooltip } from 'flowbite-react'
+import clsx from 'clsx'
 import SidebarIconPicker from './SidebarIconPicker'
 
 const Sidebar = () => {
@@ -46,7 +47,9 @@ const Sidebar = () => {
           className='-ml-2.5 flex items-start justify-center rounded-md text-white'
         >
           <div className='flex h-10 w-10 items-center justify-center rounded-lg bg-grayBg'>
-            <div className={`transition-transform ${open ? '' : 'rotate-180'}`}>
+            <div
+              className={clsx('transition-transform', !open && 'rotate-180')}
+            >
               <SidebarIconPicker name={item.icon} />
             </div>
           </div>
@@ -63,25 +66,31 @@ const Sidebar = () => {
         content={t(item.icon)}
         placement='right'
         style='light'
-        className={open ? 'hidden' : hasDivider ? 'ml-10' : 'ml-4'}
+        className={clsx(open ? 'hidden' : hasDivider ? 'ml-10' : 'ml-4')}
       >
         <Link
           href={item.href}
           aria-label={item.href}
-          className={`group relative flex items-${
-            hasDivider ? 'start' : 'center'
-          } justify-center rounded-md text-white ${
-            item.icon === 'settings' ? '-mt-4' : ''
-          }`}
+          className={clsx(
+            'group relative flex justify-center rounded-md text-white',
+            hasDivider ? 'items-start' : 'items-center',
+            item.icon === 'settings' && '-mt-4'
+          )}
         >
           <div
-            className={`transition-transform group-hover:scale-150 ${activeColor}`}
+            className={clsx(
+              'transition-transform group-hover:scale-150',
+              activeColor
+            )}
           >
             <SidebarIconPicker name={item.icon} />
           </div>
           {open && (
             <span
-              className={`absolute left-6 ml-10 whitespace-nowrap ${activeColor}`}
+              className={clsx(
+                'absolute left-6 ml-10 whitespace-nowrap',
+                activeColor
+              )}
             >
               {t(item.icon)}
             </span>
@@ -111,9 +120,10 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`sticky top-0 h-screen border-r border-gray-800 bg-darkBg ${
+      className={clsx(
+        'sticky top-0 h-screen border-r border-gray-800 bg-darkBg',
         open ? 'w-55' : 'w-16'
-      }`}
+      )}
     >
       <nav className='flex h-full flex-col items-start gap-8 pl-5 pt-8'>
         {items.map(renderMenuItem)}
