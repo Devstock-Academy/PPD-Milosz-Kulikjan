@@ -5,13 +5,13 @@ import SocialMediaBar from '@/features/signOutLayout/components/SocialMediaBar'
 
 const SignInLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
+    <div className='flex h-screen flex-col'>
       <SocialMediaBar />
       <SignInTopBar />
-      <div className='flex'>
+      <main className='flex flex-1'>
         <Sidebar />
-        {children}
-      </div>
+        <div className='flex-1'>{children}</div>
+      </main>
     </div>
   )
 }
