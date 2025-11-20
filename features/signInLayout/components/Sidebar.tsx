@@ -66,7 +66,10 @@ const Sidebar = () => {
         content={t(item.icon)}
         placement='right'
         style='light'
-        className={clsx(open ? 'hidden' : hasDivider ? 'ml-10' : 'ml-4')}
+        className={clsx(
+          open ? 'hidden' : 'ml-4',
+          item.icon === 'settings' && '-translate-y-2'
+        )}
       >
         <Link
           href={item.href}
@@ -99,29 +102,23 @@ const Sidebar = () => {
       </Tooltip>
     )
 
-    if (hasDivider) {
-      return (
-        <div
-          key={`${item.icon}-${item.href}`}
-          className='flex w-full flex-col items-start gap-4'
-        >
-          {menuLink}
-          <div className='-ml-5 h-px w-sidebar-divider bg-sidebarDivider' />
-        </div>
-      )
-    }
-
     return (
-      <React.Fragment key={`${item.icon}-${item.href}`}>
+      <div
+        key={`${item.icon}-${item.href}`}
+        className='flex w-full flex-col items-start gap-4'
+      >
         {menuLink}
-      </React.Fragment>
+        {hasDivider && (
+          <div className='-ml-5 h-px w-sidebar-divider bg-sidebarDivider' />
+        )}
+      </div>
     )
   }
 
   return (
     <aside
       className={clsx(
-        'sticky top-0 h-screen border-r border-gray-800 bg-darkBg',
+        'sticky top-0 h-full border-r border-gray-800 bg-darkBg',
         open ? 'w-55' : 'w-16'
       )}
     >
