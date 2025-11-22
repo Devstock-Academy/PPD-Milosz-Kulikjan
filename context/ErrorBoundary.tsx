@@ -2,11 +2,11 @@
 
 import React, { Component, ReactNode } from 'react'
 
-interface ErrorBoundaryProps {
-  children: ReactNode
+type ErrorBoundaryProps = {
+  children: React.ReactNode
 }
 
-interface ErrorBoundaryState {
+type ErrorBoundaryState = {
   hasError: boolean
 }
 
