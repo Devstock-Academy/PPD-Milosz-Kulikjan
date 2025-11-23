@@ -34,6 +34,7 @@
     },
     "remember": "Zapamiętaj mnie",
     "submit": "Zaloguj się",
+    "submitting": "Logowanie...",
     "forgotLink": "Nie pamiętam hasła",
     "oauthGithub": "Logowanie przez Github",
     "noAccount": "Nie masz jeszcze konta?",
@@ -96,5 +97,12 @@
     "task": "Zadanie",
     "settings": "Ustawienia",
     "admin": "Panel admina"
+  },
+  "Errors": {
+    "loginFailed": "Wystąpił błąd podczas logowania",
+    "loginSuccess": "Zalogowano pomyślnie!",
+    "emailAndPasswordRequired": "Email i hasło są wymagane",
+    "userNotFound": "Użytkownik o podanym adresie email nie istnieje",
+    "invalidPassword": "Podane hasło jest nieprawidłowe"
   }
 }
