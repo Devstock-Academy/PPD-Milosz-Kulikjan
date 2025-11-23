@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { useMutation } from '@tanstack/react-query'
+import { useSnackbar } from 'notistack'
 
 const createFormSchema = (tv: ReturnType<typeof useTranslations>) =>
   z
@@ -34,6 +36,7 @@ type FormData = z.infer<ReturnType<typeof createFormSchema>>
 const RegistrationForm = () => {
   const t = useTranslations('RegistrationForm')
   const tv = useTranslations('Validation')
+  const { enqueueSnackbar } = useSnackbar()
   const {
     register,
     handleSubmit,
@@ -44,16 +47,44 @@ const RegistrationForm = () => {
     mode: 'onBlur',
   })
 
-  const [submitted, setSubmitted] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [email, setEmail] = useState('')
 
+  const registerMutation = useMutation({
+    mutationFn: async (data: FormData) => {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pseudonim: data.pseudonim,
+          imie: data.imie,
+          nazwisko: data.nazwisko,
+          email: data.email,
+          password: data.password,
+        }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Wystąpił błąd podczas rejestracji')
+      }
+
+      return response.json()
+    },
+    onSuccess: (data, variables) => {
+      setEmail(variables.email)
+      reset()
+      setShowModal(true)
+    },
+    onError: (error: Error) => {
+      enqueueSnackbar(error.message, { variant: 'error' })
+    },
+  })
+
   const onSubmit = async (data: FormData) => {
-    console.log('Dane formularza:', data)
-    setEmail(data.email)
-    reset()
-    setSubmitted(true)
-    setShowModal(true)
+    registerMutation.mutate(data)
   }
 
   return (
@@ -141,10 +172,10 @@ const RegistrationForm = () => {
         testId='registrationSubmit'
         type='submit'
         size='lg'
-        disabled={isSubmitting}
+        disabled={registerMutation.isPending}
         className='mb-5 h-10 w-full bg-buttonBlue hover:bg-buttonBlue/80'
       >
-        {isSubmitting ? t('submitting') : t('submit')}
+        {registerMutation.isPending ? t('submitting') : t('submit')}
       </Button>
       <div className='flex items-center gap-1'>
         <span className='text-sm font-medium'>{t('hasAccount')}</span>
