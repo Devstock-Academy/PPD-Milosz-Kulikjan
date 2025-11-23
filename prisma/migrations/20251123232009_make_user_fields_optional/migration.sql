@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "users" ADD COLUMN     "name" TEXT,
+ALTER COLUMN "pseudonim" DROP NOT NULL,
+ALTER COLUMN "imie" DROP NOT NULL,
+ALTER COLUMN "nazwisko" DROP NOT NULL;

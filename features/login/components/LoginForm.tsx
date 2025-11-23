@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { Button, Checkbox, Input, TextLink } from '@/components'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -7,13 +7,14 @@ import { z } from 'zod'
 import IconWrapper from '@/components/IconWrapper'
 import { SocialMediaIconPicker } from '@/features/signOutLayout'
 import { useTranslations } from 'next-intl'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { useSnackbar } from 'notistack'
+import { useState } from 'react'
 
 const createFormSchema = (tv: ReturnType<typeof useTranslations>) =>
   z.object({
-    email: z
-      .string()
-      .min(1, tv('email.required'))
-      .email(tv('email.invalid')),
+    email: z.string().min(1, tv('email.required')).email(tv('email.invalid')),
     password: z.string().min(1, tv('password.required')),
   })
 
@@ -22,6 +23,11 @@ type FormData = z.infer<ReturnType<typeof createFormSchema>>
 const LoginForm = () => {
   const t = useTranslations('LoginForm')
   const tv = useTranslations('Validation')
+  const te = useTranslations('Errors')
+  const router = useRouter()
+  const { enqueueSnackbar } = useSnackbar()
+  const [isLoading, setIsLoading] = useState(false)
+
   const {
     register,
     handleSubmit,
@@ -31,8 +37,47 @@ const LoginForm = () => {
     mode: 'onBlur',
   })
 
-  const onSubmit = (data: FormData) => {
-    console.log('Dane logowania:', data)
+  const onSubmit = async (data: FormData) => {
+    setIsLoading(true)
+    try {
+      const result = await signIn('credentials', {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      })
+
+      if (result?.error) {
+        let errorMessage = te('loginFailed')
+
+        if (result.error === 'EMAIL_AND_PASSWORD_REQUIRED') {
+          errorMessage = te('emailAndPasswordRequired')
+        } else if (result.error === 'USER_NOT_FOUND') {
+          errorMessage = te('userNotFound')
+        } else if (result.error === 'INVALID_PASSWORD') {
+          errorMessage = te('invalidPassword')
+        }
+
+        enqueueSnackbar(errorMessage, { variant: 'error' })
+      } else {
+        enqueueSnackbar(te('loginSuccess'), { variant: 'success' })
+        router.push('/dashboard')
+        router.refresh()
+      }
+    } catch (error) {
+      enqueueSnackbar(te('loginFailed'), { variant: 'error' })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleGithubLogin = async () => {
+    setIsLoading(true)
+    try {
+      await signIn('github', { callbackUrl: '/dashboard' })
+    } catch (error) {
+      enqueueSnackbar(te('loginFailed'), { variant: 'error' })
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -52,6 +97,7 @@ const LoginForm = () => {
         placeholder={t('email.placeholder')}
         {...register('email')}
         error={errors.email?.message}
+        disabled={isLoading}
       />
       <Input
         testId='password'
@@ -61,6 +107,7 @@ const LoginForm = () => {
         placeholder={t('password.placeholder')}
         {...register('password')}
         error={errors.password?.message}
+        disabled={isLoading}
       />
       <Checkbox id='remember' label={t('remember')} />
       <Button
@@ -68,8 +115,9 @@ const LoginForm = () => {
         type='submit'
         size='lg'
         className='h-10 w-full bg-buttonBlue hover:bg-buttonBlue/80'
+        disabled={isLoading}
       >
-        {t('submit')}
+        {isLoading ? t('submitting') : t('submit')}
       </Button>
       <TextLink variant='blue' href='/login' className='text-sm font-medium'>
         {t('forgotLink')}
@@ -78,6 +126,8 @@ const LoginForm = () => {
         type='button'
         size='lg'
         className='h-10 w-full gap-4 bg-darkBg hover:bg-darkBg/80'
+        onClick={handleGithubLogin}
+        disabled={isLoading}
       >
         {t('oauthGithub')}
         <IconWrapper size={24} className='text-white'>

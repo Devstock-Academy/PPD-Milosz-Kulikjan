@@ -6,14 +6,19 @@ import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 import clsx from 'clsx'
 import { AvatarIcon } from '@/icons'
+import { signOut } from 'next-auth/react'
 
 const SignOutTopbar = () => {
   const t = useTranslations('SignInTopbar')
   const locale = useLocale()
 
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: `/${locale}/landing` })
+  }
+
   return (
     <div className='flex w-full items-center justify-between bg-grayBg px-10 py-4.5 shadow-header'>
-      <Link href={`/${locale}/landing`}>
+      <Link href={`/${locale}/dashboard`}>
         <div>
           <Image
             src='/images/SignOutLogo.webp'
@@ -28,9 +33,12 @@ const SignOutTopbar = () => {
         <p className='text-white'>Devstock.pl</p>
         <Divider />
         <AvatarIcon />
-        <TextLink variant={'default'} href={`/${locale}/logout`}>
+        <button
+          onClick={handleLogout}
+          className='text-sm font-medium text-white hover:text-buttonBlue'
+        >
           {t('logoutButton')}
-        </TextLink>
+        </button>
       </div>
     </div>
   )
