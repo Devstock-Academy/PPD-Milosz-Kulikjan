@@ -1,19 +1,17 @@
-"use client"
+'use client'
 
-import { Button, Checkbox, Input, TextLink } from '@/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslations } from 'next-intl'
 import { z } from 'zod'
+
+import { Button, Checkbox, Input, TextLink } from '@/components'
 import IconWrapper from '@/components/IconWrapper'
 import { SocialMediaIconPicker } from '@/features/signOutLayout'
-import { useTranslations } from 'next-intl'
 
 const createFormSchema = (tv: ReturnType<typeof useTranslations>) =>
   z.object({
-    email: z
-      .string()
-      .min(1, tv('email.required'))
-      .email(tv('email.invalid')),
+    email: z.string().min(1, tv('email.required')).email(tv('email.invalid')),
     password: z.string().min(1, tv('password.required')),
   })
 
