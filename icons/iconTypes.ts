@@ -1,4 +1,5 @@
 export type IconName =
+  | 'avatar'
   | 'chevron'
   | 'facebook'
   | 'github'
@@ -7,3 +8,11 @@ export type IconName =
   | 'small-arrow'
   | 'tiktok'
   | 'youtube'
+  | 'dashboard'
+  | 'ranking'
+  | 'lessons'
+  | 'calendar'
+  | 'settings'
+  | 'task'
+  | 'admin'
+  | 'vector'

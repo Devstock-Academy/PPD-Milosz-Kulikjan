@@ -4,6 +4,7 @@ import './globals.css'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 import { NextIntlClientProvider } from 'next-intl'
 import clsx from 'clsx'
+import AppContext from '@/context/AppContext'
 
 const lexendDeca = Lexend_Deca({
   subsets: ['latin'],
@@ -25,7 +26,9 @@ export default function RootLayout({
     <html lang='pl' className={clsx(lexendDeca.className, 'h-full')}>
       <body className='h-full min-h-screen'>
         <ThemeInit />
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <AppContext>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        </AppContext>
       </body>
     </html>
   )
