@@ -1,10 +1,12 @@
+import clsx from 'clsx'
 import { Lexend_Deca } from 'next/font/google'
+import { NextIntlClientProvider } from 'next-intl'
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
+
+import AppContext from '@/context/AppContext'
+
 import { ThemeInit } from '../.flowbite-react/init'
 import './globals.css'
-import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
-import { NextIntlClientProvider } from 'next-intl'
-import clsx from 'clsx'
-import AppContext from '@/context/AppContext'
 
 const lexendDeca = Lexend_Deca({
   subsets: ['latin'],

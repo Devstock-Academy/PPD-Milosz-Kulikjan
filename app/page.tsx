@@ -1,5 +1,5 @@
-import SignOutLayout from '@/features/signOutLayout/layout'
 import { Landing } from '@/features/landing'
+import SignOutLayout from '@/features/signOutLayout/layout'
 
 const Home = () => {
   return (

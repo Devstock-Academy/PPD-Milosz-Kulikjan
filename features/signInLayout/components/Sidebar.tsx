@@ -1,16 +1,18 @@
 'use client'
-import React, { useState } from 'react'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { Tooltip } from 'flowbite-react'
 import clsx from 'clsx'
+import { Tooltip } from 'flowbite-react'
+import React from 'react'
+
 import SidebarIconPicker from './SidebarIconPicker'
 
 const Sidebar = () => {
   const t = useTranslations('Sidebar')
   const pathname = usePathname()
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = React.useState(false)
 
   const items: (
     | { icon: 'vector' }
@@ -67,6 +69,7 @@ const Sidebar = () => {
         placement='right'
         style='light'
         className={clsx(
+          'whitespace-nowrap',
           open ? 'hidden' : 'ml-4',
           item.icon === 'settings' && '-translate-y-2'
         )}
