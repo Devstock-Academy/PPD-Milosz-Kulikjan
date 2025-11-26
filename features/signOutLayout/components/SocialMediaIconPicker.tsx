@@ -1,27 +1,32 @@
 import {
   FacebookIcon,
+  GithubIcon,
   InstagramIcon,
   LinkedinIcon,
-  YouTubeIcon,
-  GithubIcon,
   TikTokIcon,
+  YouTubeIcon,
 } from '@/icons'
-import { IconName } from '@/icons/iconTypes'
+
+type SocialIconName =
+  | 'facebook'
+  | 'instagram'
+  | 'linkedin'
+  | 'youtube'
+  | 'github'
+  | 'tiktok'
 
 type Props = {
-  name: IconName
+  name: SocialIconName
 }
 
 const SocialMediaIconPicker = ({ name }: Props) => {
-  const iconsMap: Record<IconName, JSX.Element> = {
+  const iconsMap: Record<SocialIconName, JSX.Element> = {
     facebook: <FacebookIcon />,
     instagram: <InstagramIcon />,
     linkedin: <LinkedinIcon />,
     youtube: <YouTubeIcon />,
     github: <GithubIcon />,
     tiktok: <TikTokIcon />,
-    chevron: <></>,
-    'small-arrow': <></>,
   }
 
   return iconsMap[name] || null

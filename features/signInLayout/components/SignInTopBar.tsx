@@ -2,19 +2,14 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import clsx from 'clsx'
 import { useLocale, useTranslations } from 'next-intl'
 
-import { Divider, NavButton, TextLink } from '@/components'
+import { Divider, TextLink } from '@/components'
+import { AvatarIcon } from '@/icons'
 
 const SignOutTopbar = () => {
-  const t = useTranslations('SignOutTopbar')
+  const t = useTranslations('SignInTopbar')
   const locale = useLocale()
-  const pathname = usePathname()
-
-  const isRegisterPage = pathname.includes('/register')
-  const isLoginPage = pathname.includes('/login')
 
   return (
     <div className='flex w-full items-center justify-between bg-grayBg px-10 py-4.5 shadow-header'>
@@ -32,18 +27,10 @@ const SignOutTopbar = () => {
       <div className='flex items-center gap-x-10'>
         <p className='text-white'>Devstock.pl</p>
         <Divider />
-        <TextLink
-          variant={isLoginPage ? 'orange' : 'default'}
-          href={`/${locale}/login`}
-        >
-          {t('loginButton')}
+        <AvatarIcon />
+        <TextLink variant='default' href={`/${locale}/logout`}>
+          {t('logoutButton')}
         </TextLink>
-        <NavButton
-          href={`/${locale}/register`}
-          variant={isRegisterPage ? 'orange' : 'blue'}
-        >
-          {t('registerButton')}
-        </NavButton>
       </div>
     </div>
   )

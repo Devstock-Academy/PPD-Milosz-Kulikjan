@@ -1,9 +1,10 @@
 'use client'
 
-import { NavButton } from '@/components'
-import { DevstockLogo, DevstockText, SmallArrowIcon } from '@/icons'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+
+import { NavButton } from '@/components'
+import { DevstockLogo, DevstockText, SmallArrowIcon } from '@/icons'
 
 const HeroImage = () => {
   const t = useTranslations('HeroImage')

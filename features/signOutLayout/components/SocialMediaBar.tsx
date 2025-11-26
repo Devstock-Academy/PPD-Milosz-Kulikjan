@@ -1,8 +1,16 @@
-import { IconName } from '@/icons/iconTypes'
-import SocialMediaIconPicker from './SocialMediaIconPicker'
 import IconWrapper from '@/components/IconWrapper'
 
-const socialLinks: { name: IconName; url: string }[] = [
+import SocialMediaIconPicker from './SocialMediaIconPicker'
+
+type SocialIconName =
+  | 'facebook'
+  | 'instagram'
+  | 'linkedin'
+  | 'youtube'
+  | 'github'
+  | 'tiktok'
+
+const socialLinks: { name: SocialIconName; url: string }[] = [
   { name: 'facebook', url: 'https://www.facebook.com/groups/3792300160870421' },
   { name: 'instagram', url: 'https://www.instagram.com/devstock.pl/' },
   {

@@ -1,9 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { Divider, TextLink, NavButton } from '@/components'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+
+import { Divider, NavButton, TextLink } from '@/components'
 
 const Footer = () => {
   const t = useTranslations('Footer')
