@@ -1,5 +1,6 @@
-import SocialMediaIconPicker from './SocialMediaIconPicker'
 import IconWrapper from '@/components/IconWrapper'
+
+import SocialMediaIconPicker from './SocialMediaIconPicker'
 
 type SocialIconName =
   | 'facebook'
