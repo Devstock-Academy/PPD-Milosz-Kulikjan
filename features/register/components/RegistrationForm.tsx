@@ -1,11 +1,10 @@
-import { Button, Checkbox, Input, TextLink, Modal } from '@/components'
+import React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { useMutation } from '@tanstack/react-query'
-import { useSnackbar } from 'notistack'
+import { z } from 'zod'
+
+import { Button, Checkbox, Input, Modal, TextLink } from '@/components'
 
 const createFormSchema = (tv: ReturnType<typeof useTranslations>) =>
   z
@@ -47,8 +46,9 @@ const RegistrationForm = () => {
     mode: 'onBlur',
   })
 
-  const [showModal, setShowModal] = useState(false)
-  const [email, setEmail] = useState('')
+  const [submitted, setSubmitted] = React.useState(false)
+  const [showModal, setShowModal] = React.useState(false)
+  const [email, setEmail] = React.useState('')
 
   const registerMutation = useMutation({
     mutationFn: async (data: FormData) => {

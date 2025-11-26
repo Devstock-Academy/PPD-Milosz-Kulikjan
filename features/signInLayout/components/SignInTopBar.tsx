@@ -1,10 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { Divider, TextLink } from '@/components'
 import Link from 'next/link'
-import { useTranslations, useLocale } from 'next-intl'
-import clsx from 'clsx'
+import { useLocale, useTranslations } from 'next-intl'
+
+import { Divider, TextLink } from '@/components'
 import { AvatarIcon } from '@/icons'
 
 const SignOutTopbar = () => {
@@ -28,7 +28,7 @@ const SignOutTopbar = () => {
         <p className='text-white'>Devstock.pl</p>
         <Divider />
         <AvatarIcon />
-        <TextLink variant={'default'} href={`/${locale}/logout`}>
+        <TextLink variant='default' href={`/${locale}/logout`}>
           {t('logoutButton')}
         </TextLink>
       </div>
