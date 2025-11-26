@@ -35,9 +35,9 @@ const createFormSchema = (tv: ReturnType<typeof useTranslations>) =>
 type FormData = z.infer<ReturnType<typeof createFormSchema>>;
 
 const RegistrationForm = () => {
-  const t = useTranslations("RegistrationForm");
-  const tv = useTranslations("Validation");
-  const { enqueueSnackbar } = useSnackbar();
+  const t = useTranslations('RegistrationForm')
+  const tv = useTranslations('Validation')
+  const { enqueueSnackbar } = useSnackbar()
   const {
     register,
     handleSubmit,
@@ -48,15 +48,16 @@ const RegistrationForm = () => {
     mode: "onBlur",
   });
 
-  const [showModal, setShowModal] = React.useState(false);
-  const [email, setEmail] = React.useState("");
+  const [submitted, setSubmitted] = React.useState(false)
+  const [showModal, setShowModal] = React.useState(false)
+  const [email, setEmail] = React.useState('')
 
   const registerMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      const response = await fetch("/api/register", {
-        method: "POST",
+      const response = await fetch('/api/register', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           pseudonim: data.pseudonim,
@@ -65,28 +66,28 @@ const RegistrationForm = () => {
           email: data.email,
           password: data.password,
         }),
-      });
+      })
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Wystąpił błąd podczas rejestracji");
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Wystąpił błąd podczas rejestracji')
       }
 
-      return response.json();
+      return response.json()
     },
     onSuccess: (data, variables) => {
-      setEmail(variables.email);
-      reset();
-      setShowModal(true);
+      setEmail(variables.email)
+      reset()
+      setShowModal(true)
     },
     onError: (error: Error) => {
-      enqueueSnackbar(error.message, { variant: "error" });
+      enqueueSnackbar(error.message, { variant: 'error' })
     },
-  });
+  })
 
   const onSubmit = async (data: FormData) => {
-    registerMutation.mutate(data);
-  };
+    registerMutation.mutate(data)
+  }
 
   return (
     <form

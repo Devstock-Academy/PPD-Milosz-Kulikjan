@@ -43,4 +43,3 @@ next-env.d.ts
 # Prisma Client
 /src/generated/prisma
 
-# already covered above; ensure no base .env tracked
