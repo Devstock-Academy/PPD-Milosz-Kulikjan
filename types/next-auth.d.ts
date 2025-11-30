@@ -1,13 +1,11 @@
 import 'next-auth'
+import { DefaultSession } from 'next-auth'
 
 declare module 'next-auth' {
   type Session = {
     user: {
       id: string
-      email?: string | null
-      name?: string | null
-      image?: string | null
-    }
+    } & DefaultSession['user']
   }
 
   type User = {
