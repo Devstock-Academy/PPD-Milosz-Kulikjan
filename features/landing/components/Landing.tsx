@@ -1,6 +1,7 @@
+import { useTranslations } from 'next-intl'
+
 import Content from './Content'
 import HeroImage from './HeroImage'
-import { useTranslations } from 'next-intl'
 
 const Landing = () => {
   const t = useTranslations('Content')

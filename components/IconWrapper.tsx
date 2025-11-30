@@ -1,8 +1,8 @@
-import { ReactNode } from 'react'
 import clsx from 'clsx'
+import React from 'react'
 
 type IconWrapperProps = {
-  children: ReactNode
+  children: React.ReactNode
   size?: number | string
   className?: string
 }

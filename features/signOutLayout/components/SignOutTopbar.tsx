@@ -1,11 +1,12 @@
 'use client'
 
 import Image from 'next/image'
-import { Divider, TextLink, NavButton } from '@/components'
 import Link from 'next/link'
-import { useTranslations, useLocale } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
+import { useLocale, useTranslations } from 'next-intl'
+
+import { Divider, NavButton, TextLink } from '@/components'
 
 const SignOutTopbar = () => {
   const t = useTranslations('SignOutTopbar')
