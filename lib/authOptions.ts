@@ -1,4 +1,4 @@
-import type { AuthOptions } from 'next-auth'
+import type { AuthOptions, Session } from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { PrismaAdapter } from '@auth/prisma-adapter'
@@ -43,8 +43,10 @@ const providers = [
       return {
         id: user.id,
         email: user.email,
-        name: user.name || `${user.imie || ''} ${user.nazwisko || ''}`.trim(),
-        image: user.image,
+        name:
+          user.pseudonim ||
+          `${user.imie || ''} ${user.nazwisko || ''}`.trim() ||
+          user.email,
       }
     },
   }),
@@ -67,8 +69,9 @@ export const authOptions: AuthOptions = {
       return token
     },
     async session({ session, token }) {
+      type SessionUserWithId = NonNullable<Session['user']> & { id: string }
       if (session.user) {
-        session.user.id = token.id as string
+        ;(session.user as SessionUserWithId).id = token.id as string
       }
       return session
     },

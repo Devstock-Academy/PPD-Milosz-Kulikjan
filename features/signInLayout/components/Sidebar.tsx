@@ -69,6 +69,7 @@ const Sidebar = () => {
         placement='right'
         style='light'
         className={clsx(
+          'whitespace-nowrap',
           open ? 'hidden' : 'ml-4',
           item.icon === 'settings' && '-translate-y-2'
         )}
