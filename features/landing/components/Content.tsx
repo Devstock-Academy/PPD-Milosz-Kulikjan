@@ -1,9 +1,10 @@
 'use client'
 
-import { TextLink } from '@/components'
-import LiteYouTubeEmbed from 'react-lite-youtube-embed'
-import { useTranslations } from 'next-intl'
 import clsx from 'clsx'
+import { useTranslations } from 'next-intl'
+import LiteYouTubeEmbed from 'react-lite-youtube-embed'
+
+import { TextLink } from '@/components'
 
 type ContentProps = {
   paragraphs?: string[]

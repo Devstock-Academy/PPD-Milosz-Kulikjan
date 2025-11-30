@@ -1,10 +1,10 @@
 import {
   FacebookIcon,
+  GithubIcon,
   InstagramIcon,
   LinkedinIcon,
-  YouTubeIcon,
-  GithubIcon,
   TikTokIcon,
+  YouTubeIcon,
 } from '@/icons'
 
 type SocialIconName =
