@@ -16,6 +16,7 @@ export default async function middleware(request: NextRequest) {
   if (pathname === '/pl') {
     return NextResponse.redirect(new URL('/pl/landing', request.url))
   }
+ 
 
   const publicPagesWithoutLocale = ['/landing', '/login', '/register']
   const protectedPagesWithoutLocale = [

@@ -75,6 +75,33 @@ export const authOptions: AuthOptions = {
       }
       return session
     },
+    async signIn({ user, account, profile }) {
+      if (account?.provider === 'github' && user?.id && profile) {
+        try {
+          const existing = await prisma.user.findUnique({
+            where: { id: user.id },
+            select: { name: true, image: true, emailVerified: true },
+          })
+          const nextName = profile.name || user.email
+          const nextImage = ((profile as any).avatar_url as string) || undefined
+          const needsUpdate =
+            existing?.name !== nextName ||
+            existing?.image !== nextImage ||
+            !existing?.emailVerified
+          if (needsUpdate) {
+            await prisma.user.update({
+              where: { id: user.id },
+              data: {
+                name: nextName,
+                image: nextImage,
+                emailVerified: existing?.emailVerified ? undefined : new Date(),
+              },
+            })
+          }
+        } catch {}
+      }
+      return true
+    },
   },
   debug: true,
 }
