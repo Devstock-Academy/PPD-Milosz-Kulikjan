@@ -1,0 +1,22 @@
+<<<<<<< HEAD
+export { default as AdminIcon } from './AdminIcon'
+export { default as CalendarIcon } from './CalendarIcon'
+export { default as DashboardIcon } from './DashboardIcon'
+export { default as LessonsIcon } from './LessonsIcon'
+export { default as RankingIcon } from './RankingIcon'
+export { default as SettingsIcon } from './SettingsIcon'
+export { default as TaskIcon } from './TaskIcon'
+export { default as VectorIcon } from './VectorIcon'
+export { default as AvatarIcon } from './AvatarIcon'
+=======
+>>>>>>> origin/main
+export { default as ChevronIcon } from './ChevronIcon'
+export { default as FacebookIcon } from './FacebookIcon'
+export { default as GithubIcon } from './GithubIcon'
+export { default as InstagramIcon } from './InstagramIcon'
+export { default as LinkedinIcon } from './LinkedinIcon'
+export { default as SmallArrowIcon } from './SmallArrowIcon'
+export { default as TikTokIcon } from './TikTokIcon'
+export { default as YouTubeIcon } from './YouTubeIcon'
+export { default as DevstockLogo } from './DevstockLogo'
+export { default as DevstockText } from './DevstockText'
