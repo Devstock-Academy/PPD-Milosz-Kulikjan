@@ -8,6 +8,7 @@ importers:
 
   .:
     dependencies:
+<<<<<<< HEAD
       '@auth/prisma-adapter':
         specifier: ^2.11.1
         version: 2.11.1(@prisma/client@6.19.0(prisma@6.19.0(typescript@5.8.3))(typescript@5.8.3))
@@ -23,6 +24,11 @@ importers:
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0
+=======
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.66.0(react@18.2.0))
+>>>>>>> origin/main
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -37,6 +43,7 @@ importers:
         version: 1.8.1
       flowbite-react:
         specifier: ^0.12.9
+<<<<<<< HEAD
         version: 0.12.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(tailwindcss@3.3.2(ts-node@10.9.2(@types/node@20.2.5)(typescript@5.8.3)))(typescript@5.8.3)
       next:
         specifier: 14.2.24
@@ -50,6 +57,15 @@ importers:
       notistack:
         specifier: ^3.0.2
         version: 3.0.2(csstype@3.1.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+        version: 0.12.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(tailwindcss@3.3.2(ts-node@10.9.2(@types/node@20.2.5)(typescript@5.0.4)))(typescript@5.0.4)
+      next:
+        specifier: 14.2.24
+        version: 14.2.24(@babel/core@7.27.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      next-intl:
+        specifier: ^4.4.0
+        version: 4.4.0(next@14.2.24(@babel/core@7.27.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(typescript@5.0.4)
+>>>>>>> origin/main
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -67,7 +83,11 @@ importers:
         version: 1.2.14(vite@5.2.13(@types/node@20.2.5)(terser@5.39.2))
       vite-tsconfig-paths:
         specifier: ^4.3.2
+<<<<<<< HEAD
         version: 4.3.2(typescript@5.8.3)(vite@5.2.13(@types/node@20.2.5)(terser@5.39.2))
+=======
+        version: 4.3.2(typescript@5.0.4)(vite@5.2.13(@types/node@20.2.5)(terser@5.39.2))
+>>>>>>> origin/main
       zod:
         specifier: ^4.1.12
         version: 4.1.12
@@ -934,9 +954,12 @@ packages:
   '@schummar/icu-type-parser@1.21.5':
     resolution: {integrity: sha512-bXHSaW5jRTmke9Vd0h5P7BtWZG9Znqb8gSDxZnxaGSJnGwPLDPfS+3g0BKzeWqzgZPsIVZkM7m2tbo18cm5HBw==}
 
+<<<<<<< HEAD
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
 
+=======
+>>>>>>> origin/main
   '@standard-schema/utils@0.3.0':
     resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
 
@@ -1567,10 +1590,13 @@ packages:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
 
+<<<<<<< HEAD
   clsx@1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
     engines: {node: '>=6'}
 
+=======
+>>>>>>> origin/main
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
@@ -1640,10 +1666,13 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
+<<<<<<< HEAD
   cookie@0.7.2:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
 
+=======
+>>>>>>> origin/main
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
@@ -1767,10 +1796,13 @@ packages:
     resolution: {integrity: sha512-fxqo6nHGQ9zOVgI4KXqtWXJR/yCLtC7aXIVq+6jc8tHPFUxlFmuUcm2kC4vztQ+LJxQ3gER/XAWearGYQ8niGA==}
     engines: {node: '>=16.0.0'}
 
+<<<<<<< HEAD
   deepmerge-ts@7.1.5:
     resolution: {integrity: sha512-HOJkrhaYsweh+W+e74Yn7YStZOilkoPb6fycpwNLKzSPtruFs48nYis0zy5yJz1+ktUhHxoRDJ27RQAWLIJVJw==}
     engines: {node: '>=16.0.0'}
 
+=======
+>>>>>>> origin/main
   define-data-property@1.1.4:
     resolution: {integrity: sha512-rBMvIzlpA8v6E+SJZoo++HAYqsLrkg7MSfIinMPFhmkorw7X+dOXVJQs+QT69zGkzMyfDnIMN2Wid1+NbL3T+A==}
     engines: {node: '>= 0.4'}
@@ -1834,9 +1866,12 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
+<<<<<<< HEAD
   effect@3.18.4:
     resolution: {integrity: sha512-b1LXQJLe9D11wfnOKAk3PKxuqYshQ0Heez+y5pnkd3jLj1yx9QhM72zZ9uUrOQyNvrs2GZZd/3maL0ZV18YuDA==}
 
+=======
+>>>>>>> origin/main
   electron-to-chromium@1.5.157:
     resolution: {integrity: sha512-/0ybgsQd1muo8QlnuTpKwtl0oX5YMlUGbm8xyqgDU00motRkKFFbUJySAQBWcY79rVqNLWIWa87BGVGClwAB2w==}
 
@@ -2851,6 +2886,7 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
+<<<<<<< HEAD
   next-auth@4.24.13:
     resolution: {integrity: sha512-sgObCfcfL7BzIK76SS5TnQtc3yo2Oifp/yIpfv6fMfeBOiBJkDWF3A2y9+yqnmJ4JKc2C+nMjSjmgDeTwgN1rQ==}
     peerDependencies:
@@ -2865,6 +2901,8 @@ packages:
       nodemailer:
         optional: true
 
+=======
+>>>>>>> origin/main
   next-intl@4.4.0:
     resolution: {integrity: sha512-QHqnP9V9Pe7Tn0PdVQ7u1Z8k9yCkW5SJKeRy2g5gxzhSt/C01y3B9qNxuj3Fsmup/yreIHe6osxU6sFa+9WIkQ==}
     peerDependencies:
@@ -4922,8 +4960,11 @@ snapshots:
 
   '@schummar/icu-type-parser@1.21.5': {}
 
+<<<<<<< HEAD
   '@standard-schema/spec@1.0.0': {}
 
+=======
+>>>>>>> origin/main
   '@standard-schema/utils@0.3.0': {}
 
   '@swc/counter@0.1.3': {}
@@ -5066,7 +5107,11 @@ snapshots:
 
   '@typescript-eslint/types@8.26.0': {}
 
+<<<<<<< HEAD
   '@typescript-eslint/typescript-estree@5.62.0(typescript@5.8.3)':
+=======
+  '@typescript-eslint/typescript-estree@5.62.0(typescript@5.0.4)':
+>>>>>>> origin/main
     dependencies:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
@@ -5091,6 +5136,20 @@ snapshots:
       semver: 7.7.2
       ts-api-utils: 2.1.0(typescript@5.8.3)
       typescript: 5.8.3
+    transitivePeerDependencies:
+      - supports-color
+
+  '@typescript-eslint/typescript-estree@8.26.0(typescript@5.0.4)':
+    dependencies:
+      '@typescript-eslint/types': 8.26.0
+      '@typescript-eslint/visitor-keys': 8.26.0
+      debug: 4.4.1
+      fast-glob: 3.3.3
+      is-glob: 4.0.3
+      minimatch: 9.0.5
+      semver: 7.7.2
+      ts-api-utils: 2.1.0(typescript@5.0.4)
+      typescript: 5.0.4
     transitivePeerDependencies:
       - supports-color
 
@@ -5641,8 +5700,11 @@ snapshots:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
 
+<<<<<<< HEAD
   clsx@1.2.1: {}
 
+=======
+>>>>>>> origin/main
   clsx@2.1.1: {}
 
   color-convert@2.0.1:
@@ -5712,11 +5774,17 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
+<<<<<<< HEAD
   cookie@0.7.2: {}
 
   core-util-is@1.0.3: {}
 
   cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.8.3))(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(typescript@5.8.3):
+=======
+  core-util-is@1.0.3: {}
+
+  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.0.4))(ts-node@10.9.2(@types/node@20.2.5)(typescript@5.0.4))(typescript@5.8.3):
+>>>>>>> origin/main
     dependencies:
       '@types/node': 20.5.1
       cosmiconfig: 8.3.6(typescript@5.8.3)
@@ -5832,8 +5900,11 @@ snapshots:
 
   deepmerge-ts@7.1.4: {}
 
+<<<<<<< HEAD
   deepmerge-ts@7.1.5: {}
 
+=======
+>>>>>>> origin/main
   define-data-property@1.1.4:
     dependencies:
       es-define-property: 1.0.1
@@ -5890,11 +5961,14 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
+<<<<<<< HEAD
   effect@3.18.4:
     dependencies:
       '@standard-schema/spec': 1.0.0
       fast-check: 3.23.2
 
+=======
+>>>>>>> origin/main
   electron-to-chromium@1.5.157: {}
 
   emoji-regex@8.0.0: {}
@@ -6378,12 +6452,20 @@ snapshots:
 
   flatted@3.3.3: {}
 
+<<<<<<< HEAD
   flowbite-react@0.12.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(tailwindcss@3.3.2(ts-node@10.9.2(@types/node@20.2.5)(typescript@5.8.3)))(typescript@5.8.3):
+=======
+  flowbite-react@0.12.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(tailwindcss@3.3.2(ts-node@10.9.2(@types/node@20.2.5)(typescript@5.0.4)))(typescript@5.0.4):
+>>>>>>> origin/main
     dependencies:
       '@floating-ui/core': 1.6.9
       '@floating-ui/react': 0.27.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@iarna/toml': 2.2.5
+<<<<<<< HEAD
       '@typescript-eslint/typescript-estree': 8.26.0(typescript@5.8.3)
+=======
+      '@typescript-eslint/typescript-estree': 8.26.0(typescript@5.0.4)
+>>>>>>> origin/main
       chokidar: 4.0.3
       classnames: 2.5.1
       comment-json: 4.2.5
@@ -6396,7 +6478,11 @@ snapshots:
       recast: 0.23.11
       tailwind-merge-v2: tailwind-merge@2.6.0
       tailwind-merge-v3: tailwind-merge@3.0.1
+<<<<<<< HEAD
       tailwindcss: 3.3.2(ts-node@10.9.2(@types/node@20.2.5)(typescript@5.8.3))
+=======
+      tailwindcss: 3.3.2(ts-node@10.9.2(@types/node@20.2.5)(typescript@5.0.4))
+>>>>>>> origin/main
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -7129,6 +7215,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
+<<<<<<< HEAD
   next-auth@4.24.13(next@14.2.24(@babel/core@7.27.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.27.1
@@ -7145,6 +7232,9 @@ snapshots:
       uuid: 8.3.2
 
   next-intl@4.4.0(next@14.2.24(@babel/core@7.27.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(typescript@5.8.3):
+=======
+  next-intl@4.4.0(next@14.2.24(@babel/core@7.27.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(typescript@5.0.4):
+>>>>>>> origin/main
     dependencies:
       '@formatjs/intl-localematcher': 0.5.10
       negotiator: 1.0.0
@@ -7152,7 +7242,11 @@ snapshots:
       react: 18.2.0
       use-intl: 4.4.0(react@18.2.0)
     optionalDependencies:
+<<<<<<< HEAD
       typescript: 5.8.3
+=======
+      typescript: 5.0.4
+>>>>>>> origin/main
 
   next@14.2.24(@babel/core@7.27.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
@@ -7985,6 +8079,11 @@ snapshots:
   tabbable@6.2.0: {}
 
   tailwind-merge@2.6.0: {}
+<<<<<<< HEAD
+=======
+
+  tailwind-merge@3.0.1: {}
+>>>>>>> origin/main
 
   tailwind-merge@3.0.1: {}
 
@@ -8086,9 +8185,15 @@ snapshots:
 
   trim-newlines@3.0.1: {}
 
+<<<<<<< HEAD
   ts-api-utils@2.1.0(typescript@5.8.3):
     dependencies:
       typescript: 5.8.3
+=======
+  ts-api-utils@2.1.0(typescript@5.0.4):
+    dependencies:
+      typescript: 5.0.4
+>>>>>>> origin/main
 
   ts-interface-checker@0.1.13: {}
 

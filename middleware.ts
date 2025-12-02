@@ -1,14 +1,21 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import createIntlMiddleware from 'next-intl/middleware'
+<<<<<<< HEAD
 import { getToken } from 'next-auth/jwt'
+=======
+>>>>>>> origin/main
 
 const intlMiddleware = createIntlMiddleware({
   locales: ['pl'],
   defaultLocale: 'pl',
 })
 
+<<<<<<< HEAD
 export default async function middleware(request: NextRequest) {
+=======
+export default function middleware(request: NextRequest) {
+>>>>>>> origin/main
   const { pathname } = request.nextUrl
   if (pathname === '/') {
     return NextResponse.redirect(new URL('/pl/landing', request.url))
@@ -16,6 +23,7 @@ export default async function middleware(request: NextRequest) {
   if (pathname === '/pl') {
     return NextResponse.redirect(new URL('/pl/landing', request.url))
   }
+<<<<<<< HEAD
  
 
   const publicPagesWithoutLocale = ['/landing', '/login', '/register']
@@ -59,10 +67,17 @@ export default async function middleware(request: NextRequest) {
   if (!token && isProtectedRoute) {
     return NextResponse.redirect(new URL('/pl/login', request.url))
   }
+=======
+  const pagesWithoutLocale = ['/landing', '/login', '/register']
+  if (pagesWithoutLocale.includes(pathname)) {
+    return NextResponse.redirect(new URL(`/pl${pathname}`, request.url))
+  }
+>>>>>>> origin/main
   return intlMiddleware(request)
 }
 
 export const config = {
+<<<<<<< HEAD
   matcher: [
     '/',
     '/pl',
@@ -78,4 +93,7 @@ export const config = {
     '/admin-panel',
     '/(pl)/:path*',
   ],
+=======
+  matcher: ['/', '/pl', '/landing', '/login', '/register', '/(pl)/:path*'],
+>>>>>>> origin/main
 }

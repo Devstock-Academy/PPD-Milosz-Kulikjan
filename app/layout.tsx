@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import clsx from 'clsx'
 import { Lexend_Deca } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
@@ -8,6 +9,14 @@ import { ThemeInit } from '../.flowbite-react/init'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/authOptions'
 import SessionProvider from '@/context/SessionProvider'
+=======
+import { Lexend_Deca } from 'next/font/google'
+import { ThemeInit } from '../.flowbite-react/init'
+import './globals.css'
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
+import { NextIntlClientProvider } from 'next-intl'
+import clsx from 'clsx'
+>>>>>>> origin/main
 
 const lexendDeca = Lexend_Deca({
   subsets: ['latin'],
@@ -31,11 +40,15 @@ export default async function RootLayout({
     <html lang='pl' className={clsx(lexendDeca.className, 'h-full')}>
       <body className='h-full min-h-screen'>
         <ThemeInit />
+<<<<<<< HEAD
         <SessionProvider session={session}>
           <AppContext>
             <NextIntlClientProvider>{children}</NextIntlClientProvider>
           </AppContext>
         </SessionProvider>
+=======
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+>>>>>>> origin/main
       </body>
     </html>
   )

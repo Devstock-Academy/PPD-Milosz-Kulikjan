@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 import clsx from 'clsx'
 import { Button as FlowbiteButton } from 'flowbite-react'
 import React from 'react'
 
 type ButtonProps = {
   children: React.ReactNode
+=======
+import { Button as FlowbiteButton } from 'flowbite-react'
+import clsx from 'clsx'
+import { ReactNode } from 'react'
+
+type ButtonProps = {
+  children: ReactNode
+>>>>>>> origin/main
   onClick?: () => void
   size?: 'sm' | 'md' | 'lg'
   className?: string

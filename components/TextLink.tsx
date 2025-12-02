@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import clsx from 'clsx'
+<<<<<<< HEAD
 import React from 'react'
+=======
+>>>>>>> origin/main
 
 type TextLinkProps = {
   href: string

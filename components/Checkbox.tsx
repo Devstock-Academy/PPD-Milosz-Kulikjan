@@ -1,8 +1,14 @@
 'use client'
 
+<<<<<<< HEAD
 import Link from 'next/link'
 import React from 'react'
 import { Checkbox as FlowbiteCheckbox, Label } from 'flowbite-react'
+=======
+import { Checkbox as FlowbiteCheckbox, Label } from 'flowbite-react'
+import Link from 'next/link'
+import React from 'react'
+>>>>>>> origin/main
 
 type CheckboxProps = {
   id?: string

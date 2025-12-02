@@ -34,7 +34,10 @@
     },
     "remember": "Zapamiętaj mnie",
     "submit": "Zaloguj się",
+<<<<<<< HEAD
     "submitting": "Logowanie...",
+=======
+>>>>>>> origin/main
     "forgotLink": "Nie pamiętam hasła",
     "oauthGithub": "Logowanie przez Github",
     "noAccount": "Nie masz jeszcze konta?",
@@ -85,6 +88,7 @@
     "line1": "Przesłaliśmy link aktywacyjny na adres {email}, prosimy o weryfikację :)",
     "line2": "Mail aktywacyjny nie dotarł?",
     "resend": "Prześlij ponownie"
+<<<<<<< HEAD
   },
   "SignInTopbar": {
     "logoutButton": "Wyloguj się"
@@ -104,5 +108,7 @@
     "emailAndPasswordRequired": "Email i hasło są wymagane",
     "userNotFound": "Użytkownik o podanym adresie email nie istnieje",
     "invalidPassword": "Podane hasło jest nieprawidłowe"
+=======
+>>>>>>> origin/main
   }
 }

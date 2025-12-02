@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 'use client'
+=======
+"use client"
+>>>>>>> origin/main
 
 import { Button, Checkbox, Input, TextLink } from '@/components'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -7,6 +11,7 @@ import { z } from 'zod'
 import IconWrapper from '@/components/IconWrapper'
 import { SocialMediaIconPicker } from '@/features/signOutLayout'
 import { useTranslations } from 'next-intl'
+<<<<<<< HEAD
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useSnackbar } from 'notistack'
@@ -15,6 +20,15 @@ import { useState } from 'react'
 const createFormSchema = (tv: ReturnType<typeof useTranslations>) =>
   z.object({
     email: z.string().min(1, tv('email.required')).email(tv('email.invalid')),
+=======
+
+const createFormSchema = (tv: ReturnType<typeof useTranslations>) =>
+  z.object({
+    email: z
+      .string()
+      .min(1, tv('email.required'))
+      .email(tv('email.invalid')),
+>>>>>>> origin/main
     password: z.string().min(1, tv('password.required')),
   })
 
@@ -23,11 +37,14 @@ type FormData = z.infer<ReturnType<typeof createFormSchema>>
 const LoginForm = () => {
   const t = useTranslations('LoginForm')
   const tv = useTranslations('Validation')
+<<<<<<< HEAD
   const te = useTranslations('Errors')
   const router = useRouter()
   const { enqueueSnackbar } = useSnackbar()
   const [isLoading, setIsLoading] = useState(false)
 
+=======
+>>>>>>> origin/main
   const {
     register,
     handleSubmit,
@@ -37,6 +54,7 @@ const LoginForm = () => {
     mode: 'onBlur',
   })
 
+<<<<<<< HEAD
   const onSubmit = async (data: FormData) => {
     setIsLoading(true)
     try {
@@ -78,6 +96,10 @@ const LoginForm = () => {
       enqueueSnackbar(te('loginFailed'), { variant: 'error' })
       setIsLoading(false)
     }
+=======
+  const onSubmit = (data: FormData) => {
+    console.log('Dane logowania:', data)
+>>>>>>> origin/main
   }
 
   return (
@@ -97,7 +119,10 @@ const LoginForm = () => {
         placeholder={t('email.placeholder')}
         {...register('email')}
         error={errors.email?.message}
+<<<<<<< HEAD
         disabled={isLoading}
+=======
+>>>>>>> origin/main
       />
       <Input
         testId='password'
@@ -107,7 +132,10 @@ const LoginForm = () => {
         placeholder={t('password.placeholder')}
         {...register('password')}
         error={errors.password?.message}
+<<<<<<< HEAD
         disabled={isLoading}
+=======
+>>>>>>> origin/main
       />
       <Checkbox id='remember' label={t('remember')} />
       <Button
@@ -115,9 +143,14 @@ const LoginForm = () => {
         type='submit'
         size='lg'
         className='h-10 w-full bg-buttonBlue hover:bg-buttonBlue/80'
+<<<<<<< HEAD
         disabled={isLoading}
       >
         {isLoading ? t('submitting') : t('submit')}
+=======
+      >
+        {t('submit')}
+>>>>>>> origin/main
       </Button>
       <TextLink variant='blue' href='/login' className='text-sm font-medium'>
         {t('forgotLink')}
@@ -126,8 +159,11 @@ const LoginForm = () => {
         type='button'
         size='lg'
         className='h-10 w-full gap-4 bg-darkBg hover:bg-darkBg/80'
+<<<<<<< HEAD
         onClick={handleGithubLogin}
         disabled={isLoading}
+=======
+>>>>>>> origin/main
       >
         {t('oauthGithub')}
         <IconWrapper size={24} className='text-white'>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export { default as AdminIcon } from './AdminIcon'
 export { default as CalendarIcon } from './CalendarIcon'
 export { default as DashboardIcon } from './DashboardIcon'
@@ -7,6 +8,8 @@ export { default as SettingsIcon } from './SettingsIcon'
 export { default as TaskIcon } from './TaskIcon'
 export { default as VectorIcon } from './VectorIcon'
 export { default as AvatarIcon } from './AvatarIcon'
+=======
+>>>>>>> origin/main
 export { default as ChevronIcon } from './ChevronIcon'
 export { default as FacebookIcon } from './FacebookIcon'
 export { default as GithubIcon } from './GithubIcon'

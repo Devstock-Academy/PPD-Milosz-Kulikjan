@@ -1,10 +1,17 @@
 'use client'
 
+<<<<<<< HEAD
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import { NavButton } from '@/components'
 import { DevstockLogo, DevstockText, SmallArrowIcon } from '@/icons'
+=======
+import { NavButton } from '@/components'
+import { DevstockLogo, DevstockText, SmallArrowIcon } from '@/icons'
+import Image from 'next/image'
+import { useTranslations } from 'next-intl'
+>>>>>>> origin/main
 
 const HeroImage = () => {
   const t = useTranslations('HeroImage')

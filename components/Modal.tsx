@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React from 'react'
+=======
+import React, { useEffect, useRef } from 'react'
+>>>>>>> origin/main
 import { useTranslations } from 'next-intl'
 
 type ModalProps = {
@@ -8,9 +12,15 @@ type ModalProps = {
 
 const Modal: React.FC<ModalProps> = ({ email, onClose }) => {
   const t = useTranslations('Modal')
+<<<<<<< HEAD
   const modalRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
+=======
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+>>>>>>> origin/main
     const handleClickOutside = (event: MouseEvent) => {
       if (
         modalRef.current &&

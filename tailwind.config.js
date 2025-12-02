@@ -20,8 +20,11 @@ module.exports = {
         link: '#1C64F2',
         heroOverlay: '#1B2124',
         buttonOrange: '#F5A22E',
+<<<<<<< HEAD
         sidebarDivider: '#374151',
         activeSidebarBg: '#F5A22E',
+=======
+>>>>>>> origin/main
       },
       spacing: {
         4.5: '1.125rem', // 18px
@@ -33,11 +36,15 @@ module.exports = {
         72: '18rem', // 288px
         120: '30rem', //480px
         75: '18.75rem', // 300px
+<<<<<<< HEAD
         55: '13.75rem', // 220px
         40: '10rem', // 160px (40px * 4 dla ml-[40px])
       },
       width: {
         'sidebar-divider': 'calc(100% + 1.25rem)',
+=======
+        
+>>>>>>> origin/main
       },
       maxWidth: {
         container: '85.375rem', // 1366px

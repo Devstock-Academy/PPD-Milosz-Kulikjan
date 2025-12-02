@@ -1,9 +1,16 @@
 'use client'
 
+<<<<<<< HEAD
 import React from 'react'
 import clsx from 'clsx'
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+=======
+import React, { InputHTMLAttributes } from 'react'
+import clsx from 'clsx'
+
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+>>>>>>> origin/main
   label?: string
   error?: string
   className?: string

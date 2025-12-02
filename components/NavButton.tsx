@@ -1,8 +1,13 @@
 import Link from 'next/link'
+<<<<<<< HEAD
 import clsx from 'clsx'
 import React from 'react'
 
 import Button from './Button'
+=======
+import Button from './Button'
+import clsx from 'clsx'
+>>>>>>> origin/main
 
 type NavButtonProps = {
   href: string

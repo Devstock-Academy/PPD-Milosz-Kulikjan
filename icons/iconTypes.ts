@@ -1,5 +1,8 @@
 export type IconName =
+<<<<<<< HEAD
   | 'avatar'
+=======
+>>>>>>> origin/main
   | 'chevron'
   | 'facebook'
   | 'github'
@@ -8,6 +11,7 @@ export type IconName =
   | 'small-arrow'
   | 'tiktok'
   | 'youtube'
+<<<<<<< HEAD
   | 'dashboard'
   | 'ranking'
   | 'lessons'
@@ -16,3 +20,5 @@ export type IconName =
   | 'task'
   | 'admin'
   | 'vector'
+=======
+>>>>>>> origin/main

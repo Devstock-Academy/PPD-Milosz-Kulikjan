@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 import { useTranslations } from 'next-intl'
 
 import Content from './Content'
 import HeroImage from './HeroImage'
+=======
+import Content from './Content'
+import HeroImage from './HeroImage'
+import { useTranslations } from 'next-intl'
+>>>>>>> origin/main
 
 const Landing = () => {
   const t = useTranslations('Content')

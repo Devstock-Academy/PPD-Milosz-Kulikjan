@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import IconWrapper from '@/components/IconWrapper'
 
 import SocialMediaIconPicker from './SocialMediaIconPicker'
@@ -11,6 +12,13 @@ type SocialIconName =
   | 'tiktok'
 
 const socialLinks: { name: SocialIconName; url: string }[] = [
+=======
+import { IconName } from '@/icons/iconTypes'
+import SocialMediaIconPicker from './SocialMediaIconPicker'
+import IconWrapper from '@/components/IconWrapper'
+
+const socialLinks: { name: IconName; url: string }[] = [
+>>>>>>> origin/main
   { name: 'facebook', url: 'https://www.facebook.com/groups/3792300160870421' },
   { name: 'instagram', url: 'https://www.instagram.com/devstock.pl/' },
   {

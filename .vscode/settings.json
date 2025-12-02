@@ -9,6 +9,10 @@
       "createTheme(?:<\\w+>)?\\s*\\(([^)]*)\\)",
       "{?\\s?[\\w].*:\\s*?[\"'`]([^\"'`]*).*?,?\\s?}?"
     ]
+<<<<<<< HEAD
   ],
   "postman.settings.dotenv-detection-notification-visibility": false
+=======
+  ]
+>>>>>>> origin/main
 }
