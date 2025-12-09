@@ -104,5 +104,15 @@
     "emailAndPasswordRequired": "Email i hasło są wymagane",
     "userNotFound": "Użytkownik o podanym adresie email nie istnieje",
     "invalidPassword": "Podane hasło jest nieprawidłowe"
+  },
+  "Task": {
+    "previousTask": "poprzednie zadanie",
+    "nextTask": "następne zadanie",
+    "description": "Opis zadania",
+    "test": "Testy",
+    "fastTests": "Szybie testy",
+    "testResult": "Wyniki testów",
+    "editor": "Edytor kodu",
+    "console": "Konsola"
   }
 }

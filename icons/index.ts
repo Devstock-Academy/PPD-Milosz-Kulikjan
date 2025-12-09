@@ -1,6 +1,8 @@
 export { default as AdminIcon } from './AdminIcon'
 export { default as CalendarIcon } from './CalendarIcon'
+export { default as ClockIcon } from './ClockIcon'
 export { default as DashboardIcon } from './DashboardIcon'
+export { default as FullscreenIcon } from './FullscreenIcon'
 export { default as LessonsIcon } from './LessonsIcon'
 export { default as RankingIcon } from './RankingIcon'
 export { default as SettingsIcon } from './SettingsIcon'

@@ -120,10 +120,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={clsx(
-        'sticky top-0 h-full border-r border-gray-800 bg-darkBg',
-        open ? 'w-55' : 'w-16'
-      )}
+      className={clsx('sticky top-0 h-full bg-darkBg', open ? 'w-55' : 'w-16')}
     >
       <nav className='flex h-full flex-col items-start gap-8 pl-5 pt-8'>
         {items.map(renderMenuItem)}

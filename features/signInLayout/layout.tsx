@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SocialMediaBar from '@/features/signOutLayout/components/SocialMediaBar'
+import { SocialMediaBar } from '@/components/socialMediaBar'
 
 import Sidebar from './components/Sidebar'
 import SignInTopBar from './components/SignInTopBar'
@@ -12,7 +12,7 @@ const SignInLayout = ({ children }: { children: React.ReactNode }) => {
       <SignInTopBar />
       <main className='flex flex-1'>
         <Sidebar />
-        <div className='flex-1'>{children}</div>
+        <div className='flex-1 bg-darkBg'>{children}</div>
       </main>
     </div>
   )
