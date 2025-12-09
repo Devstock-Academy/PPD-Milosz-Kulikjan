@@ -7,10 +7,9 @@ type TabItem = {
   label: string
 }
 
-type TabSkeletonProps = {
+type TabSkeletonProps = React.PropsWithChildren<{
   tabs: TabItem[]
-  children: React.ReactNode[] | React.ReactNode
-}
+}>
 
 const TabSkeleton = ({ tabs, children }: TabSkeletonProps) => {
   const [activeIndex, setActiveIndex] = React.useState(0)
