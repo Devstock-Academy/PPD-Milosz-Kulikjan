@@ -1,4 +1,6 @@
 const flowbiteReact = require('flowbite-react/plugin/tailwindcss')
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -36,10 +38,10 @@ module.exports = {
         32: '8rem', // 128px
         8.1875: '2.0625rem', // 33px
         72: '18rem', // 288px
-        120: '30rem', //480px
+        120: '30rem', // 480px
         75: '18.75rem', // 300px
         55: '13.75rem', // 220px
-        40: '10rem', // 160px (40px * 4 dla ml-[40px])
+        40: '10rem', // 160px
         'icon-sm': '0.75rem', // 12px
         'icon-base': '1.25rem', // 20px
         'icon-lg': '1.5rem', // 24px
@@ -55,7 +57,7 @@ module.exports = {
         loginForm: '28rem', // 448px
       },
       maxHeight: {
-        registerForm: '40.875rem', // 654px w rem
+        registerForm: '40.875rem', // 654px
       },
       boxShadow: {
         contentDiv: '0px 2px 4px -2px #0000000D, 0px 4px 6px -1px #0000001A',
@@ -68,7 +70,6 @@ module.exports = {
         tabBarShadow: '0px 4px 4px 0px #00000040',
         inactiveTabShadow: '0px 4px 4px 0px #00000040',
       },
-
       fontSize: {
         'text-heading': [
           '64px',
@@ -80,40 +81,46 @@ module.exports = {
       },
     },
   },
-  plugins: [require('flowbite/plugin'), flowbiteReact],
-  corePlugins: {
-    scrollbarGutter: false,
-  },
-}
-
-const plugin = require('tailwindcss/plugin')
-
-module.exports = {
-  ...module.exports,
   plugins: [
-    ...module.exports.plugins,
+    require('flowbite/plugin'),
+    flowbiteReact,
     plugin(function ({ addBase }) {
       addBase({
-        '::-webkit-scrollbar': {
-          width: '6px',
-          height: '6px',
-        },
-        '::-webkit-scrollbar-track': {
-          background: '#222426',
-        },
+        '::-webkit-scrollbar': { width: '6px', height: '6px' },
+        '::-webkit-scrollbar-track': { background: '#222426' },
         '::-webkit-scrollbar-thumb': {
           background: '#ffffff',
           borderRadius: '8px',
           height: '66%',
           minHeight: '30px',
         },
-        '::-webkit-scrollbar-thumb:hover': {
-          background: '#f0f0f0',
+        '::-webkit-scrollbar-thumb:hover': { background: '#f0f0f0' },
+        '::-webkit-scrollbar-corner': { background: '#222426' },
+      })
+    }),
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.layout-grid': {
+          display: 'grid',
+          flex: '1',
+          transition: 'grid-template-columns 300ms ease',
         },
-        '::-webkit-scrollbar-corner': {
-          background: '#222426',
+        '.layout-sidebar-open': {
+          gridTemplateColumns: '240px 1fr',
+        },
+        '.layout-sidebar-closed': {
+          gridTemplateColumns: '0fr 1fr',
+        },
+        '.grid-fullscreen': {
+          gridTemplateColumns: '0fr 1fr',
+        },
+        '.grid-normal': {
+          gridTemplateColumns: '1fr 2fr',
         },
       })
     }),
   ],
+  corePlugins: {
+    scrollbarGutter: false,
+  },
 }
