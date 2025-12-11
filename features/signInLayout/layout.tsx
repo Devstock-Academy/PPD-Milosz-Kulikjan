@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SocialMediaBar from '@/features/signOutLayout/components/SocialMediaBar'
+import { SocialMediaBar } from '@/components/socialMediaBar'
 
 import Sidebar from './components/Sidebar'
 import SignInTopBar from './components/SignInTopBar'
@@ -10,9 +10,14 @@ const SignInLayout = ({ children }: { children: React.ReactNode }) => {
     <div className='flex h-screen flex-col'>
       <SocialMediaBar />
       <SignInTopBar />
-      <main className='flex flex-1'>
+      <main
+        className='grid flex-1 transition-[grid-template-columns] duration-300'
+        style={{
+          gridTemplateColumns: 'auto 1fr',
+        }}
+      >
         <Sidebar />
-        <div className='flex-1'>{children}</div>
+        <div className='bg-darkBg'>{children}</div>
       </main>
     </div>
   )

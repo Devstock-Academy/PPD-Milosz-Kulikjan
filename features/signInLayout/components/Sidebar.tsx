@@ -70,7 +70,10 @@ const Sidebar = () => {
         style='light'
         className={clsx(
           'whitespace-nowrap',
-          open ? 'hidden' : 'ml-4',
+          {
+            hidden: open,
+            'ml-4': !open,
+          },
           item.icon === 'settings' && '-translate-y-2'
         )}
       >
@@ -79,7 +82,10 @@ const Sidebar = () => {
           aria-label={item.href}
           className={clsx(
             'group relative flex justify-center rounded-md text-white',
-            hasDivider ? 'items-start' : 'items-center',
+            {
+              'items-start': hasDivider,
+              'items-center': !hasDivider,
+            },
             item.icon === 'settings' && '-mt-4'
           )}
         >
@@ -120,10 +126,10 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={clsx(
-        'sticky top-0 h-full border-r border-gray-800 bg-darkBg',
-        open ? 'w-55' : 'w-16'
-      )}
+      className={clsx('sticky top-0 h-full bg-darkBg', {
+        'w-55': open,
+        'w-16': !open,
+      })}
     >
       <nav className='flex h-full flex-col items-start gap-8 pl-5 pt-8'>
         {items.map(renderMenuItem)}

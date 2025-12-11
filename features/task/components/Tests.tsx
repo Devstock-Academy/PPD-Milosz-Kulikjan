@@ -1,0 +1,15 @@
+'use client'
+
+import React from 'react'
+
+import TabSkeleton from './TabSkeleton'
+
+type Props = React.PropsWithChildren<{
+  tabs: { label: string }[]
+}>
+
+const Tests = ({ tabs, children }: Props) => {
+  return <TabSkeleton tabs={tabs}>{children}</TabSkeleton>
+}
+
+export default Tests
