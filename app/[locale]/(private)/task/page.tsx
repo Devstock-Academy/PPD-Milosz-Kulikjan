@@ -3,6 +3,7 @@
 import React from 'react'
 import { useTranslations } from 'next-intl'
 import clsx from 'clsx'
+import { DescriptionProps } from '@/features/task/components/Description'
 
 import {
   ActionBar,
@@ -13,6 +14,17 @@ import {
   Tests,
 } from '@/features/task'
 import Test from '@/features/task/components/Test'
+
+const exampleTask: DescriptionProps = {
+  category: 'JavaScript',
+  solutionsCount: 123,
+  difficulty: 'Łatwy',
+  title: 'Two Sum Problem',
+  description:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  sampleInput: '[2, 7, 11, 15], target = 9',
+  sampleOutput: '[0, 1]',
+}
 
 const Task = () => {
   const t = useTranslations('Task')
@@ -32,9 +44,10 @@ const Task = () => {
       >
         <div className='flex h-full flex-col gap-4 overflow-hidden'>
           <div className='min-h-0 flex-1'>
-            <Description tabs={[{ label: t('description') }]}>
-              {['Description']}
-            </Description>
+            <Description
+              tabs={[{ label: t('description') }]}
+              descriptionData={exampleTask}
+            />
           </div>
 
           <div className='min-h-0 flex-1'>

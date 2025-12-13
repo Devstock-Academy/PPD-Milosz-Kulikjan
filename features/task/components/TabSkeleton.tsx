@@ -30,7 +30,7 @@ const TabSkeleton = ({ tabs, children }: TabSkeletonProps) => {
               key={label}
               onClick={() => setActiveIndex(index)}
               className={clsx(
-                'h-full w-32 px-4 text-sm font-medium text-white',
+                'h-full w-32 whitespace-nowrap px-4 text-sm font-medium text-white',
                 {
                   'bg-darkBlueBg shadow-activeTabShadow': isActive,
                   'bg-lightBlueBg shadow-inactiveTabShadow': !isActive,
