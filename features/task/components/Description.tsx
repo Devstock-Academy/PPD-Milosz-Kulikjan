@@ -1,12 +1,21 @@
 'use client'
 
 import React from 'react'
-import TabSkeleton from './TabSkeleton'
 import { useTranslations } from 'next-intl'
 
-import DescriptionContent, {
-  DescriptionData,
-} from '@/features/task/components/DescriptionContext'
+import { DescriptionTitleIcon } from '@/icons'
+import CodeBlock from './CodeBlock'
+import TabSkeleton from './TabSkeleton'
+
+export type DescriptionData = {
+  category: string
+  solutionsCount: number
+  difficulty: string
+  title: string
+  description: string
+  sampleInput?: string
+  sampleOutput?: string
+}
 
 const exampleTask: DescriptionData = {
   category: 'JavaScript',
@@ -19,11 +28,51 @@ const exampleTask: DescriptionData = {
   sampleOutput: '[0, 1]',
 }
 
-const Description = () => {
-  const t = useTranslations('Task')
+type DescriptionProps = {
+  data?: DescriptionData
+}
+
+// Component uses example data by default, but it can still accept data passed from page.tsx if needed.
+
+const Description = ({ data = exampleTask }: DescriptionProps) => {
+  const t = useTranslations('TaskDescription')
+
   return (
     <TabSkeleton tabs={[{ label: t('description') }]}>
-      <DescriptionContent data={exampleTask} />
+      <div className='flex flex-col justify-center space-y-2 p-4 pt-1.5 text-xs font-medium'>
+        <div className='flex items-center gap-4'>
+          <p className='flex gap-1'>
+            <span>{t('category')}:</span>
+            <span>{data.category}</span>
+          </p>
+          <div className='h-5 w-px bg-white' />
+          <p className='flex gap-1'>
+            <span>{t('solutionsCount')}:</span>
+            <span>{data.solutionsCount}</span>
+          </p>
+          <div className='h-5 w-px bg-white' />
+        </div>
+
+        <p className='flex gap-1'>
+          <span>{t('difficulty')}:</span>
+          <span>{data.difficulty}</span>
+        </p>
+
+        <div className='flex items-center gap-4 text-2xl font-medium'>
+          {data.title}
+          <DescriptionTitleIcon />
+        </div>
+
+        <p>{data.description}</p>
+
+        {data.sampleInput && (
+          <CodeBlock label={t('sampleInput')} content={data.sampleInput} />
+        )}
+
+        {data.sampleOutput && (
+          <CodeBlock label={t('sampleOutput')} content={data.sampleOutput} />
+        )}
+      </div>
     </TabSkeleton>
   )
 }
