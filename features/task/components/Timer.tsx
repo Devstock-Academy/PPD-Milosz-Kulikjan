@@ -1,15 +1,24 @@
 'use client'
 
-import { ClockIcon } from '@/icons'
 import React from 'react'
+import TabSkeleton from './TabSkeleton'
+import TimerContent from './TimerContent'
+import StoperContent from './StoperContent'
+import { useTranslations } from 'next-intl'
 
 const Timer = () => {
-  const [timer, setTimer] = React.useState('00:00')
+  const ti = useTranslations('Timer')
+
+  const tabs = [
+    { label: ti('stoper'), fullWidth: true },
+    { label: ti('timer'), fullWidth: true },
+  ]
+
   return (
-    <div className='flex h-full items-center justify-center gap-4 bg-lightBlueBg px-4 shadow-md'>
-      <ClockIcon />
-      <div className='font-medium text-white'>{timer}</div>
-    </div>
+    <TabSkeleton tabs={tabs}>
+      <StoperContent />
+      <TimerContent />
+    </TabSkeleton>
   )
 }
 

@@ -5,6 +5,7 @@ import clsx from 'clsx'
 
 type TabItem = {
   label: string
+  fullWidth?: boolean
 }
 
 type TabSkeletonProps = React.PropsWithChildren<{
@@ -23,17 +24,19 @@ const TabSkeleton = ({ tabs, children }: TabSkeletonProps) => {
   return (
     <div className='flex h-full flex-col'>
       <div className='flex h-10 w-full rounded-t-lg bg-lightGrayBg shadow-tabBarShadow'>
-        {tabs.map(({ label }, index) => {
+        {tabs.map(({ label, fullWidth }, index) => {
           const isActive = index === currentIndex
           return (
             <button
               key={label}
               onClick={() => setActiveIndex(index)}
               className={clsx(
-                'h-full w-32 whitespace-nowrap px-4 text-sm font-medium text-white',
+                'h-full whitespace-nowrap px-4 text-sm font-medium text-white',
                 {
                   'bg-darkBlueBg shadow-activeTabShadow': isActive,
                   'bg-lightBlueBg shadow-inactiveTabShadow': !isActive,
+                  'w-full': fullWidth,
+                  'w-32': !fullWidth,
                 },
                 index === 0 && 'rounded-tl-lg',
                 index === tabs.length - 1 && 'rounded-tr-lg'

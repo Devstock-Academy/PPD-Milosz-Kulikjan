@@ -121,5 +121,9 @@
     "difficulty": "Stopień",
     "sampleInput": "Sample Input",
     "sampleOutput": "Sample Output"
+  },
+  "Timer": {
+    "stoper": "Stoper",
+    "timer": "Timer"
   }
 }

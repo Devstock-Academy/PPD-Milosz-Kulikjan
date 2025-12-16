@@ -1,4 +1,4 @@
-interface SettingsIconProps {
+type SettingsIconProps = {
   width?: number | string
   height?: number | string
   color?: string
