@@ -32,8 +32,6 @@ type DescriptionProps = {
   data?: DescriptionData
 }
 
-// Component uses example data by default, but it can still accept data passed from page.tsx if needed.
-
 const Description = ({ data = exampleTask }: DescriptionProps) => {
   const t = useTranslations('TaskDescription')
   const tTask = useTranslations('Task')
