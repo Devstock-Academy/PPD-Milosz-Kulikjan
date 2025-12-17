@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { useTranslations } from 'next-intl'
 import clsx from 'clsx'
 
 import {
@@ -12,10 +11,8 @@ import {
   TestResult,
   Tests,
 } from '@/features/task'
-import Test from '@/features/task/components/Test'
 
 const Task = () => {
-  const t = useTranslations('Task')
   const [isFullscreen, setIsFullscreen] = React.useState(false)
 
   return (
@@ -24,6 +21,7 @@ const Task = () => {
         isFullscreen={isFullscreen}
         onFullscreenChange={setIsFullscreen}
       />
+
       <div
         className={clsx('grid flex-1 transition-all duration-300', {
           'grid-fullscreen': isFullscreen,
@@ -32,28 +30,19 @@ const Task = () => {
       >
         <div className='flex h-full flex-col gap-4 overflow-hidden'>
           <div className='min-h-0 flex-1'>
-            <Description tabs={[{ label: t('description') }]}>
-              {['Description']}
-            </Description>
+            <Description />
           </div>
-
           <div className='min-h-0 flex-1'>
-            <Tests tabs={[{ label: t('test') }, { label: t('fastTests') }]}>
-              {['Test Content', 'Fast test content']}
-            </Tests>
+            <Tests />
           </div>
-
           <div className='min-h-0 flex-1'>
-            <TestResult tabs={[{ label: t('testResult') }]}>
-              <Test />
-            </TestResult>
+            <TestResult />
           </div>
         </div>
         <div className='flex h-full flex-col gap-4'>
-          <Editor tabs={[{ label: t('editor') }]}>Edytor kodu</Editor>
-
+          <Editor />
           <div className='h-40'>
-            <Console tabs={[{ label: t('console') }]}>Konsola</Console>
+            <Console />
           </div>
         </div>
       </div>

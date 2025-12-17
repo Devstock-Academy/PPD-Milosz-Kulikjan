@@ -1,15 +1,13 @@
 'use client'
 
 import React from 'react'
+import { useTranslations } from 'next-intl'
 
 import TabSkeleton from './TabSkeleton'
 
-type Props = React.PropsWithChildren<{
-  tabs: { label: string }[]
-}>
-
-const Console = ({ tabs, children }: Props) => {
-  return <TabSkeleton tabs={tabs}>{children}</TabSkeleton>
+const Console = () => {
+  const t = useTranslations('Task')
+  return <TabSkeleton tabs={[{ label: t('console') }]}>Konsola</TabSkeleton>
 }
 
 export default Console

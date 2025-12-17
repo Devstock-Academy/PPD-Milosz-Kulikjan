@@ -16,3 +16,4 @@ export type IconName =
   | 'task'
   | 'admin'
   | 'vector'
+  | 'description-title'

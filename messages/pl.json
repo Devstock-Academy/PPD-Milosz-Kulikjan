@@ -114,5 +114,16 @@
     "testResult": "Wyniki testów",
     "editor": "Edytor kodu",
     "console": "Konsola"
+  },
+  "TaskDescription": {
+    "category": "Kategoria",
+    "solutionsCount": "Wykonane",
+    "difficulty": "Stopień",
+    "sampleInput": "Sample Input",
+    "sampleOutput": "Sample Output"
+  },
+  "Timer": {
+    "stoper": "Stoper",
+    "timer": "Timer"
   }
 }
