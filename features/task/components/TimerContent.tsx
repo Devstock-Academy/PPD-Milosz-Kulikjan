@@ -10,7 +10,7 @@ const TimerContent = () => {
 
   const handleStart = () => {
     const minutes = parseFloat(inputMinutes)
-    if (!isNaN(minutes) && minutes > 0) {
+    if (!isNaN(minutes) && minutes > 0 && minutes <= 99) {
       const ms = minutes * 60 * 1000
       startTimer(ms)
     }
