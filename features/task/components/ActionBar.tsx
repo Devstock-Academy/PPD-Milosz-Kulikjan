@@ -41,10 +41,10 @@ const ActionBar = ({ isFullscreen, onFullscreenChange }: ActionBarProps) => {
         <Divider />
         <div className='relative'>
           <button onClick={handleOpenTimer} className='h-full'>
-            <TimerIcon />
+            <TimerIcon isOpen={isTimerOpen} />
           </button>
           {isTimerOpen && (
-            <div className='absolute left-0 top-full z-50 mt-2 w-75'>
+            <div className='absolute left-auto right-5 top-full z-50 mt-2 w-75 lg:left-0 lg:right-auto'>
               <Timer />
             </div>
           )}

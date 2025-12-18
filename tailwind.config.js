@@ -28,6 +28,8 @@ module.exports = {
         sidebarDivider: '#374151',
         activeSidebarBg: '#F5A22E',
         iconDefault: '#ffffff',
+        clockSet: '#1FAF7F',
+        clockActive: '#0E9F6E',
       },
       spacing: {
         4.5: '1.125rem', // 18px

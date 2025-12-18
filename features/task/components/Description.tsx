@@ -64,11 +64,11 @@ const Description = ({ data = exampleTask }: DescriptionProps) => {
         <p>{data.description}</p>
 
         {data.sampleInput && (
-          <CodeBlock label={t('sampleInput')} content={data.sampleInput} />
+          <CodeBlock label={t('sampleInput')}>{data.sampleInput}</CodeBlock>
         )}
 
         {data.sampleOutput && (
-          <CodeBlock label={t('sampleOutput')} content={data.sampleOutput} />
+          <CodeBlock label={t('sampleInput')}>{data.sampleOutput}</CodeBlock>
         )}
       </div>
     </TabSkeleton>
