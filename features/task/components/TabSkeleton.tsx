@@ -10,36 +10,39 @@ type TabItem = {
 
 type TabSkeletonProps = React.PropsWithChildren<{
   tabs: TabItem[]
+  disableTabs?: boolean
 }>
 
-const TabSkeleton = ({ tabs, children }: TabSkeletonProps) => {
+const TabSkeleton = ({ tabs, children, disableTabs }: TabSkeletonProps) => {
   const [activeIndex, setActiveIndex] = React.useState(0)
 
   if (!tabs.length) return null
 
   const currentIndex = Math.min(activeIndex, tabs.length - 1)
 
-  const childrenArray = Array.isArray(children) ? children : [children]
-
   return (
-    <div className='flex h-full flex-col'>
-      <div className='flex h-10 w-full rounded-t-lg bg-lightGrayBg shadow-tabBarShadow'>
+    <div className='flex h-full flex-col overflow-hidden rounded-lg bg-grayBg shadow-tabBarShadow'>
+      <div className='flex h-10 w-full bg-lightGrayBg'>
         {tabs.map(({ label, fullWidth }, index) => {
           const isActive = index === currentIndex
+
           return (
             <button
               key={label}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => {
+                if (!disableTabs) {
+                  setActiveIndex(index)
+                }
+              }}
               className={clsx(
-                'h-full whitespace-nowrap px-4 text-sm font-medium text-white',
+                'h-full whitespace-nowrap px-4 text-sm font-medium text-white transition-colors',
                 {
-                  'bg-darkBlueBg shadow-activeTabShadow': isActive,
-                  'bg-lightBlueBg shadow-inactiveTabShadow': !isActive,
+                  'relative z-10 bg-darkBlueBg shadow-activeTabShadow':
+                    isActive,
+                  'bg-lightBlueBg': !isActive,
                   'w-full': fullWidth,
                   'w-32': !fullWidth,
-                },
-                index === 0 && 'rounded-tl-lg',
-                index === tabs.length - 1 && 'rounded-tr-lg'
+                }
               )}
             >
               {label}
@@ -48,7 +51,7 @@ const TabSkeleton = ({ tabs, children }: TabSkeletonProps) => {
         })}
       </div>
       <div className='flex-1 overflow-y-auto bg-grayBg'>
-        <div>{childrenArray[currentIndex]}</div>
+        {Array.isArray(children) ? children[currentIndex] ?? null : children}
       </div>
     </div>
   )

@@ -50,7 +50,7 @@ const Sidebar = () => {
         >
           <div className='flex h-10 w-10 items-center justify-center rounded-lg bg-grayBg'>
             <div
-              className={clsx('transition-transform', !open && 'rotate-180')}
+              className={clsx('transition-transform', { 'rotate-180': !open })}
             >
               <SidebarIconPicker name={item.icon} />
             </div>
@@ -68,14 +68,11 @@ const Sidebar = () => {
         content={t(item.icon)}
         placement='right'
         style='light'
-        className={clsx(
-          'whitespace-nowrap',
-          {
-            hidden: open,
-            'ml-4': !open,
-          },
-          item.icon === 'settings' && '-translate-y-2'
-        )}
+        className={clsx('whitespace-nowrap', {
+          hidden: open,
+          'ml-4': !open,
+          '-translate-y-2': item.icon === 'settings',
+        })}
       >
         <Link
           href={item.href}
@@ -85,8 +82,8 @@ const Sidebar = () => {
             {
               'items-start': hasDivider,
               'items-center': !hasDivider,
-            },
-            item.icon === 'settings' && '-mt-4'
+              '-mt-4': item.icon === 'settings',
+            }
           )}
         >
           <div
@@ -126,7 +123,7 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={clsx('sticky top-0 h-full bg-darkBg', {
+      className={clsx('sticky top-0 z-40 h-full bg-darkBg', {
         'w-55': open,
         'w-16': !open,
       })}

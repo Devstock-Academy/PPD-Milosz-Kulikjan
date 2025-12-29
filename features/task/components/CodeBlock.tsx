@@ -1,17 +1,16 @@
 import React from 'react'
 
-type CodeBlockProps = {
+type CodeBlockProps = React.PropsWithChildren<{
   label: string
-  content: string
-}
+}>
 
-const CodeBlock = ({ label, content }: CodeBlockProps) => {
+const CodeBlock = ({ label, children }: CodeBlockProps) => {
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-1'>
       <span>{label}</span>
-      <span className='flex w-full rounded-lg bg-lightGrayBg px-4 py-2 shadow-tabBarShadow'>
-        {content}
-      </span>
+      <div className='flex w-full rounded-lg bg-lightGrayBg px-4 py-2 shadow-tabBarShadow'>
+        {children}
+      </div>
     </div>
   )
 }

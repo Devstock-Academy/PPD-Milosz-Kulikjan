@@ -1,5 +1,10 @@
-const ClockIcon = () => (
+type ClockIconProps = {
+  className?: string
+}
+
+const ClockIcon = ({ className }: ClockIconProps) => (
   <svg
+    className={className}
     width='20'
     height='20'
     viewBox='0 0 20 20'
