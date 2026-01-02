@@ -44,6 +44,7 @@ module.exports = {
         75: '18.75rem', // 300px
         55: '13.75rem', // 220px
         40: '10rem', // 160px
+        175: '43.75rem', // 700px
         'icon-sm': '0.75rem', // 12px
         'icon-base': '1.25rem', // 20px
         'icon-lg': '1.5rem', // 24px
