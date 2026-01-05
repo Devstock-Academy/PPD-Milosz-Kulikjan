@@ -1,9 +1,11 @@
+'use client'
+
 import React from 'react'
 
 type EditorContextType = {
   code: string
   setCode: (code: string) => void
-  runCode: () => string // teraz zwraca string
+  runCode: () => Promise<string>
   output: string
 }
 
@@ -12,33 +14,47 @@ const EditorContext = React.createContext<EditorContextType | undefined>(
 )
 
 export const CodeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [code, setCode] = React.useState<string>('')
-  const [output, setOutput] = React.useState<string>('There is nothing to show')
+  const [code, setCode] = React.useState<string>('console.log("Hello World");')
+  const [output, setOutput] = React.useState<string>('')
 
-  const runCode = (): string => {
+  const runCode = async (): Promise<string> => {
+    console.log('[runCode] Starting execution, code length:', code.length)
+
     if (!code || code.trim() === '') {
-      const msg = 'Nothing to execute'
+      const msg = 'Please enter some code to execute'
       setOutput(msg)
       return msg
     }
 
     try {
-      let result = ''
-      // przechwytujemy console.log
-      const originalLog = console.log
-      console.log = (...args: any[]) => {
-        result += args.join(' ') + '\n'
+      const apiUrl = '/api/run-code'
+      console.log('[runCode] Fetching from:', apiUrl)
+
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({ code }),
+      })
+
+      console.log('[runCode] Response status:', res.status)
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`)
       }
 
-      const fn = new Function(code) // <-- bez "return"
-      fn() // wykonujemy kod
+      const data = await res.json()
+      console.log('[runCode] Received data:', data)
 
-      console.log = originalLog // przywracamy oryginalny console.log
-      setOutput(result || 'No output')
-      return result || 'No output'
+      setOutput(data.output || 'No output received')
+      return data.output || 'No output received'
     } catch (err: any) {
-      setOutput(err.message)
-      return err.message
+      console.error('[runCode] Error:', err.message)
+      const errorMsg = `Error: ${err.message}`
+      setOutput(errorMsg)
+      return errorMsg
     }
   }
 

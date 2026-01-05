@@ -11,6 +11,9 @@ const EditorActions = ({ hasErrors }: { hasErrors: boolean }) => {
   >(null)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
   const { runCode } = useCode()
+  const handleRun = async () => {
+    await runCode()
+  }
 
   const handleSendCode = () => {
     if (hasErrors) {
@@ -30,7 +33,7 @@ const EditorActions = ({ hasErrors }: { hasErrors: boolean }) => {
     <>
       <div className='flex h-15 w-full items-center gap-4 bg-lightGrayBg p-4 shadow-tabBarShadow'>
         <button
-          onClick={runCode}
+          onClick={handleRun}
           className='h-10 flex-1 rounded-lg bg-clockActive'
         >
           {t('runCode')}
