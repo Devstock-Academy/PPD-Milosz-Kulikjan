@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useTranslations } from 'next-intl'
-import MonacoEditor, { BeforeMount } from '@monaco-editor/react'
+import MonacoEditor, { BeforeMount, OnMount } from '@monaco-editor/react'
 
 import TabSkeleton from './TabSkeleton'
 import EditorActions from './EditorActions'
@@ -15,6 +15,41 @@ const Editor = () => {
   const handleValidation = (markers: any[]) => {
     const monacoErrors = markers.length > 0
     setHasErrors(monacoErrors)
+  }
+
+  const handleEditorMount: OnMount = (editor) => {
+    const updateLineDigits = () => {
+      const model = editor.getModel()
+      if (!model) return
+
+      const lineCount = model.getLineCount()
+
+      let digits: number
+      if (lineCount < 10) digits = 1
+      else if (lineCount < 100) digits = 2
+      else digits = 3
+
+      switch (digits) {
+        case 1:
+          editor.updateOptions({ lineNumbersMinChars: 4 })
+          editor.updateOptions({ lineDecorationsWidth: 3 })
+          break
+        case 2:
+          editor.updateOptions({ lineNumbersMinChars: 5 })
+          editor.updateOptions({ lineDecorationsWidth: 2 })
+          break
+        case 3:
+          editor.updateOptions({ lineNumbersMinChars: 6 })
+          editor.updateOptions({ lineDecorationsWidth: 1 })
+          break
+      }
+    }
+
+    updateLineDigits()
+
+    editor.onDidChangeModelContent(() => {
+      updateLineDigits()
+    })
   }
 
   const handleBeforeMount: BeforeMount = (monaco) => {
@@ -46,6 +81,7 @@ const Editor = () => {
             theme='taskTheme'
             beforeMount={handleBeforeMount}
             onValidate={handleValidation}
+            onMount={handleEditorMount}
             options={{
               minimap: { enabled: false },
               scrollbar: {
@@ -54,7 +90,6 @@ const Editor = () => {
                 verticalScrollbarSize: 6,
                 horizontalScrollbarSize: 6,
               },
-              lineNumbersMinChars: 3,
             }}
           />
         </div>
