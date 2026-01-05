@@ -11,6 +11,7 @@ import {
   TestResult,
   Tests,
 } from '@/features/task'
+import { CodeProvider } from '@/context/EditorContext'
 
 const Task = () => {
   const [isFullscreen, setIsFullscreen] = React.useState(false)
@@ -43,13 +44,14 @@ const Task = () => {
             <TestResult />
           </div>
         </div>
-        <div className='flex h-full flex-col gap-4'>
-          <Editor />
-
-          <div className='h-40'>
-            <Console />
+        <CodeProvider>
+          <div className='flex h-full flex-col gap-4'>
+            <Editor />
+            <div className='h-40'>
+              <Console />
+            </div>
           </div>
-        </div>
+        </CodeProvider>
       </div>
     </div>
   )

@@ -6,15 +6,21 @@ import MonacoEditor, { BeforeMount } from '@monaco-editor/react'
 
 import TabSkeleton from './TabSkeleton'
 import EditorActions from './EditorActions'
+import { useCode } from '@/context/EditorContext'
 
 const Editor = () => {
   const [hasErrors, setHasErrors] = React.useState(false)
+  const { setCode } = useCode()
 
   const t = useTranslations('Task')
 
   const handleValidation = (markers: any[]) => {
     const monacoErrors = markers.length > 0
     setHasErrors(monacoErrors)
+  }
+
+  const handleEditorChange = (value: string | undefined) => {
+    if (value !== undefined) setCode(value)
   }
 
   const handleBeforeMount: BeforeMount = (monaco) => {
@@ -46,6 +52,7 @@ const Editor = () => {
             theme='taskTheme'
             beforeMount={handleBeforeMount}
             onValidate={handleValidation}
+            onChange={handleEditorChange}
             options={{
               minimap: { enabled: false },
               scrollbar: {
