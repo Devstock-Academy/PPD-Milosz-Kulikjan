@@ -81,10 +81,16 @@
     }
   },
   "Modal": {
-    "title": "Potwierdź rejestrację!",
-    "line1": "Przesłaliśmy link aktywacyjny na adres {email}, prosimy o weryfikację :)",
-    "line2": "Mail aktywacyjny nie dotarł?",
-    "resend": "Prześlij ponownie"
+    "registerTitle": "Potwierdź rejestrację!",
+    "registerLine1": "Przesłaliśmy link aktywacyjny na adres {email}, prosimy o weryfikację :)",
+    "registerLine2": "Mail aktywacyjny nie dotarł?",
+    "resend": "Prześlij ponownie",
+    "successTitle": "Gratulacje!",
+    "successLine": "Przesłane rozwiązanie jest poprawne!",
+    "continue": "Kontynuuj",
+    "failureTitle": "Niestety!",
+    "failureLine": "Przesłane rozwiązanie jest błędne!",
+    "return": "Wróć do zadania"
   },
   "SignInTopbar": {
     "logoutButton": "Wyloguj się"
@@ -125,5 +131,9 @@
   "Timer": {
     "stoper": "Stoper",
     "timer": "Odliczanie"
+  },
+  "EditorActions": {
+    "runCode": "Uruchom kod",
+    "sendSolution": "Wyślij rozwiązanie"
   }
 }

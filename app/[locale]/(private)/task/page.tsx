@@ -24,11 +24,15 @@ const Task = () => {
 
       <div
         className={clsx('grid flex-1 transition-all duration-300', {
-          'grid-fullscreen': isFullscreen,
           'gap-8 grid-normal': !isFullscreen,
         })}
       >
-        <div className='flex h-full flex-col gap-4 overflow-hidden'>
+        <div
+          className={clsx('h-full flex-col gap-4 overflow-hidden', {
+            hidden: isFullscreen,
+            flex: !isFullscreen,
+          })}
+        >
           <div className='min-h-0 flex-1'>
             <Description />
           </div>
@@ -41,6 +45,7 @@ const Task = () => {
         </div>
         <div className='flex h-full flex-col gap-4'>
           <Editor />
+
           <div className='h-40'>
             <Console />
           </div>
