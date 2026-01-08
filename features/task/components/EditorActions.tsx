@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslations } from 'next-intl'
 import Modal from '@/components/Modal'
+import { useCode } from '@/context/EditorContext'
 
 const EditorActions = ({ hasErrors }: { hasErrors: boolean }) => {
   const t = useTranslations('EditorActions')
@@ -9,6 +10,10 @@ const EditorActions = ({ hasErrors }: { hasErrors: boolean }) => {
     'success' | 'failure' | null
   >(null)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
+  const { runCode } = useCode()
+  const handleRun = async () => {
+    await runCode()
+  }
 
   const handleSendCode = () => {
     if (hasErrors) {
@@ -27,7 +32,10 @@ const EditorActions = ({ hasErrors }: { hasErrors: boolean }) => {
   return (
     <>
       <div className='flex h-15 w-full items-center gap-4 bg-lightGrayBg p-4 shadow-tabBarShadow'>
-        <button className='h-10 flex-1 rounded-lg bg-clockActive'>
+        <button
+          onClick={handleRun}
+          className='h-10 flex-1 rounded-lg bg-clockActive'
+        >
           {t('runCode')}
         </button>
         <button

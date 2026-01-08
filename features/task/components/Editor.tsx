@@ -6,15 +6,22 @@ import MonacoEditor, { BeforeMount, OnMount } from '@monaco-editor/react'
 
 import TabSkeleton from './TabSkeleton'
 import EditorActions from './EditorActions'
+import { useCode } from '@/context/EditorContext'
+import { registerTaskTheme } from '@/features/monaco/taskTheme'
 
 const Editor = () => {
   const [hasErrors, setHasErrors] = React.useState(false)
-
+  const { setCode } = useCode()
   const t = useTranslations('Task')
 
   const handleValidation = (markers: any[]) => {
-    const monacoErrors = markers.length > 0
-    setHasErrors(monacoErrors)
+    setHasErrors(markers.length > 0)
+  }
+
+  const handleEditorChange = (value: string | undefined) => {
+    if (value !== undefined) {
+      setCode(value)
+    }
   }
 
   const handleEditorMount: OnMount = (editor) => {
@@ -24,64 +31,37 @@ const Editor = () => {
 
       const lineCount = model.getLineCount()
 
-      let digits: number
+      let digits = 3
       if (lineCount < 10) digits = 1
       else if (lineCount < 100) digits = 2
-      else digits = 3
 
-      switch (digits) {
-        case 1:
-          editor.updateOptions({ lineNumbersMinChars: 4 })
-          editor.updateOptions({ lineDecorationsWidth: 3 })
-          break
-        case 2:
-          editor.updateOptions({ lineNumbersMinChars: 5 })
-          editor.updateOptions({ lineDecorationsWidth: 2 })
-          break
-        case 3:
-          editor.updateOptions({ lineNumbersMinChars: 6 })
-          editor.updateOptions({ lineDecorationsWidth: 1 })
-          break
-      }
+      editor.updateOptions({
+        lineNumbersMinChars: digits + 3,
+        lineDecorationsWidth: Math.max(1, 4 - digits),
+      })
     }
 
     updateLineDigits()
-
-    editor.onDidChangeModelContent(() => {
-      updateLineDigits()
-    })
+    editor.onDidChangeModelContent(updateLineDigits)
   }
 
   const handleBeforeMount: BeforeMount = (monaco) => {
-    monaco.editor.defineTheme('taskTheme', {
-      base: 'vs-dark',
-      inherit: true,
-      rules: [],
-      colors: {
-        'editor.background': '#222426',
-        'editorGutter.background': '#333537',
-        'editorLineNumber.foreground': '#BDBDBD',
-        'editorLineNumber.activeForeground': '#FFFFFF',
-        'scrollbarSlider.background': '#ffffff',
-        'scrollbarSlider.hoverBackground': '#f0f0f0',
-        'scrollbarSlider.activeBackground': '#ffffff',
-        'scrollbar.shadow': '#222426',
-      },
-    })
+    registerTaskTheme(monaco)
   }
 
   return (
     <TabSkeleton tabs={[{ label: t('editor') }]}>
-      <div className='flex h-full w-full flex-col'>
-        <div className='flex-1 overflow-hidden rounded shadow-tabBarShadow'>
+      <div className="flex h-full w-full flex-col">
+        <div className="flex-1 overflow-hidden rounded shadow-tabBarShadow">
           <MonacoEditor
-            language='javascript'
-            height='100%'
-            width='100%'
-            theme='taskTheme'
+            language="javascript"
+            height="100%"
+            width="100%"
+            theme="taskTheme"
             beforeMount={handleBeforeMount}
-            onValidate={handleValidation}
             onMount={handleEditorMount}
+            onChange={handleEditorChange}
+            onValidate={handleValidation}
             options={{
               minimap: { enabled: false },
               scrollbar: {
@@ -93,6 +73,7 @@ const Editor = () => {
             }}
           />
         </div>
+
         <EditorActions hasErrors={hasErrors} />
       </div>
     </TabSkeleton>
