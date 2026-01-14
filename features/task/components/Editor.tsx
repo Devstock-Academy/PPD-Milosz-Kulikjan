@@ -51,13 +51,13 @@ const Editor = () => {
 
   return (
     <TabSkeleton tabs={[{ label: t('editor') }]}>
-      <div className="flex h-full w-full flex-col">
-        <div className="flex-1 overflow-hidden rounded shadow-tabBarShadow">
+      <div className='flex h-full w-full flex-col'>
+        <div className='flex-1 overflow-hidden rounded shadow-tabBarShadow'>
           <MonacoEditor
-            language="javascript"
-            height="100%"
-            width="100%"
-            theme="taskTheme"
+            language='javascript'
+            height='100%'
+            width='100%'
+            theme='taskTheme'
             beforeMount={handleBeforeMount}
             onMount={handleEditorMount}
             onChange={handleEditorChange}

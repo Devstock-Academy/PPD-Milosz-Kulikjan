@@ -30,11 +30,13 @@ module.exports = {
         iconDefault: '#ffffff',
         clockSet: '#1FAF7F',
         clockActive: '#0E9F6E',
+        borderBg: '#333537',
       },
       spacing: {
         4.5: '1.125rem', // 18px
         6.5: '1.625rem', // 26px
         8.125: '2.03125rem', // 32.5px
+        13.25: '3.3125rem', // 53px
         15: '3.75rem', // 60px
         30: '7.5rem', // 120px
         32: '8rem', // 128px

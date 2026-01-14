@@ -135,5 +135,21 @@
   "EditorActions": {
     "runCode": "Uruchom kod",
     "sendSolution": "Wyślij rozwiązanie"
+  },
+  "Tests": {
+    "normalTestButton": "Testuj!",
+    "fastTestButton": "Szybki test!",
+    "testCase": "Przypadek testowy",
+    "value": "Wartość",
+    "allPassed": "Twój kod przeszedł wszystkie testy",
+    "notAllPassed": "Twój kod nie przeszedł wszystkich testów",
+    "passed": "przeszedł",
+    "fastPassed": "przeszedł test",
+    "notPassed": "nie przeszedł",
+    "fastNotPassed": "nie przeszedł testu",
+    "expectedResult": "Oczekiwany rezultat",
+    "yourResult": "Twój rezultat",
+    "givenValue": "Wprowadzona wartość",
+    "yourCode": "Twój kod"
   }
 }
