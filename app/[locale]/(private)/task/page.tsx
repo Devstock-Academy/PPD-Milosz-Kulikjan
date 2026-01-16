@@ -34,7 +34,7 @@ const Task = () => {
             flex: !isFullscreen,
           })}
         >
-          <div className='h-full w-full flex-1'>
+          <div className='h-full w-full flex-1 '>
             <Description />
           </div>
           <TaskProvider>
