@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.monaco-editor {
+  position: absolute !important;
+}
+
+.monaco-editor .line-numbers {
+  text-align: center !important;
+}
+
+.single-line-editor .monaco-editor .line-numbers {
+  text-align: left !important;
+}
+
+.monaco-editor ::-webkit-scrollbar {
+  width: 6px;
+  height: 120px;
+}
+
+.monaco-editor ::-webkit-scrollbar-track {
+  background: #222426;
+}
+
+.monaco-editor ::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 8px;
+  height: 66%;
+  min-height: 30px;
+}
+
+.monaco-editor ::-webkit-scrollbar-thumb:hover {
+  background: #f0f0f0;
+}
+
+.monaco-editor ::-webkit-scrollbar-corner {
+  background: #222426;
+}
+
+@layer base {
+  .monaco-editor .monaco-scrollable-element > .scrollbar {
+    background: #222426 !important;
+  }
+
+  .monaco-editor .monaco-scrollable-element > .scrollbar > .slider {
+    background: #ffffff !important;
+    border-radius: 8px !important;
+  }
+
+  .monaco-editor .monaco-scrollable-element > .scrollbar > .slider:hover {
+    background: #f0f0f0 !important;
+  }
+
+  .monaco-editor .monaco-scrollable-element > .scrollbar.vertical > .slider {
+    width: 6px !important;
+  }
+
+  .single-line-editor .monaco-editor .margin,
+  .single-line-editor .monaco-editor .margin-view-overlays {
+    background-color: #333537 !important;
+  }
+
+  .single-line-editor .monaco-editor .line-numbers {
+    color: #ffffff !important;
+    text-align: left !important;
+    padding-left: 18px !important;
+  }
+}

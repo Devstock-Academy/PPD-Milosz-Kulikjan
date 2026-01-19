@@ -1,10 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { Divider, TextLink } from '@/components'
+import { Divider } from '@/components'
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
-import clsx from 'clsx'
 import { AvatarIcon } from '@/icons'
 import { signOut } from 'next-auth/react'
 

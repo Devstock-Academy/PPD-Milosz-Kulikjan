@@ -81,10 +81,16 @@
     }
   },
   "Modal": {
-    "title": "Potwierdź rejestrację!",
-    "line1": "Przesłaliśmy link aktywacyjny na adres {email}, prosimy o weryfikację :)",
-    "line2": "Mail aktywacyjny nie dotarł?",
-    "resend": "Prześlij ponownie"
+    "registerTitle": "Potwierdź rejestrację!",
+    "registerLine1": "Przesłaliśmy link aktywacyjny na adres {email}, prosimy o weryfikację :)",
+    "registerLine2": "Mail aktywacyjny nie dotarł?",
+    "resend": "Prześlij ponownie",
+    "successTitle": "Gratulacje!",
+    "successLine": "Przesłane rozwiązanie jest poprawne!",
+    "continue": "Kontynuuj",
+    "failureTitle": "Niestety!",
+    "failureLine": "Przesłane rozwiązanie jest błędne!",
+    "return": "Wróć do zadania"
   },
   "SignInTopbar": {
     "logoutButton": "Wyloguj się"
@@ -104,5 +110,46 @@
     "emailAndPasswordRequired": "Email i hasło są wymagane",
     "userNotFound": "Użytkownik o podanym adresie email nie istnieje",
     "invalidPassword": "Podane hasło jest nieprawidłowe"
+  },
+  "Task": {
+    "previousTask": "poprzednie zadanie",
+    "nextTask": "następne zadanie",
+    "description": "Opis zadania",
+    "test": "Testy",
+    "fastTests": "Szybie testy",
+    "testResult": "Wyniki testów",
+    "editor": "Edytor kodu",
+    "console": "Konsola"
+  },
+  "TaskDescription": {
+    "category": "Kategoria",
+    "solutionsCount": "Wykonane",
+    "difficulty": "Stopień",
+    "sampleInput": "Sample Input",
+    "sampleOutput": "Sample Output"
+  },
+  "Timer": {
+    "stoper": "Stoper",
+    "timer": "Odliczanie"
+  },
+  "EditorActions": {
+    "runCode": "Uruchom kod",
+    "sendSolution": "Wyślij rozwiązanie"
+  },
+  "Tests": {
+    "normalTestButton": "Testuj!",
+    "fastTestButton": "Szybki test!",
+    "testCase": "Przypadek testowy",
+    "value": "Wartość",
+    "allPassed": "Twój kod przeszedł wszystkie testy",
+    "notAllPassed": "Twój kod nie przeszedł wszystkich testów",
+    "passed": "przeszedł",
+    "fastPassed": "przeszedł test",
+    "notPassed": "nie przeszedł",
+    "fastNotPassed": "nie przeszedł testu",
+    "expectedResult": "Oczekiwany rezultat",
+    "yourResult": "Twój rezultat",
+    "givenValue": "Wprowadzona wartość",
+    "yourCode": "Twój kod"
   }
 }

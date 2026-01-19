@@ -50,7 +50,7 @@ const Sidebar = () => {
         >
           <div className='flex h-10 w-10 items-center justify-center rounded-lg bg-grayBg'>
             <div
-              className={clsx('transition-transform', !open && 'rotate-180')}
+              className={clsx('transition-transform', { 'rotate-180': !open })}
             >
               <SidebarIconPicker name={item.icon} />
             </div>
@@ -68,19 +68,22 @@ const Sidebar = () => {
         content={t(item.icon)}
         placement='right'
         style='light'
-        className={clsx(
-          'whitespace-nowrap',
-          open ? 'hidden' : 'ml-4',
-          item.icon === 'settings' && '-translate-y-2'
-        )}
+        className={clsx('whitespace-nowrap', {
+          hidden: open,
+          'ml-4': !open,
+          '-translate-y-2': item.icon === 'settings',
+        })}
       >
         <Link
           href={item.href}
           aria-label={item.href}
           className={clsx(
             'group relative flex justify-center rounded-md text-white',
-            hasDivider ? 'items-start' : 'items-center',
-            item.icon === 'settings' && '-mt-4'
+            {
+              'items-start': hasDivider,
+              'items-center': !hasDivider,
+              '-mt-4': item.icon === 'settings',
+            }
           )}
         >
           <div
@@ -120,10 +123,10 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={clsx(
-        'sticky top-0 h-full border-r border-gray-800 bg-darkBg',
-        open ? 'w-55' : 'w-16'
-      )}
+      className={clsx('sticky top-0 z-40 h-full bg-darkBg', {
+        'w-55': open,
+        'w-16': !open,
+      })}
     >
       <nav className='flex h-full flex-col items-start gap-8 pl-5 pt-8'>
         {items.map(renderMenuItem)}

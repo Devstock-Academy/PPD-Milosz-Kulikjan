@@ -8,10 +8,11 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   error?: string
   className?: string
   testId?: string
+  noError?: boolean
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, className, testId, ...props }, ref) => {
+  ({ label, error, className, testId, noError, ...props }, ref) => {
     return (
       <div className='flex w-full flex-col'>
         {label && (
@@ -29,12 +30,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className
           )}
         />
-        <span
-          data-testid={testId ? `${testId}Error` : undefined}
-          className='mt-1 min-h-[1rem] text-xs font-extralight text-red-500'
-        >
-          {error ? error : '\u00A0'}
-        </span>
+        {!noError && (
+          <span
+            data-testid={testId && testId + 'Error'}
+            className='mt-1 min-h-[1rem] text-xs font-extralight text-red-500'
+          >
+            {error || '\u00A0'}
+          </span>
+        )}
       </div>
     )
   }

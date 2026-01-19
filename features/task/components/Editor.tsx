@@ -1,0 +1,83 @@
+'use client'
+
+import React from 'react'
+import { useTranslations } from 'next-intl'
+import MonacoEditor, { BeforeMount, OnMount } from '@monaco-editor/react'
+
+import TabSkeleton from './TabSkeleton'
+import EditorActions from './EditorActions'
+import { useCode } from '@/context/EditorContext'
+import { registerTaskTheme } from '@/features/monaco/taskTheme'
+
+const Editor = () => {
+  const [hasErrors, setHasErrors] = React.useState(false)
+  const { setCode } = useCode()
+  const t = useTranslations('Task')
+
+  const handleValidation = (markers: any[]) => {
+    setHasErrors(markers.length > 0)
+  }
+
+  const handleEditorChange = (value: string | undefined) => {
+    if (value !== undefined) {
+      setCode(value)
+    }
+  }
+
+  const handleEditorMount: OnMount = (editor) => {
+    const updateLineDigits = () => {
+      const model = editor.getModel()
+      if (!model) return
+
+      const lineCount = model.getLineCount()
+
+      let digits = 3
+      if (lineCount < 10) digits = 1
+      else if (lineCount < 100) digits = 2
+
+      editor.updateOptions({
+        lineNumbersMinChars: digits + 3,
+        lineDecorationsWidth: Math.max(1, 4 - digits),
+      })
+    }
+
+    updateLineDigits()
+    editor.onDidChangeModelContent(updateLineDigits)
+  }
+
+  const handleBeforeMount: BeforeMount = (monaco) => {
+    registerTaskTheme(monaco)
+  }
+
+  return (
+    <TabSkeleton tabs={[{ label: t('editor') }]}>
+      <div className="flex h-full w-full flex-col">
+        <div className="flex-1 overflow-hidden rounded shadow-tabBarShadow">
+          <MonacoEditor
+            language="javascript"
+            height="100%"
+            width="100%"
+            theme="taskTheme"
+            beforeMount={handleBeforeMount}
+            onMount={handleEditorMount}
+            onChange={handleEditorChange}
+            onValidate={handleValidation}
+            options={{
+              minimap: { enabled: false },
+              scrollbar: {
+                vertical: 'auto',
+                horizontal: 'auto',
+                verticalScrollbarSize: 6,
+                horizontalScrollbarSize: 6,
+              },
+            }}
+          />
+        </div>
+
+        <EditorActions hasErrors={hasErrors} />
+      </div>
+    </TabSkeleton>
+  )
+}
+
+export default Editor

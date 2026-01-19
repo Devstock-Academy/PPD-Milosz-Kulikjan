@@ -1,8 +1,9 @@
 import React from 'react'
 
+import { SocialMediaBar } from '@/components/socialMediaBar'
+
 import Footer from './components/Footer'
 import SignOutTopbar from './components/SignOutTopbar'
-import SocialMediaBar from './components/SocialMediaBar'
 
 const SignOutLayout = ({ children }: { children: React.ReactNode }) => {
   return (

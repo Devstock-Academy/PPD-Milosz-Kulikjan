@@ -1,16 +1,18 @@
 'use client'
 
-import { Button, Checkbox, Input, TextLink } from '@/components'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+
 import { z } from 'zod'
-import IconWrapper from '@/components/IconWrapper'
-import { SocialMediaIconPicker } from '@/features/signOutLayout'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useSnackbar } from 'notistack'
-import { useState } from 'react'
+
+import { Button, Checkbox, Input, TextLink } from '@/components'
+import IconWrapper from '@/components/IconWrapper'
+import { SocialMediaIconPicker } from '@/components/socialMediaBar'
 
 const createFormSchema = (tv: ReturnType<typeof useTranslations>) =>
   z.object({
@@ -26,7 +28,7 @@ const LoginForm = () => {
   const te = useTranslations('Errors')
   const router = useRouter()
   const { enqueueSnackbar } = useSnackbar()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const {
     register,
