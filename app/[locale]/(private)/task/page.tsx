@@ -12,6 +12,7 @@ import {
   Tests,
 } from '@/features/task'
 import { CodeProvider } from '@/context/EditorContext'
+import { TaskProvider } from '@/context/TestContext'
 
 const Task = () => {
   const [isFullscreen, setIsFullscreen] = React.useState(false)
@@ -22,7 +23,6 @@ const Task = () => {
         isFullscreen={isFullscreen}
         onFullscreenChange={setIsFullscreen}
       />
-
       <div
         className={clsx('grid flex-1 transition-all duration-300', {
           'gap-8 grid-normal': !isFullscreen,
@@ -34,15 +34,17 @@ const Task = () => {
             flex: !isFullscreen,
           })}
         >
-          <div className='min-h-0 flex-1'>
+          <div className='h-full w-full flex-1 '>
             <Description />
           </div>
-          <div className='min-h-0 flex-1'>
-            <Tests />
-          </div>
-          <div className='min-h-0 flex-1'>
-            <TestResult />
-          </div>
+          <TaskProvider>
+            <div className='h-full w-full flex-1'>
+              <Tests />
+            </div>
+            <div className='h-full w-full flex-1'>
+              <TestResult />
+            </div>
+          </TaskProvider>
         </div>
         <CodeProvider>
           <div className='flex h-full flex-col gap-4'>

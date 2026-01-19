@@ -21,8 +21,8 @@ const TabSkeleton = ({ tabs, children, disableTabs }: TabSkeletonProps) => {
   const currentIndex = Math.min(activeIndex, tabs.length - 1)
 
   return (
-    <div className='flex h-full flex-col overflow-hidden rounded-lg bg-grayBg shadow-tabBarShadow'>
-      <div className='flex h-10 w-full bg-lightGrayBg'>
+    <div className='flex h-full min-h-0 w-full flex-col rounded-lg bg-grayBg shadow-tabBarShadow overflow-hidden'>
+      <div className='flex h-10 w-full flex-none bg-lightGrayBg'>
         {tabs.map(({ label, fullWidth }, index) => {
           const isActive = index === currentIndex
 
@@ -37,8 +37,7 @@ const TabSkeleton = ({ tabs, children, disableTabs }: TabSkeletonProps) => {
               className={clsx(
                 'h-full whitespace-nowrap px-4 text-sm font-medium text-white transition-colors',
                 {
-                  'relative z-10 bg-darkBlueBg shadow-activeTabShadow':
-                    isActive,
+                  ' z-10 bg-darkBlueBg shadow-activeTabShadow': isActive,
                   'bg-lightBlueBg': !isActive,
                   'w-full': fullWidth,
                   'w-32': !fullWidth,
@@ -50,7 +49,7 @@ const TabSkeleton = ({ tabs, children, disableTabs }: TabSkeletonProps) => {
           )
         })}
       </div>
-      <div className='flex-1 overflow-y-auto bg-grayBg'>
+      <div className='min-h-0 flex-1 overflow-y-auto bg-grayBg'>
         {Array.isArray(children) ? children[currentIndex] ?? null : children}
       </div>
     </div>
