@@ -69,7 +69,7 @@ const Description = ({ data = exampleTask }: DescriptionProps) => {
           )}
 
           {data.sampleOutput && (
-            <CodeBlock label={t('sampleInput')}>{data.sampleOutput}</CodeBlock>
+            <CodeBlock label={t('sampleOutput')}>{data.sampleOutput}</CodeBlock>
           )}
         </div>
       </TabSkeleton>

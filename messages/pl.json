@@ -151,5 +151,6 @@
     "yourResult": "Twój rezultat",
     "givenValue": "Wprowadzona wartość",
     "yourCode": "Twój kod"
-  }
+  },
+  "Tasks": { "moreTasks": "Więcej zadań", "goToTask": "Przejdź do zadania" }
 }
