@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useTranslations } from 'next-intl'
-import MonacoEditor, { BeforeMount, OnMount } from '@monaco-editor/react'
+import MonacoEditor, { BeforeMount, OnMount, OnValidate } from '@monaco-editor/react'
 
 import TabSkeleton from './TabSkeleton'
 import EditorActions from './EditorActions'
@@ -14,7 +14,7 @@ const Editor = () => {
   const { setCode } = useCode()
   const t = useTranslations('Task')
 
-  const handleValidation = (markers: any[]) => {
+  const handleValidation: OnValidate = (markers) => {
     setHasErrors(markers.length > 0)
   }
 

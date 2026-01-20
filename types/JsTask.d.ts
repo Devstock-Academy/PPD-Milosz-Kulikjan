@@ -1,3 +1,8 @@
+export type JsTaskTest = {
+  input: string[]
+  output: string
+}
+
 export type JsTask = {
   id: string
   name: string
@@ -8,6 +13,6 @@ export type JsTask = {
   submissions?: number
   sampleInput: string[]
   sampleOutput: string[]
-  tests: any[]
+  tests: JsTaskTest[]
   patternFunction: string
 }

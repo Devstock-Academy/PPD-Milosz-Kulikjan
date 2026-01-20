@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-console.log('✅ /api/run-code loaded')
-
 export async function POST(request: NextRequest) {
-  console.log('📨 POST /api/run-code called')
-
   try {
     const body = await request.json()
     const { code } = body
@@ -19,12 +15,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.log('📝 Code length:', code.length)
     let output = ''
 
     const sandbox = {
       console: {
-        log: (...args: any[]) => {
+        log: (...args: unknown[]) => {
           output +=
             args
               .map((arg) =>
@@ -34,15 +29,15 @@ export async function POST(request: NextRequest) {
               )
               .join(' ') + '\n'
         },
-        error: (...args: any[]) => {
+        error: (...args: unknown[]) => {
           output +=
             '❌ ERROR: ' + args.map((arg) => String(arg)).join(' ') + '\n'
         },
-        warn: (...args: any[]) => {
+        warn: (...args: unknown[]) => {
           output +=
             '⚠️ WARN: ' + args.map((arg) => String(arg)).join(' ') + '\n'
         },
-        info: (...args: any[]) => {
+        info: (...args: unknown[]) => {
           output +=
             'ℹ️ INFO: ' + args.map((arg) => String(arg)).join(' ') + '\n'
         },
@@ -99,11 +94,12 @@ export async function POST(request: NextRequest) {
         Promise.resolve(func(...Object.values(sandbox))),
         timeoutPromise,
       ])
-    } catch (execError: any) {
-      if (execError.message.includes('timeout')) {
+    } catch (execError) {
+      const errorMessage = execError instanceof Error ? execError.message : 'Unknown error'
+      if (errorMessage.includes('timeout')) {
         output += '⏰ Execution timed out after 5 seconds\n'
       } else {
-        output += `❌ Execution Error: ${execError.message}\n`
+        output += `❌ Execution Error: ${errorMessage}\n`
       }
     }
 
@@ -116,11 +112,11 @@ export async function POST(request: NextRequest) {
       success: !output.includes('❌') && !output.includes('ERROR:'),
       timestamp: new Date().toISOString(),
     })
-  } catch (error: any) {
-    console.error('💥 Server Error:', error)
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     return NextResponse.json(
       {
-        output: `❌ Server Error: ${error.message}`,
+        output: `❌ Server Error: ${errorMessage}`,
         success: false,
       },
       { status: 500 }

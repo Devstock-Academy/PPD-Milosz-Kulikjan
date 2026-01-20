@@ -5,13 +5,23 @@ const prisma = new PrismaClient()
 
 export const GET = async (
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string[] } }
 ) => {
-  const { id } = params
+  const taskId = params.id[0]
+  const userId = params.id[1]
+
+  if (!taskId || !userId) {
+    return NextResponse.json({ error: 'Invalid parameters' }, { status: 400 })
+  }
 
   try {
     const task = await prisma.javascriptAssignment.findUnique({
-      where: { id },
+      where: { id: taskId },
+      include: {
+        solutions: {
+          where: { userId },
+        },
+      },
     })
 
     if (!task) {
