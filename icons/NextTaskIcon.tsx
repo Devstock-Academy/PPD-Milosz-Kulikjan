@@ -1,4 +1,4 @@
-const AvatarIcon = () => (
+const NextTaskIcon = () => (
   <svg
     width='13'
     height='14'
@@ -15,4 +15,4 @@ const AvatarIcon = () => (
   </svg>
 )
 
-export default AvatarIcon
+export default NextTaskIcon

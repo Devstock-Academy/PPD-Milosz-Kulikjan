@@ -4,7 +4,7 @@ import clsx from 'clsx'
 type TasksSkeletonProps = {
   data: string[]
   type?: 'default' | 'task'
-  children?: React.ReactNode
+  children?: React.ReactNode 
 }
 
 const TasksSkeleton = ({

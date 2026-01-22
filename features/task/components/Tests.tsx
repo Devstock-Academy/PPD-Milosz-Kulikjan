@@ -7,50 +7,41 @@ import TabSkeleton from './TabSkeleton'
 import TestsContent, { type TestItem } from './TestsContent'
 import { FastTestsContent } from '.'
 
-const mockTestNormalPassed: TestItem = {
-  testCode: '["a","b","c", 1, 2, 3]',
-  inputData: '2 + 2',
-  expectedResult: '["a","b","c", 1, 2, 3]',
-  yourResult: '["a","b","c", 1, 2, 3]',
-  passed: true,
+import type { JsTaskTest } from '@/types/JsTask'
+
+type TestsProps = {
+  tests: JsTaskTest[]
 }
 
-const mockTestNormalFailed: TestItem = {
-  testCode: '["a","b","c", 1, 2, 3]',
-  inputData: '2 + 2',
-  expectedResult: '["a","b","c", 1, 2, 3]',
-  yourResult: '["a","b","c", 1, 2, 3]',
-  passed: false,
-}
-
-const mockTestFastPassed: TestItem = {
-  expectedResult: '["a","b","c", 1, 2, 3]',
-  yourResult: '["a","b","c", 1, 2, 3]',
-  passed: true,
-}
-
-const mockTestFastFailed: TestItem = {
-  expectedResult: '["a","b","c", 1, 2, 3]',
-  yourResult: '["a","b","c", 1, 2, 3]',
-  passed: false,
-}
-
-const Tests = () => {
+const Tests = ({ tests }: TestsProps) => {
   const t = useTranslations('Task')
+
+  const testItems: TestItem[] = tests.map((test) => {
+    const inputData = test.input.join(', ')
+    return {
+      testCode: inputData,
+      inputData: inputData,
+      expectedResult: test.output,
+      yourResult: '',
+      passed: null,
+    }
+  })
+
   return (
     <div className='flex h-55 w-full'>
       <TabSkeleton tabs={[{ label: t('test') }, { label: t('fastTests') }]}>
         {[
-          <TestsContent
-            key='tests'
-            tests={[
-              mockTestNormalPassed,
-              mockTestNormalFailed,
-              mockTestNormalFailed,
-              mockTestNormalPassed,
-            ]}
+          <TestsContent key='tests' tests={testItems} />,
+          <FastTestsContent
+            key='fast-tests'
+            fastTest={
+              testItems[0] || {
+                expectedResult: '',
+                yourResult: '',
+                passed: null,
+              }
+            }
           />,
-          <FastTestsContent key='fast-tests' fastTest={mockTestFastPassed} />,
         ]}
       </TabSkeleton>
     </div>

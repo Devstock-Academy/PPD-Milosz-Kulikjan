@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { useParams } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import clsx from 'clsx'
 
 import {
@@ -18,11 +19,17 @@ import { useTask } from '@/features/task/hooks/useTask'
 
 const Task = () => {
   const params = useParams()
+  const { data: session, status } = useSession()
   const id = params.id as string
-  const { data: task, isLoading, error } = useTask(id)
+
+  const userId = session?.user?.id
+
+  const { data: task, isLoading, error } = useTask(id, userId || '')
 
   const [isFullscreen, setIsFullscreen] = React.useState(false)
 
+  if (status === 'loading') return <div>Ładowanie sesji...</div>
+  if (!session) return <div>Nie jesteś zalogowany</div>
   if (isLoading) return <div>Ładowanie...</div>
   if (error) return <div>Błąd: {error.message}</div>
   if (!task) return <div>Zadanie nie znalezione</div>
@@ -38,6 +45,8 @@ const Task = () => {
     sampleInput: task.sampleInput.join('\n'),
     sampleOutput: task.sampleOutput.join('\n'),
   }
+
+  const testsData = task.tests.slice(0, 3)
 
   return (
     <div className='flex h-full w-full flex-col space-y-5 px-8 pb-8 pt-5 text-white'>
@@ -61,7 +70,7 @@ const Task = () => {
           </div>
           <TaskProvider>
             <div className='h-full w-full flex-1'>
-              <Tests />
+              <Tests tests={testsData} />
             </div>
             <div className='h-full w-full flex-1'>
               <TestResult />
