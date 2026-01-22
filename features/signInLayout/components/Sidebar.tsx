@@ -33,7 +33,7 @@ const Sidebar = () => {
     { href: 'ranking', icon: 'ranking' },
     { href: 'lessons', icon: 'lessons' },
     { href: 'calendar', icon: 'calendar' },
-    { href: 'task', icon: 'task' },
+    { href: '/task', icon: 'task' },
     { href: 'settings', icon: 'settings' },
     { href: 'admin-panel', icon: 'admin' },
   ]
