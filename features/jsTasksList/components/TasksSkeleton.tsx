@@ -2,9 +2,9 @@ import React from 'react'
 import clsx from 'clsx'
 
 type TasksSkeletonProps = {
-  data: string[]
+  data: (string | React.ReactNode)[]
   type?: 'default' | 'task'
-  children?: React.ReactNode 
+  children?: React.ReactNode
 }
 
 const TasksSkeleton = ({
@@ -33,6 +33,9 @@ const TasksSkeleton = ({
       {divider}
       <div className={cellClass}>{data[3]}</div>
       {divider}
+      {data[4] && (
+        <div className='flex w-10 items-center justify-center'>{data[4]}</div>
+      )}
       {children && <div className='ml-auto flex'>{children}</div>}
     </div>
   )

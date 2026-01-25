@@ -7,11 +7,17 @@ type ModalType = 'register' | 'success' | 'failure'
 
 type ModalProps = {
   email?: string
+  errorMessage?: string
   onClose: () => void
   type?: ModalType
 }
 
-const Modal = ({ email, onClose, type = 'register' }: ModalProps) => {
+const Modal = ({
+  email,
+  errorMessage,
+  onClose,
+  type = 'register',
+}: ModalProps) => {
   const t = useTranslations('Modal')
   const modalRef = React.useRef<HTMLDivElement>(null)
 
@@ -84,7 +90,7 @@ const Modal = ({ email, onClose, type = 'register' }: ModalProps) => {
             {t('failureTitle')}
           </h2>
           <span className='text-sm font-medium text-buttonRed'>
-            {t('failureLine')}
+            {errorMessage || t('failureLine')}
           </span>
           <button
             onClick={onClose}

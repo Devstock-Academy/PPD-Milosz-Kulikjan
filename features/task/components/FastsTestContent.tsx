@@ -3,7 +3,10 @@
 import React from 'react'
 import SingleLineEditor from './SignleLineEditor'
 import { useTranslations } from 'next-intl'
+import { useSnackbar } from 'notistack'
 import { TestContext } from '@/context'
+import { useCode } from '@/context/EditorContext'
+import { useTestCode } from '@/features/task/hooks/useTestCode'
 import { TestItem } from './TestsContent'
 
 type FastTestsContentProps = {
@@ -12,17 +15,48 @@ type FastTestsContentProps = {
 
 const FastsTestContent = ({ fastTest }: FastTestsContentProps) => {
   const t = useTranslations('Tests')
+  const { enqueueSnackbar } = useSnackbar()
   const context = React.useContext(TestContext)
+  const { code } = useCode()
   const [localValue, setLocalValue] = React.useState('')
 
   if (!context) {
     throw new Error('FastsTestContent must be used within a TaskProvider')
   }
 
-  const { setFastTestToCheck } = context
+  const { setFastTestToCheck, setCodeInput, taskId, userId } = context
+  const { mutate: testCode, isPending } = useTestCode(taskId, userId)
+
   const handleButtonClick = () => {
-    setFastTestToCheck(fastTest)
-    setLocalValue('')
+    if (!localValue.trim()) return
+
+    const inputArray = [localValue]
+
+    testCode(
+      {
+        solution: code,
+        variant: 'quickTest',
+        quickTest: {
+          input: inputArray,
+        },
+      },
+      {
+        onSuccess: (result) => {
+          setFastTestToCheck({
+            ...fastTest,
+            expectedResult: String(result.expectedResult),
+            yourResult: String(result.codeOutcome),
+            passed: result.testOutcome ?? null,
+          })
+
+          setCodeInput(localValue)
+          setLocalValue('')
+        },
+        onError: (err) => {
+          enqueueSnackbar(err.message, { variant: 'error' })
+        },
+      }
+    )
   }
 
   return (

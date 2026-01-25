@@ -18,10 +18,19 @@ export const GET = async (req: Request) => {
     offset = parseInt(offsetParam)
   }
 
+  const userId = url.searchParams.get('userId')
+
   const tasks = await prisma.javascriptAssignment.findMany({
-    skip: offset, 
-    take: limit, 
+    skip: offset,
+    take: limit,
     orderBy: { name: 'asc' },
+    include: userId
+      ? {
+          solutions: {
+            where: { userId },
+          },
+        }
+      : undefined,
   })
 
   return NextResponse.json(tasks)

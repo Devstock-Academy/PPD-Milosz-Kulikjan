@@ -15,4 +15,5 @@ export type JsTask = {
   sampleOutput: string[]
   tests: JsTaskTest[]
   patternFunction: string
+  solutions?: Array<{ id: string; userId: string }>
 }
