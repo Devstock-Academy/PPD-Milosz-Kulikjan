@@ -13,14 +13,13 @@ const TasksSkeleton = ({
   children,
 }: TasksSkeletonProps) => {
   const containerClass = clsx(
-    'flex w-full items-center rounded-lg px-4 font-bold text-white',
-    type === 'task' && 'h-15 bg-borderBg',
+    'flex flex-col xl:flex-row w-full rounded-lg px-4 font-bold text-white gap-2 justify-center xl:justify-start xl:items-center',
+    type === 'task' && 'h-24 xl:h-15 bg-borderBg',
     type === 'default' && 'h-10 bg-darkBlueBg'
   )
-
-  const cellClass = 'flex w-60 pl-2'
+  const cellClass = 'flex w-full xl:w-60 pl-2'
   const divider = (
-    <div className='mx-4 flex h-4 w-0.5 rounded-lg bg-white'></div>
+    <div className='mx-4  h-4 w-0.5 rounded-lg bg-white xl:flex' />
   )
 
   return (
