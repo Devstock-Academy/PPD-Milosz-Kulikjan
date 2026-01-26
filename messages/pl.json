@@ -134,7 +134,9 @@
   },
   "EditorActions": {
     "runCode": "Uruchom kod",
-    "sendSolution": "Wyślij rozwiązanie"
+    "sendSolution": "Wyślij rozwiązanie",
+    "syntaxError": "Kod zawiera błędy składniowe",
+    "invalidFunction": "Kod musi zawierać deklarację funkcji"
   },
   "Tests": {
     "normalTestButton": "Testuj!",
@@ -152,5 +154,9 @@
     "givenValue": "Wprowadzona wartość",
     "yourCode": "Twój kod"
   },
-  "Tasks": { "moreTasks": "Więcej zadań", "goToTask": "Przejdź do zadania" }
+  "Tasks": {
+    "moreTasks": "Więcej zadań",
+    "goToTask": "Przejdź do zadania",
+    "tryAgain": "Spróbuj ponownie"
+  }
 }

@@ -49,44 +49,44 @@ const Task = () => {
   const testsData = task.tests.slice(0, 3)
 
   return (
-    <div className='flex h-full w-full flex-col space-y-5 px-8 pb-8 pt-5 text-white'>
-      <ActionBar
-        isFullscreen={isFullscreen}
-        onFullscreenChange={setIsFullscreen}
-      />
-      <div
-        className={clsx('grid flex-1 transition-all duration-300', {
-          'gap-8 grid-normal': !isFullscreen,
-        })}
-      >
+    <CodeProvider>
+      <div className='flex h-full w-full flex-col space-y-5 px-8 pb-8 pt-5 text-white'>
+        <ActionBar
+          isFullscreen={isFullscreen}
+          onFullscreenChange={setIsFullscreen}
+        />
         <div
-          className={clsx('h-full flex-col gap-4 overflow-hidden', {
-            hidden: isFullscreen,
-            flex: !isFullscreen,
+          className={clsx('grid flex-1 transition-all duration-300', {
+            'gap-8 grid-normal': !isFullscreen,
           })}
         >
-          <div className='h-full w-full flex-1 '>
-            <Description data={descriptionData} />
+          <div
+            className={clsx('h-full flex-col gap-4 overflow-hidden', {
+              hidden: isFullscreen,
+              flex: !isFullscreen,
+            })}
+          >
+            <div className='h-full w-full flex-1 '>
+              <Description data={descriptionData} />
+            </div>
+            <TaskProvider taskId={id} userId={userId || ''}>
+              <div className='h-full w-full flex-1'>
+                <Tests tests={testsData} />
+              </div>
+              <div className='h-full w-full flex-1'>
+                <TestResult />
+              </div>
+            </TaskProvider>
           </div>
-          <TaskProvider>
-            <div className='h-full w-full flex-1'>
-              <Tests tests={testsData} />
-            </div>
-            <div className='h-full w-full flex-1'>
-              <TestResult />
-            </div>
-          </TaskProvider>
-        </div>
-        <CodeProvider>
           <div className='flex h-full flex-col gap-4'>
             <Editor />
             <div className='h-40'>
               <Console />
             </div>
           </div>
-        </CodeProvider>
+        </div>
       </div>
-    </div>
+    </CodeProvider>
   )
 }
 

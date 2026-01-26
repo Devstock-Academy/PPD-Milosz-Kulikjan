@@ -2,9 +2,9 @@ import React from 'react'
 import clsx from 'clsx'
 
 type TasksSkeletonProps = {
-  data: string[]
+  data: (string | React.ReactNode)[]
   type?: 'default' | 'task'
-  children?: React.ReactNode 
+  children?: React.ReactNode
 }
 
 const TasksSkeleton = ({
@@ -24,23 +24,18 @@ const TasksSkeleton = ({
 
   return (
     <div className={containerClass}>
-      <div className='flex'>
-        <div className='flex w-full items-center'>
-          <div className='flex w-10 pl-2'>{data[0]}.</div>
-          {divider}
-          <div className={cellClass}>{data[1]}</div>
-          {divider}
-          <div className={cellClass}>{data[2]}</div>
-          {divider}
-          <div className={cellClass}>{data[3]}</div>
-        </div>
-      </div>
-
-      {children && (
-        <div className='flex w-full justify-center xl:ml-auto xl:w-auto xl:justify-end'>
-          {children}
-        </div>
+      <div className='flex w-10 pl-2'>{data[0]}.</div>
+      {divider}
+      <div className={cellClass}>{data[1]}</div>
+      {divider}
+      <div className={cellClass}>{data[2]}</div>
+      {divider}
+      <div className={cellClass}>{data[3]}</div>
+      {divider}
+      {data[4] && (
+        <div className='flex w-10 items-center justify-center'>{data[4]}</div>
       )}
+      {children && <div className='ml-auto flex'>{children}</div>}
     </div>
   )
 }

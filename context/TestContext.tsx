@@ -10,11 +10,21 @@ type TestContextProps = {
   setFastTestToCheck: React.Dispatch<React.SetStateAction<TestItem | undefined>>
   codeInput: string
   setCodeInput: React.Dispatch<React.SetStateAction<string>>
+  taskId: string
+  userId: string
 }
 
 export const TestContext = React.createContext<TestContextProps | null>(null)
 
-export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
+export const TaskProvider = ({
+  children,
+  taskId = '',
+  userId = '',
+}: {
+  children: React.ReactNode
+  taskId?: string
+  userId?: string
+}) => {
   const [testsToCheck, setTestsToCheck] = React.useState<TestItem[]>([])
   const [codeInput, setCodeInput] = React.useState('')
   const [fastTestToCheck, setFastTestToCheck] = React.useState<TestItem>()
@@ -28,6 +38,8 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
         setFastTestToCheck,
         codeInput,
         setCodeInput,
+        taskId,
+        userId,
       }}
     >
       {children}
