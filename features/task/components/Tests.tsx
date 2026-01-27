@@ -10,10 +10,10 @@ import { FastTestsContent } from '.'
 import type { JsTaskTest } from '@/types/JsTask'
 
 type TestsProps = {
-  tests: JsTaskTest[]
+  tests?: JsTaskTest[]
 }
 
-const Tests = ({ tests }: TestsProps) => {
+const Tests = ({ tests = [] }: TestsProps) => {
   const t = useTranslations('Task')
 
   const testItems: TestItem[] = tests.map((test) => {
