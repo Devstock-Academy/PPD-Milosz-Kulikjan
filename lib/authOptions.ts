@@ -44,8 +44,8 @@ const providers = [
         id: user.id,
         email: user.email,
         name:
-          user.pseudonim ||
-          `${user.imie || ''} ${user.nazwisko || ''}`.trim() ||
+          user.nick ||
+          `${user.name || ''} ${user.lastName || ''}`.trim() ||
           user.email,
       }
     },
