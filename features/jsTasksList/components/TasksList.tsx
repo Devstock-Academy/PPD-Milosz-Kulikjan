@@ -10,29 +10,51 @@ import { NextTaskIcon, DescriptionTitleIcon } from '@/icons'
 import { JsTask } from '@/types/JsTask'
 import { useTranslations } from 'next-intl'
 
-export default function TasksList() {
+type TasksListProps = {
+  mockData?: JsTask[]
+  useMock?: boolean
+  taskType?: 'js' | 'css'
+}
+
+export default function TasksList({
+  mockData,
+  useMock = false,
+  taskType = 'js',
+}: TasksListProps) {
   const t = useTranslations('Tasks')
   const { data: session } = useSession()
   const userId = session?.user?.id || ''
   const limit = 1
   const [offset, setOffset] = useState(0)
-  const [tasksList, setTasksList] = useState<JsTask[]>([])
+  const [tasksList, setTasksList] = useState<JsTask[]>(mockData || [])
   const locale = useLocale()
 
-  const { data: newTasks, isFetching } = useJsTasks(offset, limit, userId)
+  const { data: newTasks, isFetching } = useJsTasks(
+    offset,
+    limit,
+    userId,
+    !useMock
+  )
 
   useEffect(() => {
-    if (newTasks && newTasks.length > 0) {
+    if (!useMock && newTasks && newTasks.length > 0) {
       setTasksList((prev) => {
         const newTasksIds = newTasks.map((t) => t.id)
         const filteredPrev = prev.filter((t) => !newTasksIds.includes(t.id))
         return [...filteredPrev, ...newTasks]
       })
     }
-  }, [newTasks])
+  }, [newTasks, useMock])
 
   const showMore = () => {
-    setOffset((prev) => prev + limit)
+    if (!useMock) {
+      setOffset((prev) => prev + limit)
+    }
+  }
+
+  const taskPathMap: Record<'css' | 'js', string> = {
+    css: 'css-task',
+    js: 'task',
   }
 
   return (
@@ -59,7 +81,7 @@ export default function TasksList() {
                 (hasSolution && <DescriptionTitleIcon />) || '',
               ]}
             >
-              <Link href={`/${locale}/task/${task.id}`}>
+              <Link href={`/${locale}/${taskPathMap[taskType]}/${task.id}`}>
                 <button className={buttonClass}>
                   {buttonText}
                   <NextTaskIcon />
@@ -69,13 +91,15 @@ export default function TasksList() {
           )
         })}
       </div>
-      <button
-        onClick={showMore}
-        disabled={isFetching}
-        className='mt-4 flex w-60 items-center justify-center self-center rounded bg-darkBlueBg px-4 py-2 font-bold'
-      >
-        {t('moreTasks')} +
-      </button>
+      {!useMock && (
+        <button
+          onClick={showMore}
+          disabled={isFetching}
+          className='mt-4 flex w-60 items-center justify-center self-center rounded bg-darkBlueBg px-4 py-2 font-bold'
+        >
+          {t('moreTasks')} +
+        </button>
+      )}
     </div>
   )
 }
