@@ -25,7 +25,7 @@ const CssResult = () => {
   return (
     <div className='flex h-full w-full flex-col items-center justify-start gap-8'>
       <CssScreen />
-      <div className='flex flex-col justify-between gap-4'>
+      <div className='flex w-83.25 flex-col justify-between gap-4'>
         <div className='flex justify-between'>
           <Toggler
             checked={firstToggle}
