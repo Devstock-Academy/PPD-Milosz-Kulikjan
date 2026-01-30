@@ -46,7 +46,7 @@ const Description = ({
   const content = (
     <div
       className={clsx(
-        'flex flex-col justify-center p-4 pt-1.5 text-xs font-medium',
+        'flex flex-col justify-center p-4 pt-4 text-xs font-medium',
         {
           'space-y-8': taskType === 'css',
           'space-y-2': taskType !== 'css',

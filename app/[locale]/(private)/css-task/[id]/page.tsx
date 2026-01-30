@@ -83,7 +83,7 @@ const CssTaskPage = () => {
       <div className='flex h-full w-full flex-col space-y-5 px-8 pb-8 pt-5 text-white'>
         <ActionBar taskType='css' />
         <div className='flex h-full w-full gap-8'>
-          <div className='flex w-1/3'>
+          <div className='flex flex-1'>
             <TabSkeleton
               tabs={[{ label: t('description') }, { label: 'Edytor' }]}
               noHeaderBg
@@ -100,7 +100,7 @@ const CssTaskPage = () => {
             </TabSkeleton>
           </div>
 
-          <div className='flex w-2/3 flex-col gap-4 xl:flex-row'>
+          <div className='flex flex-col gap-4 xl:flex-row'>
             <TabSkeleton tabs={[{ label: 'Wynik kodu' }]} noHeaderBg>
               <div className='flex h-full w-full justify-center p-4'>
                 <CssResult />

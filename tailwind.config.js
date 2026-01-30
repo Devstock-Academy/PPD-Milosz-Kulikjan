@@ -33,6 +33,7 @@ module.exports = {
         borderBg: '#333537',
       },
       spacing: {
+        4: '16px', 
         4.5: '1.125rem', // 18px
         6.5: '1.625rem', // 26px
         8.125: '2.03125rem', // 32.5px
