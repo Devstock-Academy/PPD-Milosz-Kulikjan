@@ -6,7 +6,7 @@ export const useTask = (id: string, userId: string) => {
   return useQuery<JsTask, Error>({
     queryKey: ['task', id, userId],
     queryFn: async () => {
-      const res = await fetch(`/api/js-task/${id}/${userId}`)
+      const res = await fetch(`/api/js-tasks/${id}/${userId}`)
       if (!res.ok) throw new Error('Błąd pobierania zadania')
       return res.json()
     },
