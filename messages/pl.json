@@ -168,6 +168,7 @@
   "Tasks": {
     "moreTasks": "Więcej zadań",
     "goToTask": "Przejdź do zadania",
-    "tryAgain": "Spróbuj ponownie"
+    "tryAgain": "Spróbuj ponownie",
+    "finishTask": "Dokończ zadanie"
   }
 }

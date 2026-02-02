@@ -1,5 +1,5 @@
 import React from 'react'
-import { innerHTMLsanitizer, wrapCSS } from '@/lib/sanitizer'
+import { wrapCSS, wrapTargetImage } from '@/lib/sanitizer'
 
 type CssScreenProps = {
   targetUrl?: string
@@ -8,20 +8,10 @@ type CssScreenProps = {
 }
 
 const CssScreen = ({ targetUrl, editorValue, outputRef }: CssScreenProps) => {
-  const iframeRefHandler = React.useCallback(
-    (node: any) => {
-      if (node !== null) {
-        const wrappedContent = wrapCSS(editorValue || '')
-        innerHTMLsanitizer(node, wrappedContent)
-      }
-    },
-    [editorValue]
-  )
-
   if (editorValue !== undefined) {
     return (
       <iframe
-        ref={iframeRefHandler}
+        srcDoc={wrapCSS(editorValue)}
         className='flex h-66.5 w-83.25 bg-white'
         title='CSS Result'
       />
@@ -31,7 +21,7 @@ const CssScreen = ({ targetUrl, editorValue, outputRef }: CssScreenProps) => {
   if (targetUrl) {
     return (
       <iframe
-        src={targetUrl}
+        srcDoc={wrapTargetImage(targetUrl)}
         className='flex h-66.5 w-83.25 bg-white'
         title='CSS Pattern'
       />

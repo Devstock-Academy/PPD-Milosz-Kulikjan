@@ -78,16 +78,58 @@ export default function TasksList({
       <div className='flex flex-col gap-4'>
         {tasksList.map((task: any, index: number) => {
           const hasSolution = task.solutions && task.solutions.length > 0
-          const buttonClass = clsx(
+
+          let buttonText = t('goToTask')
+          let buttonClass = clsx(
             'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
-            hasSolution && 'bg-clockActive',
-            !hasSolution && 'bg-activeSidebarBg'
+            'bg-activeSidebarBg'
           )
-          let buttonText
-          if (hasSolution) {
-            buttonText = t('tryAgain')
+          let showSuccessIcon = false
+
+          if (taskType === 'css') {
+            const lastResult = task.solutions?.[0]?.result ?? null
+            const requirements = task.requirements ?? 0
+
+            if (!hasSolution) {
+              buttonText = t('goToTask')
+              buttonClass = clsx(
+                'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
+                'bg-activeSidebarBg'
+              )
+            } else if (lastResult !== null && lastResult >= requirements) {
+              buttonText = t('tryAgain')
+              buttonClass = clsx(
+                'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
+                'bg-clockActive'
+              )
+              showSuccessIcon = true
+            } else {
+              buttonText = t('finishTask')
+              buttonClass = clsx(
+                'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
+                'bg-buttonBlue'
+              )
+            }
           } else {
-            buttonText = t('goToTask')
+            if (hasSolution) {
+              buttonText = t('tryAgain')
+              buttonClass = clsx(
+                'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
+                'bg-clockActive'
+              )
+              showSuccessIcon = true
+            } else {
+              buttonText = t('goToTask')
+              buttonClass = clsx(
+                'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
+                'bg-activeSidebarBg'
+              )
+            }
+          }
+
+          let successIcon: React.ReactNode = ''
+          if (showSuccessIcon) {
+            successIcon = <DescriptionTitleIcon />
           }
 
           return (
@@ -99,7 +141,7 @@ export default function TasksList({
                 task.name,
                 task.category,
                 task.difficultyLevel,
-                hasSolution ? <DescriptionTitleIcon /> : '',
+                successIcon,
               ]}
             >
               <Link

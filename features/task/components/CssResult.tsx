@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import {
   ReactCompareSlider as Slider,
   ReactCompareSliderHandle as SliderHandler,
@@ -7,8 +9,10 @@ import {
 import { CssScreen } from '.'
 import GridOverlay from './GridOverlay'
 import { Divider, Toggler } from '@/components'
+import Modal from '@/components/Modal'
 import { PlayIcon, SortAscendingIcon } from '@/icons'
 import { useCode } from '@/context/EditorContext'
+import { useCssSolution } from '@/features/task/hooks/useCssSolution'
 
 type CssResultProps = {
   requirements?: number
@@ -17,18 +21,72 @@ type CssResultProps = {
 
 const CssResult = ({ requirements = 90, targetUrl }: CssResultProps) => {
   const t = useTranslations('CssTask')
+  const params = useParams()
+  const { data: session } = useSession()
+  const taskId = params.id as string
+  const userId = session?.user?.id || ''
   const { code } = useCode()
-  const compatibility = 50
+  const [compatibility, setCompatibility] = useState(0)
   const requiredCompatibility = requirements
   const [sliderToggle, setSliderToggle] = useState(false)
   const [gridToggle, setGridToggle] = useState(false)
+  const [modalType, setModalType] = useState<'success' | 'failure' | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const outputRef = useRef<HTMLIFrameElement>(null)
+  const { mutate: sendSolution, isPending } = useCssSolution(taskId, userId)
 
   const sliderLabels = [t('showSlider'), t('hideSlider')]
   const gridLabels = [t('showGrid'), t('hideGrid')]
 
   const handleSliderChange = (checked: boolean) => setSliderToggle(checked)
   const handleGridChange = (checked: boolean) => setGridToggle(checked)
+
+  const handleCheckCompatibility = () => {
+    if (!taskId || !userId) return
+
+    sendSolution(
+      { solution: code, checkOnly: true },
+      {
+        onSuccess: (result) => {
+          setCompatibility(Math.round(result.similarity))
+        },
+        onError: (error) => {
+          setErrorMessage(error.message)
+          setModalType('failure')
+          setIsModalOpen(true)
+        },
+      }
+    )
+  }
+
+  const handleSubmitSolution = () => {
+    if (!taskId || !userId) return
+
+    sendSolution(
+      { solution: code },
+      {
+        onSuccess: (result) => {
+          const rounded = Math.round(result.similarity)
+          setCompatibility(rounded)
+          setModalType(rounded >= requiredCompatibility ? 'success' : 'failure')
+          setErrorMessage('')
+          setIsModalOpen(true)
+        },
+        onError: (error) => {
+          setErrorMessage(error.message)
+          setModalType('failure')
+          setIsModalOpen(true)
+        },
+      }
+    )
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setModalType(null)
+    setErrorMessage('')
+  }
 
   let colorClass = 'text-buttonRed'
   if (compatibility >= requiredCompatibility) {
@@ -88,16 +146,31 @@ const CssResult = ({ requirements = 90, targetUrl }: CssResultProps) => {
           <span>{`${t('required')}: ${requiredCompatibility}%`}</span>
         </div>
         <div className='flex h-full w-full flex-col items-center gap-4'>
-          <button className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-clockActive'>
+          <button
+            onClick={handleCheckCompatibility}
+            disabled={isPending}
+            className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-clockActive disabled:opacity-60'
+          >
             {t('checkCompatibility')}
             <PlayIcon />
           </button>
-          <button className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-buttonBlue'>
+          <button
+            onClick={handleSubmitSolution}
+            disabled={isPending}
+            className='flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-buttonBlue disabled:opacity-60'
+          >
             {t('submitSolution')}
             <SortAscendingIcon />
           </button>
         </div>
       </div>
+      {isModalOpen && modalType && (
+        <Modal
+          onClose={handleCloseModal}
+          type={modalType}
+          errorMessage={errorMessage}
+        />
+      )}
     </div>
   )
 }
