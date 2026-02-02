@@ -19,7 +19,6 @@ model User {
   eneabled      Boolean?
   accounts      Account[]
   sessions      Session[]
-  cssSolutions  CssAssignmentSolution[]
   solutions     JavascriptAssignmentSolution[]
 
   @@map("users")
@@ -78,18 +77,6 @@ model JavascriptAssignment {
   solutions      JavascriptAssignmentSolution[]
 }
 
-model CssAssignment {
-  id                String              @id @default(cuid()) @map("_id")
-  name              String
-  description       String
-  category          CssCategory
-  difficultyLevel   DifficultyLevel
-  requirements      Int  
-  colors            String[]      
-  solutions         CssAssignmentSolution[]
-  targetUrl         String
-}
-
 model JavascriptAssignmentSolution {
   id                     String               @id @default(cuid())
   javascriptAssignment   JavascriptAssignment @relation(fields: [javascriptAssignmentId], references: [id])
@@ -101,27 +88,10 @@ model JavascriptAssignmentSolution {
   @@unique([javascriptAssignmentId, userId])
 }
 
-model CssAssignmentSolution {
-  id                String              @id @default(cuid()) @map("_id")
-  cssAssignment     CssAssignment       @relation(fields: [CssAssignmentId], references: [id])
-  CssAssignmentId   String
-  solution          String             
-  user              User                @relation(fields: [userId], references: [id])
-  userId            String
-  result            Int                 @default(0)
-  
-  @@unique([CssAssignmentId, userId])
-}
-
 enum Category {
   FUNCTION
   LOOP
 }
-
-enum CssCategory {
- SHAPES
-}
-
 
 enum DifficultyLevel {
   EASY
