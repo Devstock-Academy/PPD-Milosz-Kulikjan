@@ -13,16 +13,8 @@ const EditorContext = React.createContext<EditorContextType | undefined>(
   undefined
 )
 
-type CodeProviderProps = {
-  children: React.ReactNode
-  initialCode?: string
-}
-
-export const CodeProvider = ({
-  children,
-  initialCode = 'console.log("Hello World");',
-}: CodeProviderProps) => {
-  const [code, setCode] = React.useState<string>(initialCode)
+export const CodeProvider = ({ children }: { children: React.ReactNode }) => {
+  const [code, setCode] = React.useState<string>('console.log("Hello World");')
   const [output, setOutput] = React.useState<string>('')
 
   const runCode = async (): Promise<string> => {
