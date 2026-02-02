@@ -1,25 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PrismaClient } from '@prisma/client'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/authOptions'
 
 const prisma = new PrismaClient()
 
 export const GET = async (
   req: NextRequest,
-  { params }: { params: { id: string[] } }
+  { params }: { params: { id: string } }
 ) => {
-  const taskId = params.id[0]
-  const userId = params.id[1]
-
-  if (!taskId || !userId) {
-    return NextResponse.json({ error: 'Invalid parameters' }, { status: 400 })
-  }
+  const { id } = params
 
   try {
-    const task = await prisma.javascriptAssignment.findUnique({
-      where: { id: taskId },
+    const session = await getServerSession(authOptions)
+
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: 'Brak autoryzacji' }, { status: 401 })
+    }
+
+    const task = await prisma.cssAssignment.findUnique({
+      where: { id },
       include: {
         solutions: {
-          where: { userId },
+          where: {
+            userId: session.user.id,
+          },
         },
       },
     })
