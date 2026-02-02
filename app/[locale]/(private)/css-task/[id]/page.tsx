@@ -54,7 +54,12 @@ const CssTaskPage = () => {
                   withoutTab
                   taskType='css'
                 />,
-                <Editor key='editor' withoutTab withoutActions language='html' />,
+                <Editor
+                  key='editor'
+                  withoutTab
+                  withoutActions
+                  language='html'
+                />,
               ]}
             </TabSkeleton>
           </div>
