@@ -2,14 +2,24 @@
 
 import React from 'react'
 import { useTranslations } from 'next-intl'
-import MonacoEditor, { BeforeMount, OnMount, OnValidate } from '@monaco-editor/react'
+import MonacoEditor, {
+  BeforeMount,
+  OnMount,
+  OnValidate,
+} from '@monaco-editor/react'
 
 import TabSkeleton from './TabSkeleton'
 import EditorActions from './EditorActions'
 import { useCode } from '@/context/EditorContext'
 import { registerTaskTheme } from '@/features/monaco/taskTheme'
 
-const Editor = () => {
+const Editor = ({
+  withoutTab = false,
+  withoutActions = false,
+}: {
+  withoutTab?: boolean
+  withoutActions?: boolean
+}) => {
   const [hasErrors, setHasErrors] = React.useState(false)
   const { setCode } = useCode()
   const t = useTranslations('Task')
@@ -49,35 +59,39 @@ const Editor = () => {
     registerTaskTheme(monaco)
   }
 
-  return (
-    <TabSkeleton tabs={[{ label: t('editor') }]}>
-      <div className="flex h-full w-full flex-col">
-        <div className="flex-1 overflow-hidden rounded shadow-tabBarShadow">
-          <MonacoEditor
-            language="javascript"
-            height="100%"
-            width="100%"
-            theme="taskTheme"
-            beforeMount={handleBeforeMount}
-            onMount={handleEditorMount}
-            onChange={handleEditorChange}
-            onValidate={handleValidation}
-            options={{
-              minimap: { enabled: false },
-              scrollbar: {
-                vertical: 'auto',
-                horizontal: 'auto',
-                verticalScrollbarSize: 6,
-                horizontalScrollbarSize: 6,
-              },
-            }}
-          />
-        </div>
-
-        <EditorActions hasErrors={hasErrors} />
+  const content = (
+    <div className='flex h-full w-full flex-col'>
+      <div className='flex-1 overflow-hidden rounded shadow-tabBarShadow'>
+        <MonacoEditor
+          language='javascript'
+          height='100%'
+          width='100%'
+          theme='taskTheme'
+          beforeMount={handleBeforeMount}
+          onMount={handleEditorMount}
+          onChange={handleEditorChange}
+          onValidate={handleValidation}
+          options={{
+            minimap: { enabled: false },
+            scrollbar: {
+              vertical: 'auto',
+              horizontal: 'auto',
+              verticalScrollbarSize: 6,
+              horizontalScrollbarSize: 6,
+            },
+          }}
+        />
       </div>
-    </TabSkeleton>
+
+      {!withoutActions && <EditorActions hasErrors={hasErrors} />}
+    </div>
   )
+
+  if (withoutTab) {
+    return content
+  }
+
+  return <TabSkeleton tabs={[{ label: t('editor') }]}>{content}</TabSkeleton>
 }
 
 export default Editor

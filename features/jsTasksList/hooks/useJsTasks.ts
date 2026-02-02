@@ -5,7 +5,8 @@ import { JsTask } from '../../../types/JsTask'
 export const useJsTasks = (
   offset: number = 0,
   limit: number = 1,
-  userId?: string
+  userId?: string,
+  enabled: boolean = true
 ) => {
   return useQuery<JsTask[], Error>({
     queryKey: ['jsTasks', offset, limit, userId],
@@ -17,6 +18,6 @@ export const useJsTasks = (
       if (!res.ok) throw new Error('Błąd pobierania zadań')
       return res.json()
     },
-    enabled: !!userId,
+    enabled: enabled && !!userId,
   })
 }

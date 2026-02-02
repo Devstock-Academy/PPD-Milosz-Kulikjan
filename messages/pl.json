@@ -121,6 +121,17 @@
     "editor": "Edytor kodu",
     "console": "Konsola"
   },
+  "CssTask": {
+    "back": "Wróć",
+    "showSlider": "Pokaż slider",
+    "hideSlider": "Ukryj slider",
+    "showGrid": "Pokaż siatkę",
+    "hideGrid": "Ukryj siatkę",
+    "checkCompatibility": "Sprawdź zgodność",
+    "submitSolution": "Wyślij rozwiązanie",
+    "compatibility": "Zgodność",
+    "required": "Wymagana"
+  },
   "TaskDescription": {
     "category": "Kategoria",
     "solutionsCount": "Wykonane",

@@ -8,7 +8,7 @@ export type JsTask = {
   name: string
   descriptionStart: string
   descriptionEnd?: string
-  category: 'FUNCTION' | 'LOOP'
+  category: 'FUNCTION' | 'LOOP' | 'CSS'
   difficultyLevel: 'EASY' | 'MEDIUM' | 'HARD'
   submissions?: number
   sampleInput: string[]
