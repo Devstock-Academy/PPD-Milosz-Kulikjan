@@ -26,9 +26,9 @@ const CssScreen = ({ targetUrl, editorValue, outputRef }: CssScreenProps) => {
         title='CSS Pattern'
       />
     )
+  } else {
+    return <div className='flex h-66.5 w-83.25 bg-white'></div>
   }
-
-  return <div className='flex h-66.5 w-83.25 bg-white'></div>
 }
 
 export default CssScreen

@@ -1,13 +1,8 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import {
-  ReactCompareSlider as Slider,
-  ReactCompareSliderHandle as SliderHandler,
-} from 'react-compare-slider'
 import { CssScreen } from '.'
-import GridOverlay from './GridOverlay'
 import { Divider, Toggler } from '@/components'
 import Modal from '@/components/Modal'
 import { PlayIcon, SortAscendingIcon } from '@/icons'
@@ -15,11 +10,11 @@ import { useCode } from '@/context/EditorContext'
 import { useCssSolution } from '@/features/task/hooks/useCssSolution'
 
 type CssResultProps = {
-  requirements?: number
+  requirements: number
   targetUrl?: string
 }
 
-const CssResult = ({ requirements = 90, targetUrl }: CssResultProps) => {
+const CssResult = ({ requirements, targetUrl }: CssResultProps) => {
   const t = useTranslations('CssTask')
   const params = useParams()
   const { data: session } = useSession()
@@ -33,14 +28,16 @@ const CssResult = ({ requirements = 90, targetUrl }: CssResultProps) => {
   const [modalType, setModalType] = useState<'success' | 'failure' | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const outputRef = useRef<HTMLIFrameElement>(null)
+  const outputRef = React.useRef<HTMLIFrameElement>(null)
   const { mutate: sendSolution, isPending } = useCssSolution(taskId, userId)
+  const [firstToggle, setFirstToggle] = useState(false)
+  const [secondToggle, setSecondToggle] = useState(false)
 
   const sliderLabels = [t('showSlider'), t('hideSlider')]
   const gridLabels = [t('showGrid'), t('hideGrid')]
 
-  const handleSliderChange = (checked: boolean) => setSliderToggle(checked)
-  const handleGridChange = (checked: boolean) => setGridToggle(checked)
+  const handleSliderChange = (checked: boolean) => setFirstToggle(checked)
+  const handleGridChange = (checked: boolean) => setSecondToggle(checked)
 
   const handleCheckCompatibility = () => {
     if (!taskId || !userId) return
@@ -90,51 +87,27 @@ const CssResult = ({ requirements = 90, targetUrl }: CssResultProps) => {
 
   let colorClass = 'text-buttonRed'
   if (compatibility >= requiredCompatibility) {
-    colorClass = 'text-clockActive'
+    colorClass = 'text-green-500'
   }
 
   return (
     <div className='flex h-full w-full flex-col items-center justify-between gap-8'>
-      <div className='relative'>
-        {sliderToggle ? (
-          <Slider
-            itemOne={<CssScreen editorValue={code} outputRef={outputRef} />}
-            itemTwo={<CssScreen targetUrl={targetUrl} />}
-            handle={
-              <SliderHandler
-                linesStyle={{
-                  transform: 'scale(1.16)',
-                  color: '#000000',
-                  width: '1px',
-                }}
-                buttonStyle={{
-                  position: 'relative',
-                  backdropFilter: undefined,
-                  background: '#ffffff',
-                  color: '#000000',
-                  border: '2px solid #000000',
-                  transform: 'scale(0.7)',
-                }}
-              />
-            }
-            position={50}
-          />
-        ) : (
-          <CssScreen editorValue={code} outputRef={outputRef} />
-        )}
-        <GridOverlay show={gridToggle} />
-      </div>
+      <CssScreen
+        editorValue={code}
+        targetUrl={targetUrl}
+        outputRef={outputRef}
+      />
       <div className='flex w-full flex-col justify-between gap-4'>
         <div className='flex justify-between'>
           <Toggler
-            checked={sliderToggle}
+            checked={firstToggle}
             onChange={handleSliderChange}
-            label={sliderLabels[Number(sliderToggle)]}
+            label={sliderLabels[Number(firstToggle)]}
           />
           <Toggler
-            checked={gridToggle}
+            checked={secondToggle}
             onChange={handleGridChange}
-            label={gridLabels[Number(gridToggle)]}
+            label={gridLabels[Number(secondToggle)]}
           />
         </div>
 

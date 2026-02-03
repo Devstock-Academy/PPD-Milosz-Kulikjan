@@ -8,6 +8,7 @@ import { useJsTasks } from '../hooks/useJsTasks'
 import { useCssTasks } from '../hooks/useCssTasks'
 import TasksSkeleton from './TasksSkeleton'
 import { NextTaskIcon, DescriptionTitleIcon } from '@/icons'
+import { JsTask, CssTask } from '@/types/JsTask'
 import { useTranslations } from 'next-intl'
 
 type TasksListProps = {
@@ -17,48 +18,38 @@ type TasksListProps = {
 
 export default function TasksList({
   taskType = 'js',
-  userId: propUserId,
+  userId: userIdProp,
 }: TasksListProps) {
   const t = useTranslations('Tasks')
   const { data: session } = useSession()
-  const userId = propUserId || session?.user?.id || ''
+  const userId = userIdProp || session?.user?.id || ''
   const limit = 1
   const [offset, setOffset] = useState(0)
-  const [tasksList, setTasksList] = useState<any[]>([])
+  const [tasksList, setTasksList] = useState<(JsTask | CssTask)[]>([])
   const locale = useLocale()
 
-  const { data: jsNewTasks, isFetching: jsIsFetching } = useJsTasks(
+  const { data: jsTasksData, isFetching: jsIsFetching } = useJsTasks(
     offset,
     limit,
     userId,
     taskType === 'js'
   )
 
-  const { data: cssNewTasks, isFetching: cssIsFetching } = useCssTasks(
+  const { data: cssTasksData, isFetching: cssIsFetching } = useCssTasks(
     offset,
     limit,
     userId,
     taskType === 'css'
   )
 
-  let newTasks
-  let isFetching
-
-  if (taskType === 'js') {
-    newTasks = jsNewTasks
-    isFetching = jsIsFetching
-  } else {
-    newTasks = cssNewTasks
-    isFetching = cssIsFetching
-  }
+  const newTasks = taskType === 'css' ? cssTasksData : jsTasksData
+  const isFetching = taskType === 'css' ? cssIsFetching : jsIsFetching
 
   useEffect(() => {
     if (newTasks && newTasks.length > 0) {
       setTasksList((prev) => {
-        const newTasksIds = newTasks.map((t: any) => t.id)
-        const filteredPrev = prev.filter(
-          (t: any) => !newTasksIds.includes(t.id)
-        )
+        const newTasksIds = newTasks.map((t: JsTask | CssTask) => t.id)
+        const filteredPrev = prev.filter((t) => !newTasksIds.includes(t.id))
         return [...filteredPrev, ...newTasks]
       })
     }
@@ -76,7 +67,7 @@ export default function TasksList({
   return (
     <div className='flex flex-col text-white'>
       <div className='flex flex-col gap-4'>
-        {tasksList.map((task: any, index: number) => {
+        {tasksList.map((task: JsTask | CssTask, index: number) => {
           const hasSolution = task.solutions && task.solutions.length > 0
 
           let buttonText = t('goToTask')
@@ -87,8 +78,9 @@ export default function TasksList({
           let showSuccessIcon = false
 
           if (taskType === 'css') {
-            const lastResult = task.solutions?.[0]?.result ?? null
-            const requirements = task.requirements ?? 0
+            const cssTask = task as CssTask
+            const lastResult = cssTask.solutions?.[0]?.result ?? null
+            const requirements = cssTask.requirements ?? 0
 
             if (!hasSolution) {
               buttonText = t('goToTask')
@@ -96,6 +88,7 @@ export default function TasksList({
                 'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
                 'bg-activeSidebarBg'
               )
+              showSuccessIcon = false
             } else if (lastResult !== null && lastResult >= requirements) {
               buttonText = t('tryAgain')
               buttonClass = clsx(
@@ -109,6 +102,7 @@ export default function TasksList({
                 'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
                 'bg-buttonBlue'
               )
+              showSuccessIcon = false
             }
           } else {
             if (hasSolution) {
@@ -124,12 +118,8 @@ export default function TasksList({
                 'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
                 'bg-activeSidebarBg'
               )
+              showSuccessIcon = false
             }
-          }
-
-          let successIcon: React.ReactNode = ''
-          if (showSuccessIcon) {
-            successIcon = <DescriptionTitleIcon />
           }
 
           return (
@@ -138,15 +128,15 @@ export default function TasksList({
               key={task.id}
               data={[
                 (index + 1).toString(),
-                task.name,
+                'descriptionStart' in task
+                  ? task.descriptionStart.split(' ').slice(0, 3).join(' ')
+                  : task.name.split(' ').slice(0, 3).join(' '),
                 task.category,
                 task.difficultyLevel,
-                successIcon,
+                (showSuccessIcon && <DescriptionTitleIcon />) || '',
               ]}
             >
-              <Link
-                href={`/${locale}/${taskPathMap[taskType || 'js']}/${task.id}`}
-              >
+              <Link href={`/${locale}/${taskPathMap[taskType]}/${task.id}`}>
                 <button className={buttonClass}>
                   {buttonText}
                   <NextTaskIcon />
