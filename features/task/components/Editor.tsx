@@ -16,9 +16,11 @@ import { registerTaskTheme } from '@/features/monaco/taskTheme'
 const Editor = ({
   withoutTab = false,
   withoutActions = false,
+  language = 'javascript',
 }: {
   withoutTab?: boolean
   withoutActions?: boolean
+  language?: 'javascript' | 'html' | 'css'
 }) => {
   const [hasErrors, setHasErrors] = React.useState(false)
   const { setCode } = useCode()
@@ -63,7 +65,7 @@ const Editor = ({
     <div className='flex h-full w-full flex-col'>
       <div className='flex-1 overflow-hidden rounded shadow-tabBarShadow'>
         <MonacoEditor
-          language='javascript'
+          language={language}
           height='100%'
           width='100%'
           theme='taskTheme'
