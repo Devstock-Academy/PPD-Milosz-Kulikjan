@@ -2,16 +2,13 @@ import React from 'react'
 import { useSnackbar } from 'notistack'
 import { CssScreen } from '.'
 
-const CssPattern = () => {
+type CssPatternProps = {
+  colors?: string[]
+  targetUrl?: string
+}
+
+const CssPattern = ({ colors = [], targetUrl }: CssPatternProps) => {
   const { enqueueSnackbar } = useSnackbar()
-  const colors = [
-    '#F5A22E',
-    '#F5A22E',
-    '#F5A22E',
-    '#F5A22E',
-    '#F5A22E',
-    '#F5A22E',
-  ]
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard
@@ -33,7 +30,7 @@ const CssPattern = () => {
 
   return (
     <div className='flex h-full w-full flex-col items-center justify-start gap-8'>
-      <CssScreen />
+      <CssScreen targetUrl={targetUrl} />
       <div className='grid grid-cols-2 gap-4'>
         {colors.map((color, index) => (
           <div
