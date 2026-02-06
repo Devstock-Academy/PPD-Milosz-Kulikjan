@@ -11,9 +11,15 @@ type TabItem = {
 type TabSkeletonProps = React.PropsWithChildren<{
   tabs: TabItem[]
   disableTabs?: boolean
+  noHeaderBg?: boolean
 }>
 
-const TabSkeleton = ({ tabs, children, disableTabs }: TabSkeletonProps) => {
+const TabSkeleton = ({
+  tabs,
+  children,
+  disableTabs,
+  noHeaderBg = false,
+}: TabSkeletonProps) => {
   const [activeIndex, setActiveIndex] = React.useState(0)
 
   if (!tabs.length) return null
@@ -21,8 +27,13 @@ const TabSkeleton = ({ tabs, children, disableTabs }: TabSkeletonProps) => {
   const currentIndex = Math.min(activeIndex, tabs.length - 1)
 
   return (
-    <div className='flex h-full min-h-0 w-full flex-col rounded-lg bg-grayBg shadow-tabBarShadow overflow-hidden'>
-      <div className='flex h-10 w-full flex-none bg-lightGrayBg'>
+    <div className='flex h-full min-h-0 w-full flex-col overflow-hidden rounded-lg bg-grayBg shadow-tabBarShadow'>
+      <div
+        className={clsx('flex h-10 w-full flex-none', {
+          'bg-lightGrayBg': !noHeaderBg,
+          'border-b border-lightGrayBg': noHeaderBg,
+        })}
+      >
         {tabs.map(({ label, fullWidth }, index) => {
           const isActive = index === currentIndex
 

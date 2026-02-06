@@ -33,6 +33,7 @@ module.exports = {
         borderBg: '#333537',
       },
       spacing: {
+        4: '16px', 
         4.5: '1.125rem', // 18px
         6.5: '1.625rem', // 26px
         8.125: '2.03125rem', // 32.5px
@@ -46,6 +47,8 @@ module.exports = {
         75: '18.75rem', // 300px
         55: '13.75rem', // 220px
         40: '10rem', // 160px
+        66.5: '15.6471rem', // 266px
+        83.25: '19.589rem', // 333px
         175: '43.75rem', // 700px
         'icon-sm': '0.75rem', // 12px
         'icon-base': '1.25rem', // 20px
