@@ -33,12 +33,14 @@ module.exports = {
         borderBg: '#333537',
       },
       spacing: {
-        4: '16px', 
+        4: '16px',
         4.5: '1.125rem', // 18px
         6.5: '1.625rem', // 26px
         8.125: '2.03125rem', // 32.5px
         13.25: '3.3125rem', // 53px
         15: '3.75rem', // 60px
+        15.75: '3.9375rem', // 63px
+        24: '6rem', // 96px
         30: '7.5rem', // 120px
         32: '8rem', // 128px
         8.1875: '2.0625rem', // 33px
@@ -47,8 +49,11 @@ module.exports = {
         75: '18.75rem', // 300px
         55: '13.75rem', // 220px
         40: '10rem', // 160px
+        38.5: '9.625rem', // 154px
         66.5: '15.6471rem', // 266px
         83.25: '19.589rem', // 333px
+        87.5: '21.875rem', //350px
+        125: '31.25rem', //500px'
         175: '43.75rem', // 700px
         'icon-sm': '0.75rem', // 12px
         'icon-base': '1.25rem', // 20px
@@ -58,11 +63,16 @@ module.exports = {
       width: {
         'sidebar-divider': 'calc(100% + 1.25rem)',
       },
+      minWidth: {
+        moduleCard: '20.59rem', //350px
+      },
       maxWidth: {
         container: '85.375rem', // 1366px
         videoMax: '40.1875rem', // 643px
         registerForm: '43.75rem', // 700px
         loginForm: '28rem', // 448px
+        moduleCard: '29.42rem', //500px
+        moduleContainer: '100rem', //2000px
       },
       maxHeight: {
         registerForm: '40.875rem', // 654px

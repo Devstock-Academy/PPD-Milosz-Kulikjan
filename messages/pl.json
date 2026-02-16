@@ -170,5 +170,12 @@
     "goToTask": "Przejdź do zadania",
     "tryAgain": "Spróbuj ponownie",
     "finishTask": "Dokończ zadanie"
+  },
+  "Modules": {
+    "linkText": "Moduły",
+    "academyTitle": "Akademia Devstock",
+    "mainText": "Poniżej znajdziesz szczegółowy przegląd naszego nowatorskiego kursu, zaprojektowanego z myślą o dostarczeniu Ci kompleksowej wiedzy i praktycznych umiejętności. Kurs podzielony jest na sześć modułów tematycznych, każdy z nich skupia się na kluczowych zagadnieniach i konkretnych aspektach danych języków, narzędzi i frameworków, aby zapewnić Ci głębokie zrozumienie technologii Front-endowych. Niezależnie od tego, czy jesteś początkujący w danej dziedzinie, czy szukasz uzupełnienia i poszerzenia swoich kompetencji, ten kurs został zaprojektowany tak, aby sprostać Twoim oczekiwaniom :) Dzięki za to że jesteś z nami!",
+    "input": "INPUT",
+    "output": "OUTPUT"
   }
 }
