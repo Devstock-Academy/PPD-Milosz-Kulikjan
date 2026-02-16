@@ -37,7 +37,7 @@ const ModuleCard = ({ module }: ModuleCardProps) => {
       <div className='relative aspect-video h-38.5 w-full overflow-hidden rounded-lg'>
         <Image
           src={module.photoUrl}
-          alt='Module Image'
+          alt={t('moduleImageAlt')}
           fill
           className='object-cover'
         />
@@ -51,13 +51,13 @@ const ModuleCard = ({ module }: ModuleCardProps) => {
         <span className='text-sm'>{module.input}</span>
       </div>
       <div className='flex flex-col gap-2'>
-        <span className='text-sm text-activeSidebarBg'>{t('input')}:</span>
+        <span className='text-sm text-activeSidebarBg'>{t('output')}:</span>
         <span className='text-sm'>{module.output}</span>
       </div>
       <div className='flex w-full justify-between'>
         <div className='flex items-center justify-center gap-2'>
           <FolderIcon />
-          {module.sprints} sprintów
+          {module.sprints} {t('sprints')}
         </div>
         <div className='flex items-center justify-center gap-2'>
           <DifficultyIcon />
@@ -70,7 +70,7 @@ const ModuleCard = ({ module }: ModuleCardProps) => {
       </div>
       <div className='flex h-0.5 w-full bg-white'></div>
       <button className='flex h-10 w-full items-center justify-center rounded bg-buttonBlue'>
-        Wejdź do modułu
+        {t('enterModule')}
       </button>
       <div className='flex items-center gap-2'>
         {module.progress.map((sprint, index) => (
