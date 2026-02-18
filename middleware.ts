@@ -16,13 +16,12 @@ export default async function middleware(request: NextRequest) {
   if (pathname === '/pl') {
     return NextResponse.redirect(new URL('/pl/landing', request.url))
   }
- 
 
   const publicPagesWithoutLocale = ['/landing', '/login', '/register']
   const protectedPagesWithoutLocale = [
     '/dashboard',
     '/ranking',
-    '/lessons',
+    '/modules',
     '/calendar',
     '/task',
     '/settings',
@@ -42,7 +41,7 @@ export default async function middleware(request: NextRequest) {
   const protectedRoutes = [
     '/pl/dashboard',
     '/pl/ranking',
-    '/pl/lessons',
+    '/pl/modules',
     '/pl/calendar',
     '/pl/task',
     '/pl/settings',
@@ -71,7 +70,7 @@ export const config = {
     '/register',
     '/dashboard',
     '/ranking',
-    '/lessons',
+    '/modules',
     '/calendar',
     '/task',
     '/settings',

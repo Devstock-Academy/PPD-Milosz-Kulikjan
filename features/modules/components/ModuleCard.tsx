@@ -1,9 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ClockIcon, DifficultyIcon, FolderIcon, TrueIcon } from '@/icons'
 import { useTranslations } from 'next-intl'
 
 type ModuleType = {
+  id: number
   photoUrl: string
   name: string
   input: string
@@ -69,9 +71,12 @@ const ModuleCard = ({ module }: ModuleCardProps) => {
         </div>
       </div>
       <div className='flex h-0.5 w-full bg-white'></div>
-      <button className='flex h-10 w-full items-center justify-center rounded bg-buttonBlue'>
+      <Link
+        href={`modules/${module.id}`}
+        className='flex h-10 w-full items-center justify-center rounded bg-buttonBlue'
+      >
         {t('enterModule')}
-      </button>
+      </Link>
       <div className='flex items-center gap-2'>
         {module.progress.map((sprint, index) => (
           <div key={index} className='flex items-center gap-2'>

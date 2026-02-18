@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import Breadcrumb from '@/features/modules/components/Breadcrumb'
 
 const moduleData = {
+  id: 1,
   photoUrl: '/images/moduleImage.webp',
   name: 'Module',
   input:
@@ -38,7 +39,7 @@ const Modules = () => {
         <div className='items mx-auto flex w-full flex-wrap items-center justify-center gap-8 xl:justify-between'>
           {modulesArray.map((module, index) => (
             <div key={index} className='flex min-w-moduleCard  xl:flex-1'>
-              <ModuleCard module={module} />
+              <ModuleCard module={{ ...module, id: index + 1 }} />
             </div>
           ))}
         </div>

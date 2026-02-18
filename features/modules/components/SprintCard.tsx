@@ -2,6 +2,7 @@ import React from 'react'
 import { ClockIcon, DifficultyIcon, HTMLIcon, DocumentIcon } from '@/icons'
 import ProgressBar from './ProgressBar'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 
 type SprintCardProps = {
   sprintNumber: number
@@ -38,13 +39,16 @@ const SprintCard = ({
 
   return (
     <div className='border-dividerBg flex w-full gap-4 rounded-lg bg-borderBg p-8'>
-      <div className='bg-dividerBg h w-1/3 overflow-hidden rounded-lg'>
-        <img
+      <div className='bg-dividerBg h relative w-1/3 overflow-hidden rounded-lg'>
+        <Image
           src={sprintPhoto}
           alt={t('sprintCoverAlt', { number: sprintNumber })}
-          className='h-full w-full object-cover'
+          fill
+          className='object-cover'
+          sizes='(max-width: 768px) 100vw, 33vw'
         />
       </div>
+
       <div className='flex flex-col gap-4'>
         <div className='flex flex-col gap-2'>
           <h2 className='text-2xl font-semibold'>

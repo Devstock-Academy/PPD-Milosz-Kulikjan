@@ -31,7 +31,7 @@ const Sidebar = () => {
     { icon: 'vector' },
     { href: 'dashboard', icon: 'dashboard' },
     { href: 'ranking', icon: 'ranking' },
-    { href: 'lessons', icon: 'lessons' },
+    { href: 'modules', icon: 'lessons' },
     { href: 'calendar', icon: 'calendar' },
     { href: '/task', icon: 'task' },
     { href: 'settings', icon: 'settings' },
