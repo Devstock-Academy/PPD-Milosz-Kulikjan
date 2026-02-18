@@ -1,9 +1,12 @@
+'use client'
+
 import React from 'react'
-import Link from 'next/link'
 import ModuleCard from '@/features/modules/components/ModuleCard'
 import { useTranslations } from 'next-intl'
+import Breadcrumb from '@/features/modules/components/Breadcrumb'
 
 const moduleData = {
+  id: 1,
   photoUrl: '/images/moduleImage.webp',
   name: 'Module',
   input:
@@ -22,9 +25,7 @@ const Modules = () => {
 
   return (
     <div className='flex w-full flex-col justify-center gap-6 p-8 text-white lg:px-8'>
-      <div className='flex h-10 w-fit rounded-lg bg-grayBg px-5 py-2'>
-        <Link href='modules'>{t('linkText')}</Link>
-      </div>
+      <Breadcrumb />
 
       <div className='flex h-full w-full max-w-moduleContainer flex-col items-center justify-center gap-6  self-center px-24'>
         <div className='flex justify-center'>
@@ -38,7 +39,7 @@ const Modules = () => {
         <div className='items mx-auto flex w-full flex-wrap items-center justify-center gap-8 xl:justify-between'>
           {modulesArray.map((module, index) => (
             <div key={index} className='flex min-w-moduleCard  xl:flex-1'>
-              <ModuleCard module={module} />
+              <ModuleCard module={{ ...module, id: index + 1 }} />
             </div>
           ))}
         </div>

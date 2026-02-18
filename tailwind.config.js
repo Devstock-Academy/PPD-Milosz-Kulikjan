@@ -53,6 +53,9 @@ module.exports = {
         66.5: '15.6471rem', // 266px
         83.25: '19.589rem', // 333px
         87.5: '21.875rem', //350px
+        62.25: '15.5625rem', // 249px
+        77.25: '19.3125rem', // 309px
+        101.25: '25.3125rem', // 405px
         125: '31.25rem', //500px'
         175: '43.75rem', // 700px
         'icon-sm': '0.75rem', // 12px
@@ -73,6 +76,7 @@ module.exports = {
         loginForm: '28rem', // 448px
         moduleCard: '29.42rem', //500px
         moduleContainer: '100rem', //2000px
+        moduleDescription: '19.3125rem', // 309px
       },
       maxHeight: {
         registerForm: '40.875rem', // 654px
