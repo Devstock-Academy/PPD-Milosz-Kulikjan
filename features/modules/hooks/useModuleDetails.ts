@@ -15,11 +15,13 @@ type ModuleDetails = {
   numberOfLessons: number
   difficultyLevel: string
   timeToFinish: number
+  moduleProgress: number
 }
 
 const useModuleDetails = (): ModuleDetails => {
   return {
     moduleNumber: 1,
+    moduleProgress: 26,
     moduleName: 'HTML',
     moduleInput:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
@@ -74,19 +76,77 @@ const useModuleDetails = (): ModuleDetails => {
         difficultyLevel: 'Łatwy',
         techs: ['HTML', 'HTML', 'HTML'],
         sprintPhoto: '/images/SprintPhoto.webp',
-        sprintProgress: 100,
+        sprintProgress: 25,
+        tickets: [
+          {
+            ticketName: 'Odtwórz style używając display: flex',
+            ticketNumber: 1,
+            ticketDifficultyLevel: 'easy',
+            ticketCategory: 'HTML',
+            ticketTaskType: 'Ćwiczenie',
+            ticketKanbanStatus: 'todo',
+            ticketCheckResult: 'review',
+          },
+          {
+            ticketName: 'Odtwórz style używając display: flex',
+            ticketNumber: 2,
+            ticketDifficultyLevel: 'medium',
+            ticketCategory: 'CSS',
+            ticketTaskType: 'Ćwiczenie',
+            ticketKanbanStatus: 'todo',
+            ticketCheckResult: 'negative',
+          },
+          {
+            ticketName: 'Odtwórz style używając display: flex',
+            ticketNumber: 3,
+            ticketDifficultyLevel: 'hard',
+            ticketCategory: 'JS',
+            ticketTaskType: 'Ćwiczenie',
+            ticketKanbanStatus: 'todo',
+            ticketCheckResult: 'positive',
+          },
+        ],
       },
       {
-        sprintNumber: 1,
-        sprintName: 'Tytuł Sprintu',
+        sprintNumber: 2,
+        sprintName: 'Tytuł Sprintu 2',
         sprintDescription:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        numberOfLessons: 12,
-        timeToComplete: 8,
+        numberOfLessons: 11,
+        timeToComplete: 7,
         difficultyLevel: 'Łatwy',
         techs: ['HTML', 'HTML', 'HTML'],
         sprintPhoto: '/images/SprintPhoto.webp',
-        sprintProgress: 100,
+        sprintProgress: 50,
+        tickets: [
+          {
+            ticketName: 'Odtwórz style używając display: flex',
+            ticketNumber: 1,
+            ticketDifficultyLevel: 'easy',
+            ticketCategory: 'HTML',
+            ticketTaskType: 'Ćwiczenie',
+            ticketKanbanStatus: 'todo',
+            ticketCheckResult: 'review',
+          },
+          {
+            ticketName: 'Odtwórz style używając display: flex',
+            ticketNumber: 2,
+            ticketDifficultyLevel: 'medium',
+            ticketCategory: 'CSS',
+            ticketTaskType: 'Ćwiczenie',
+            ticketKanbanStatus: 'todo',
+            ticketCheckResult: 'review',
+          },
+          {
+            ticketName: 'Odtwórz style używając display: flex',
+            ticketNumber: 3,
+            ticketDifficultyLevel: 'hard',
+            ticketCategory: 'JS',
+            ticketTaskType: 'Ćwiczenie',
+            ticketKanbanStatus: 'todo',
+            ticketCheckResult: 'positive',
+          },
+        ],
       },
     ],
     numberOfSprints: 6,

@@ -72,7 +72,7 @@ const ModuleCard = ({ module }: ModuleCardProps) => {
       </div>
       <div className='flex h-0.5 w-full bg-white'></div>
       <Link
-        href={`modules/${module.id}`}
+        href={`modules/module-${module.id}`}
         className='flex h-10 w-full items-center justify-center rounded bg-buttonBlue'
       >
         {t('enterModule')}

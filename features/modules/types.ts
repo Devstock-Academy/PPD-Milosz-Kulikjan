@@ -16,6 +16,17 @@ type SprintDetails = {
   techs: string[]
   sprintPhoto: string
   sprintProgress: number
+  tickets?: TicketProps[]
 }
 
-export type { ModuleTechItem, SprintDetails }
+type TicketProps = {
+  ticketName: string
+  ticketNumber: number
+  ticketDifficultyLevel: string
+  ticketCategory: string
+  ticketTaskType: string
+  ticketKanbanStatus: string
+  ticketCheckResult?: string
+}
+
+export type { ModuleTechItem, SprintDetails, TicketProps }

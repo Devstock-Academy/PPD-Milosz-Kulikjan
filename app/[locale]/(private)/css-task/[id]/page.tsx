@@ -60,7 +60,7 @@ const CssTaskPage = () => {
           </div>
 
           <div className='flex flex-col gap-4 xl:flex-row'>
-            <TabSkeleton tabs={[{ label: 'Wynik kodu' }]} noHeaderBg>
+            <TabSkeleton tabs={[{ label: t('result') }]} noHeaderBg>
               <div className='flex h-full w-full justify-center p-4'>
                 <CssResult
                   requirements={task.requirements}
@@ -68,7 +68,7 @@ const CssTaskPage = () => {
                 />
               </div>
             </TabSkeleton>
-            <TabSkeleton tabs={[{ label: 'Wzór' }]} noHeaderBg>
+            <TabSkeleton tabs={[{ label: t('pattern') }]} noHeaderBg>
               <div className='flex h-full w-full  p-4'>
                 <CssPattern colors={task.colors} targetUrl={task.targetUrl} />
               </div>

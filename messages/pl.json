@@ -90,7 +90,10 @@
     "continue": "Kontynuuj",
     "failureTitle": "Niestety!",
     "failureLine": "Przesłane rozwiązanie jest błędne!",
-    "return": "Wróć do zadania"
+    "return": "Wróć do zadania",
+    "status": "Status",
+    "addAttachment": "Dodaj załącznik",
+    "goToTask": "Przechodzę do zadania!"
   },
   "SignInTopbar": {
     "logoutButton": "Wyloguj się"
@@ -119,7 +122,10 @@
     "fastTests": "Szybie testy",
     "testResult": "Wyniki testów",
     "editor": "Edytor kodu",
-    "console": "Konsola"
+    "console": "Konsola",
+    "result": "Wynik kodu",
+    "pattern": "Wzór",
+    "tasksList": "Lista zadań"
   },
   "CssTask": {
     "back": "Wróć",

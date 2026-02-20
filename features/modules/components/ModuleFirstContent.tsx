@@ -7,11 +7,14 @@ import { useTranslations } from 'next-intl'
 type ModuleFirstContentProps = {
   moduleNumber: number
   moduleName: string
-  numberOfSprints: number
+  numberOfSprints?: number
   numberOfLessons: number
   difficultyLevel: string
   timeToFinish: number
-  moduleDescription: string
+  moduleDescription?: string
+  showVideo?: boolean
+  progress: number
+  forSprint?: boolean
 }
 
 const ModuleFirstContent = ({
@@ -22,6 +25,9 @@ const ModuleFirstContent = ({
   difficultyLevel,
   timeToFinish,
   moduleDescription,
+  showVideo = true,
+  progress,
+  forSprint = false,
 }: ModuleFirstContentProps) => {
   const t = useTranslations('Modules')
 
@@ -32,32 +38,35 @@ const ModuleFirstContent = ({
           {t('module')} {moduleNumber} - {moduleName}
         </h1>
         <p>{moduleDescription}</p>
-        <ProgressBar progress={26} />
+        <ProgressBar progress={progress} />
         <ModuleInfo
           numberOfSprints={numberOfSprints}
           numberOfLessons={numberOfLessons}
           difficultyLevel={difficultyLevel}
           timeToFinish={timeToFinish}
+          forSprint={forSprint}
         />
       </div>
-      <div className='flex items-center justify-center'>
-        <div className='h-62.25 w-101.25 shrink-0 bg-white'>
-          <div className='relative h-full w-full'>
-            <LiteYouTubeEmbed
-              id={'NKsma2XgjL4'}
-              title={t('videoTitle')}
-              poster='hqdefault'
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-              }}
-            />
+      {showVideo === true && (
+        <div className='flex items-center justify-center'>
+          <div className='h-62.25 w-101.25 shrink-0 bg-white'>
+            <div className='relative h-full w-full'>
+              <LiteYouTubeEmbed
+                id={'NKsma2XgjL4'}
+                title={t('videoTitle')}
+                poster='hqdefault'
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                }}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

@@ -3,6 +3,8 @@ import { ClockIcon, DifficultyIcon, HTMLIcon, DocumentIcon } from '@/icons'
 import ProgressBar from './ProgressBar'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 type SprintCardProps = {
   sprintNumber: number
@@ -27,6 +29,9 @@ const SprintCard = ({
   sprintPhoto,
   sprintProgress,
 }: SprintCardProps) => {
+  const pathname = usePathname()
+  const moduleMatch = pathname.match(/module-(\d+)/)
+  const moduleNumber = moduleMatch ? Number(moduleMatch[1]) : undefined
   const t = useTranslations('Modules')
 
   const renderTech = (tech: string) => {
@@ -35,6 +40,11 @@ const SprintCard = ({
     }
 
     return tech
+  }
+
+  let sprintHref = '#'
+  if (typeof moduleNumber === 'number') {
+    sprintHref = `/pl/modules/module-${moduleNumber}/sprint-${sprintNumber}`
   }
 
   return (
@@ -78,9 +88,12 @@ const SprintCard = ({
             </span>
           ))}
         </div>
-        <button className='flex h-10 w-75 items-center justify-center rounded-lg bg-clockActive'>
+        <Link
+          href={sprintHref}
+          className='flex h-10 w-75 items-center justify-center rounded-lg bg-clockActive'
+        >
           {t('goToSprint')}
-        </button>
+        </Link>
         <ProgressBar progress={sprintProgress} />
       </div>
     </div>

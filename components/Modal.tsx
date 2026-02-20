@@ -2,14 +2,19 @@
 
 import React from 'react'
 import { useTranslations } from 'next-intl'
+import clsx from 'clsx'
 
-type ModalType = 'register' | 'success' | 'failure'
+type ModalType = 'register' | 'success' | 'failure' | 'ticket'
 
-type ModalProps = {
+import type { TicketProps } from '@/features/modules/types'
+import { AttachmentIcon } from '@/icons'
+
+interface ModalProps {
   email?: string
   errorMessage?: string
   onClose: () => void
   type?: ModalType
+  ticketData?: TicketProps & { ticketDescription?: string }
 }
 
 const Modal = ({
@@ -17,9 +22,12 @@ const Modal = ({
   errorMessage,
   onClose,
   type = 'register',
+  ticketData,
 }: ModalProps) => {
   const t = useTranslations('Modal')
   const modalRef = React.useRef<HTMLDivElement>(null)
+
+  const [files, setFiles] = React.useState<File[]>([])
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -97,6 +105,113 @@ const Modal = ({
             className='h-10 w-75 self-center rounded bg-buttonRed p-2  text-white hover:bg-red-600'
           >
             {t('continue')}
+          </button>
+        </div>
+      )}
+      {type === 'ticket' && ticketData && (
+        <div
+          ref={modalRef}
+          className='flex  h-106.625 w-175 flex-col gap-4 rounded-2xl bg-grayBg p-8 text-left shadow-lg'
+        >
+          <div className='flex items-center justify-between'>
+            <div className='flex flex-wrap text-2xl'>
+              {ticketData.ticketName}
+            </div>
+            <div>
+              {t('status')}: {ticketData.ticketCheckResult}
+            </div>
+          </div>
+          <div className='flex h-0.5 w-full rounded-lg bg-white'></div>
+          <div>
+            <div className='flex justify-between'>
+              <div className='flex gap-1.5'>
+                <div
+                  className={clsx(
+                    'h-fit rounded-lg border-2 px-2 py-1 ',
+                    (ticketData.ticketDifficultyLevel === 'easy' ||
+                      ticketData.ticketDifficultyLevel === 'Łatwy') &&
+                      'border-clockActive text-clockActive',
+                    (ticketData.ticketDifficultyLevel === 'medium' ||
+                      ticketData.ticketDifficultyLevel === 'Średni') &&
+                      'border-activeSidebarBg text-activeSidebarBg',
+                    (ticketData.ticketDifficultyLevel === 'hard' ||
+                      ticketData.ticketDifficultyLevel === 'Trudny') &&
+                      'border-buttonRed text-buttonRed'
+                  )}
+                >
+                  {ticketData.ticketDifficultyLevel === 'easy' && 'Łatwy'}
+                  {ticketData.ticketDifficultyLevel === 'medium' && 'Średni'}
+                  {ticketData.ticketDifficultyLevel === 'hard' && 'Trudny'}
+                </div>
+                <div className='h-fit rounded-lg border-2 border-buttonBlue px-2 py-1 text-buttonBlue'>
+                  {ticketData.ticketCategory}
+                </div>
+                <div className='h-fit rounded-lg border-2 border-ticketTaskType px-2 py-1 text-ticketTaskType'>
+                  {ticketData.ticketTaskType}
+                </div>
+              </div>
+
+              <div>
+                <div className='h-fit w-fit rounded-lg border-2 px-2 py-1'>
+                  {ticketData.ticketNumber}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='flex h-0.5 w-full rounded-lg bg-white'></div>
+          <div className='flex justify-between gap-21.5'>
+            <div className='flex-1'>
+              <div className='flex h-10 w-full items-center justify-center rounded-lg border-2'>
+                <span>
+                  {t('status')}: {ticketData.ticketCheckResult}
+                </span>
+              </div>
+            </div>
+            <div className='flex flex-1 flex-col items-center'>
+              <label
+                htmlFor='file-upload'
+                className='flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-buttonBlue text-white'
+              >
+                {t('addAttachment')} {<AttachmentIcon />}
+              </label>
+              <input
+                id='file-upload'
+                type='file'
+                multiple
+                className='hidden'
+                onChange={(e) => {
+                  setFiles((prev) => [
+                    ...prev,
+                    ...Array.from(e.target.files ?? []),
+                  ])
+                }}
+              />
+              <ul className='mt-2 max-h-24 w-full overflow-y-auto'>
+                {files &&
+                  files.map((file: File, idx: number) => (
+                    <li
+                      key={file.name + idx}
+                      className=' flex items-center justify-between gap-3  px-1 pr-3 text-xs'
+                    >
+                      <span>{file.name}</span>
+                      <button
+                        type='button'
+                        className='text-xl '
+                        onClick={() =>
+                          setFiles((prev: File[]) =>
+                            prev.filter((_, i: number) => i !== idx)
+                          )
+                        }
+                      >
+                        x
+                      </button>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+          <button className='mt-auto flex h-10 w-full items-center justify-center rounded-lg bg-clockActive '>
+            {t('goToTask')}
           </button>
         </div>
       )}

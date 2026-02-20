@@ -37,6 +37,11 @@ const Breadcrumb = ({ moduleTitle }: BreadcrumbProps) => {
             label = `${t('module')} ${moduleNumber}`
           }
 
+          if (segment.startsWith('sprint-')) {
+            const sprintNumber = segment.replace('sprint-', '')
+            label = `${t('sprint')} ${sprintNumber}`
+          }
+
           return (
             <span key={index} className='flex gap-2'>
               {!isLast ? (
