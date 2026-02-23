@@ -91,7 +91,6 @@
     "failureTitle": "Niestety!",
     "failureLine": "Przesłane rozwiązanie jest błędne!",
     "return": "Wróć do zadania",
-    "status": "Status",
     "addAttachment": "Dodaj załącznik",
     "goToTask": "Przechodzę do zadania!"
   },
@@ -195,6 +194,10 @@
     "sprintCoverAlt": "Okładka sprintu {number}",
     "sprint": "Sprint",
     "learnWhat": "Czego się nauczysz:",
-    "goToSprint": "Przejdź do sprintu"
+    "goToSprint": "Przejdź do sprintu",
+    "easy": "Łatwy",
+    "medium": "Średni",
+    "hard": "Trudny",
+    "status": "Status"
   }
 }

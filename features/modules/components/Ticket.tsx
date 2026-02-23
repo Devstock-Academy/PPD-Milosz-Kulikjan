@@ -11,10 +11,10 @@ const Ticket = ({
   ticketTaskType,
   ticketCheckResult,
 }: TicketProps) => {
-  const t = useTranslations('Modal')
+  const t = useTranslations('Modules')
   return (
-    <div className='flex h-full w-fit max-w-ticket flex-col justify-center gap-4'>
-      <div className='flex justify-center gap-4'>
+    <div className='flex h-full w-full  flex-col justify-center gap-4'>
+      <div className='flex justify-between gap-4'>
         <div className='flex flex-wrap'>{ticketName}</div>
         <div className='h-fit rounded-lg border-2 px-2 py-1'>
           {ticketNumber}
@@ -24,21 +24,18 @@ const Ticket = ({
       <div className='flex flex-wrap gap-1.5'>
         <div
           className={clsx(
-            'h-fit rounded-lg border-2 px-2 py-1 ',
-            (ticketDifficultyLevel === 'easy' ||
-              ticketDifficultyLevel === 'Łatwy') &&
+            'h-fit rounded-lg border-2 px-2 py-1',
+            ticketDifficultyLevel === 'easy' &&
               'border-clockActive text-clockActive',
-            (ticketDifficultyLevel === 'medium' ||
-              ticketDifficultyLevel === 'Średni') &&
+            ticketDifficultyLevel === 'medium' &&
               'border-activeSidebarBg text-activeSidebarBg',
-            (ticketDifficultyLevel === 'hard' ||
-              ticketDifficultyLevel === 'Trudny') &&
+            ticketDifficultyLevel === 'hard' &&
               'border-buttonRed text-buttonRed'
           )}
         >
-          {ticketDifficultyLevel === 'easy' && 'Łatwy'}
-          {ticketDifficultyLevel === 'medium' && 'Średni'}
-          {ticketDifficultyLevel === 'hard' && 'Trudny'}
+          {ticketDifficultyLevel === 'easy' && t('easy')}
+          {ticketDifficultyLevel === 'medium' && t('medium')}
+          {ticketDifficultyLevel === 'hard' && t('hard')}
         </div>
         <div className='h-fit rounded-lg border-2 border-buttonBlue px-2 py-1 text-buttonBlue'>
           {ticketCategory}

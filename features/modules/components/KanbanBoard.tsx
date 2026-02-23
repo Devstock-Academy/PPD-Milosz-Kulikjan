@@ -60,7 +60,7 @@ const KanbanBoard = ({ sprint }: KanbanBoardProps) => {
               }}
               key={item.id}
               className={
-                'h-fit w-fit cursor-pointer rounded bg-lightGrayBg p-4 text-white'
+                'h-fit w-full cursor-pointer rounded-lg bg-lightGrayBg p-4 text-white shadow-tabBarShadow'
               }
             >
               <Ticket {...item} />
