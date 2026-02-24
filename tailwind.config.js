@@ -31,6 +31,7 @@ module.exports = {
         clockSet: '#1FAF7F',
         clockActive: '#0E9F6E',
         borderBg: '#333537',
+        ticketTaskType: '#97E7E7',
       },
       spacing: {
         4: '16px',
@@ -41,6 +42,7 @@ module.exports = {
         15: '3.75rem', // 60px
         15.75: '3.9375rem', // 63px
         24: '6rem', // 96px
+        21.5: '5.375rem', // 86px
         30: '7.5rem', // 120px
         32: '8rem', // 128px
         8.1875: '2.0625rem', // 33px
@@ -56,6 +58,7 @@ module.exports = {
         62.25: '15.5625rem', // 249px
         77.25: '19.3125rem', // 309px
         101.25: '25.3125rem', // 405px
+        106.625: '26.625rem', // 426px
         125: '31.25rem', //500px'
         175: '43.75rem', // 700px
         'icon-sm': '0.75rem', // 12px
@@ -77,6 +80,7 @@ module.exports = {
         moduleCard: '29.42rem', //500px
         moduleContainer: '100rem', //2000px
         moduleDescription: '19.3125rem', // 309px
+        ticket: '12.2rem', //280px
       },
       maxHeight: {
         registerForm: '40.875rem', // 654px

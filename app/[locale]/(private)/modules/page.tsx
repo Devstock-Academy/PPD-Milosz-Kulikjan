@@ -14,7 +14,7 @@ const moduleData = {
   output:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
   sprints: 5,
-  difficultyLevel: 'Easy',
+  difficultyLevel: 'easy',
   moduleLength: 40,
   progress: [100, 60, 0, 0, 0, 0],
 }

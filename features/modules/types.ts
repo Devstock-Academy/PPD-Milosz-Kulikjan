@@ -1,5 +1,7 @@
 import type { ComponentType } from 'react'
 
+export type Difficulty = 'easy' | 'medium' | 'hard'
+
 type ModuleTechItem = {
   techTitle: string
   techIcon: ComponentType
@@ -12,10 +14,21 @@ type SprintDetails = {
   sprintDescription: string
   numberOfLessons: number
   timeToComplete: number
-  difficultyLevel: string
+  difficultyLevel: Difficulty
   techs: string[]
   sprintPhoto: string
   sprintProgress: number
+  tickets?: TicketProps[]
 }
 
-export type { ModuleTechItem, SprintDetails }
+type TicketProps = {
+  ticketName: string
+  ticketNumber: number
+  ticketDifficultyLevel: Difficulty
+  ticketCategory: string
+  ticketTaskType: string
+  ticketKanbanStatus: string
+  ticketCheckResult?: string
+}
+
+export type { ModuleTechItem, SprintDetails, TicketProps }

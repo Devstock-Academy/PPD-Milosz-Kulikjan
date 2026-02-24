@@ -2,6 +2,7 @@
 
 import React from 'react'
 import MonacoEditor, { BeforeMount, OnMount } from '@monaco-editor/react'
+
 import { registerSingleLineTheme } from '@/features/monaco/singleLineTheme'
 
 type SingleLineEditorProps = {

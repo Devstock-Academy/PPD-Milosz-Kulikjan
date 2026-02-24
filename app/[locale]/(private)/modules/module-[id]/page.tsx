@@ -19,6 +19,7 @@ const ModulesPage = () => {
     difficultyLevel,
     timeToFinish,
     moduleDescription,
+    moduleProgress,
   } = useModuleDetails()
 
   return (
@@ -32,6 +33,7 @@ const ModulesPage = () => {
         difficultyLevel={difficultyLevel}
         timeToFinish={timeToFinish}
         moduleDescription={moduleDescription}
+        progress={moduleProgress}
       />
       <ModuleSecondContent
         moduleNumber={moduleNumber}
