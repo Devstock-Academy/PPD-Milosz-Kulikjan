@@ -1,9 +1,11 @@
-import { TabSkeleton } from '@/features/task'
 import React from 'react'
+import { useTranslations } from 'next-intl'
+
+import type { ModuleTechItem, SprintDetails } from '@/features/modules/types'
+import { TabSkeleton } from '@/features/task'
+
 import ModuleDescription from './ModuleDescription'
 import SprintsList from './SprintsList'
-import type { ModuleTechItem, SprintDetails } from '@/features/modules/types'
-import { useTranslations } from 'next-intl'
 
 type ModuleSecondContentProps = {
   moduleNumber: number

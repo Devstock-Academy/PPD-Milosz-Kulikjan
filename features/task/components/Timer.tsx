@@ -3,10 +3,11 @@
 import React from 'react'
 import { useTranslations } from 'next-intl'
 
+import { useTimer } from '../hooks/useTimer'
+
 import TabSkeleton from './TabSkeleton'
 import TimerContent from './TimerContent'
 import StoperContent from './StoperContent'
-import { useTimer } from '../hooks/useTimer'
 
 const Timer = () => {
   const ti = useTranslations('Timer')

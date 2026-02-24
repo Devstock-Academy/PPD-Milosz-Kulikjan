@@ -1,8 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ClockIcon, DifficultyIcon, FolderIcon, TrueIcon } from '@/icons'
+
 import { useTranslations } from 'next-intl'
+
+import { ClockIcon, DifficultyIcon, FolderIcon, TrueIcon } from '@/icons'
 
 type ModuleType = {
   id: number
@@ -63,7 +65,7 @@ const ModuleCard = ({ module }: ModuleCardProps) => {
         </div>
         <div className='flex items-center justify-center gap-2'>
           <DifficultyIcon />
-          {module.difficultyLevel}
+          {t(module.difficultyLevel)}
         </div>
         <div className='flex items-center justify-center gap-2'>
           <ClockIcon />

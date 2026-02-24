@@ -1,3 +1,6 @@
+import React from 'react'
+import { useTranslations } from 'next-intl'
+
 import {
   ClockIcon,
   DifficultyIcon,
@@ -5,9 +8,6 @@ import {
   LessonsIcon,
   DocumentIcon,
 } from '@/icons'
-
-import React from 'react'
-import { useTranslations } from 'next-intl'
 
 type ModuleInfoProps = {
   numberOfSprints?: number
@@ -45,7 +45,7 @@ const ModuleInfo = ({
       </div>
       <div className='flex items-center  gap-2'>
         <DifficultyIcon />
-        {difficultyLevel}
+        {t(difficultyLevel)}
       </div>
       <div className='flex items-center  gap-2'>
         <ClockIcon />

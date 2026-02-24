@@ -1,10 +1,12 @@
 import React from 'react'
-import { ClockIcon, DifficultyIcon, HTMLIcon, DocumentIcon } from '@/icons'
-import ProgressBar from './ProgressBar'
-import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+
+import { ClockIcon, DifficultyIcon, HTMLIcon, DocumentIcon } from '@/icons'
+
+import ProgressBar from './ProgressBar'
 
 type SprintCardProps = {
   sprintNumber: number
@@ -77,7 +79,7 @@ const SprintCard = ({
           </span>
           <span className='flex items-center gap-2'>
             <DifficultyIcon />
-            {difficultyLevel}
+            {t(difficultyLevel)}
           </span>
         </div>
         <div className='flex flex-wrap items-center gap-4'>

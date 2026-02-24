@@ -1,7 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
-import { TicketProps } from '../types'
 import { useTranslations } from 'next-intl'
+
+import { TicketProps } from '../types'
 
 const Ticket = ({
   ticketName,
@@ -12,6 +13,13 @@ const Ticket = ({
   ticketCheckResult,
 }: TicketProps) => {
   const t = useTranslations('Modules')
+
+  const difficultyStyles = {
+    easy: 'border-clockActive text-clockActive',
+    medium: 'border-activeSidebarBg text-activeSidebarBg',
+    hard: 'border-buttonRed text-buttonRed',
+  }
+
   return (
     <div className='flex h-full w-full  flex-col justify-center gap-4'>
       <div className='flex justify-between gap-4'>
@@ -25,17 +33,10 @@ const Ticket = ({
         <div
           className={clsx(
             'h-fit rounded-lg border-2 px-2 py-1',
-            ticketDifficultyLevel === 'easy' &&
-              'border-clockActive text-clockActive',
-            ticketDifficultyLevel === 'medium' &&
-              'border-activeSidebarBg text-activeSidebarBg',
-            ticketDifficultyLevel === 'hard' &&
-              'border-buttonRed text-buttonRed'
+            difficultyStyles[ticketDifficultyLevel]
           )}
         >
-          {ticketDifficultyLevel === 'easy' && t('easy')}
-          {ticketDifficultyLevel === 'medium' && t('medium')}
-          {ticketDifficultyLevel === 'hard' && t('hard')}
+          {t(ticketDifficultyLevel)}
         </div>
         <div className='h-fit rounded-lg border-2 border-buttonBlue px-2 py-1 text-buttonBlue'>
           {ticketCategory}

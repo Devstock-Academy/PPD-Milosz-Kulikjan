@@ -1,7 +1,7 @@
 'use client'
 
-import Link from 'next/link'
 import React from 'react'
+import Link from 'next/link'
 import { Checkbox as FlowbiteCheckbox, Label } from 'flowbite-react'
 
 type CheckboxProps = {

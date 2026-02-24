@@ -1,6 +1,6 @@
+import React from 'react'
 import clsx from 'clsx'
 import { Button as FlowbiteButton } from 'flowbite-react'
-import React from 'react'
 
 type ButtonProps = {
   children: React.ReactNode

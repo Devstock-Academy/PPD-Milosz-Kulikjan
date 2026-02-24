@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { wrapCSS, wrapTargetImage } from '@/lib/sanitizer'
 
 type CssScreenProps = {

@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react'
 import clsx from 'clsx'
-import { ChevronIcon } from '@/icons'
+import { useTranslations } from 'next-intl'
+
+import { ChevronIcon, FalseIcon, TrueIcon } from '@/icons'
+
 import TestsBlockCode from './TestsBlockCode'
 import { TestItem } from './TestsContent'
-import { useTranslations } from 'next-intl'
-import { FalseIcon, TrueIcon } from '@/icons'
 
 type TestResultViewProps = {
   tests: TestItem[]

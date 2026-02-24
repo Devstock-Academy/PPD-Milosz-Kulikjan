@@ -4,12 +4,12 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 import clsx from 'clsx'
 
-type ModalType = 'register' | 'success' | 'failure' | 'ticket'
-
 import type { TicketProps } from '@/features/modules/types'
 import { AttachmentIcon } from '@/icons'
 
-interface ModalProps {
+type ModalType = 'register' | 'success' | 'failure' | 'ticket'
+
+type ModalProps = {
   email?: string
   errorMessage?: string
   onClose: () => void
@@ -24,10 +24,9 @@ const Modal = ({
   type = 'register',
   ticketData,
 }: ModalProps) => {
+  const [files, setFiles] = React.useState<File[]>([])
   const t = useTranslations('Modal')
   const modalRef = React.useRef<HTMLDivElement>(null)
-
-  const [files, setFiles] = React.useState<File[]>([])
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -42,6 +41,12 @@ const Modal = ({
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [onClose])
+
+  const difficultyStyles = {
+    easy: 'border-clockActive text-clockActive',
+    medium: 'border-activeSidebarBg text-activeSidebarBg',
+    hard: 'border-buttonRed text-buttonRed',
+  }
 
   return (
     <div
@@ -127,21 +132,11 @@ const Modal = ({
               <div className='flex gap-1.5'>
                 <div
                   className={clsx(
-                    'h-fit rounded-lg border-2 px-2 py-1 ',
-                    (ticketData.ticketDifficultyLevel === 'easy' ||
-                      ticketData.ticketDifficultyLevel === 'Łatwy') &&
-                      'border-clockActive text-clockActive',
-                    (ticketData.ticketDifficultyLevel === 'medium' ||
-                      ticketData.ticketDifficultyLevel === 'Średni') &&
-                      'border-activeSidebarBg text-activeSidebarBg',
-                    (ticketData.ticketDifficultyLevel === 'hard' ||
-                      ticketData.ticketDifficultyLevel === 'Trudny') &&
-                      'border-buttonRed text-buttonRed'
+                    'h-fit rounded-lg border-2 px-2 py-1',
+                    difficultyStyles[ticketData.ticketDifficultyLevel]
                   )}
                 >
-                  {ticketData.ticketDifficultyLevel === 'easy' && 'Łatwy'}
-                  {ticketData.ticketDifficultyLevel === 'medium' && 'Średni'}
-                  {ticketData.ticketDifficultyLevel === 'hard' && 'Trudny'}
+                  {t(ticketData.ticketDifficultyLevel)}
                 </div>
                 <div className='h-fit rounded-lg border-2 border-buttonBlue px-2 py-1 text-buttonBlue'>
                   {ticketData.ticketCategory}
