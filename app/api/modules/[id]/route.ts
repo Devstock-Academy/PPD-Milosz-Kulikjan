@@ -73,13 +73,13 @@ export const GET = async (
           ...jsAssignments.map((assignment) => {
             const solution = jsSolutionById.get(assignment.id as string)
             let ticketKanbanStatus: 'todo' | 'in-progress' | 'done' = 'todo'
-            let ticketCheckResult: 'review' | 'negative' | 'positive' = 'review'
+            let ticketCheckResult: 'todo' | 'in-progress' | 'done' = 'todo'
 
             if (solution) {
               ticketKanbanStatus =
                 (solution.kanbanStatus as any) ?? ticketKanbanStatus
               ticketCheckResult =
-                ticketKanbanStatus === 'done' ? 'positive' : 'negative'
+                ticketKanbanStatus === 'done' ? 'done' : 'in-progress'
             }
 
             return {
@@ -91,20 +91,20 @@ export const GET = async (
           }),
           ...cssAssignments.map((assignment) => {
             const solution = cssSolutionById.get(assignment.id as string)
-            let ticketCheckResult: 'review' | 'negative' | 'positive' = 'review'
+            let ticketCheckResult: 'todo' | 'in-progress' | 'done' = 'todo'
             let ticketKanbanStatus: 'todo' | 'in-progress' | 'done' = 'todo'
 
             if (solution) {
               const result = solution.result ?? 0
               const required = (assignment as any).requirements ?? 0
               if (result >= required && required > 0) {
-                ticketCheckResult = 'positive'
+                ticketCheckResult = 'done'
                 ticketKanbanStatus = 'done'
               } else if (result > 0 && result < required) {
-                ticketCheckResult = 'negative'
+                ticketCheckResult = 'in-progress'
                 ticketKanbanStatus = 'in-progress'
               } else {
-                ticketCheckResult = 'negative'
+                ticketCheckResult = 'in-progress'
                 ticketKanbanStatus = 'in-progress'
               }
             }
