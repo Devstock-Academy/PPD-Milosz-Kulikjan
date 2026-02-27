@@ -10,6 +10,7 @@ export const GET = async (
 ) => {
   const { id } = params
   const { searchParams } = new URL(req.url)
+
   const userId = searchParams.get('userId')
 
   try {
@@ -69,8 +70,15 @@ export const GET = async (
     const activities = [
       ...jsAssignments.map((assignment) => {
         const solution = jsSolutionById.get(assignment.id as string)
-        const ticketCheckResult = solution ? 'positive' : 'review'
-        const ticketKanbanStatus = solution ? 'done' : 'todo'
+        let ticketKanbanStatus: 'todo' | 'in-progress' | 'done' = 'todo'
+        let ticketCheckResult: 'review' | 'negative' | 'positive' = 'review'
+
+        if (solution) {
+          ticketKanbanStatus =
+            (solution.kanbanStatus as any) ?? ticketKanbanStatus
+          ticketCheckResult =
+            ticketKanbanStatus === 'done' ? 'positive' : 'negative'
+        }
 
         return {
           ...assignment,
@@ -112,7 +120,9 @@ export const GET = async (
     let completedCount = 0
 
     if (userId && totalTasks > 0) {
-      const jsSolved = jsSolutions.length
+      const jsSolved = jsSolutions.filter(
+        (s: any) => (s.kanbanStatus as any) === 'done'
+      ).length
       const cssSolved = activities.reduce((acc: number, a: any) => {
         if (a.type !== 'css') return acc
         const sol = cssSolutionById.get(a.id as string)

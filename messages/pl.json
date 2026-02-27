@@ -179,6 +179,7 @@
   },
   "Modules": {
     "modules": "Moduły",
+    "loading": "Ładowanie...",
     "moduleNotFound": "Nie znaleziono modułu",
     "module": "Moduł",
     "academyTitle": "Akademia Devstock",

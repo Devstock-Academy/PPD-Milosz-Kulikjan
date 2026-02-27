@@ -61,7 +61,7 @@ const KanbanBoard = ({ sprint }: KanbanBoardProps) => {
               return [...others, ...updatedWithStatus]
             })
           }}
-          group='kanban'
+          group={{ name: 'kanban', pull: false, put: false }}
           className='flex h-125 w-full flex-col items-center justify-start gap-4 overflow-auto rounded-b-lg bg-borderBg p-4 shadow-tabBarShadow'
         >
           {ticketsInColumn.map((item) => (
