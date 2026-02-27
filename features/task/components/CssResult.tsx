@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import {
+  ReactCompareSlider as Slider,
+  ReactCompareSliderHandle as SliderHandler,
+} from 'react-compare-slider'
 import { CssScreen } from '.'
 import { Divider, Toggler } from '@/components'
 import Modal from '@/components/Modal'
 import { PlayIcon, SortAscendingIcon } from '@/icons'
 import { useCode } from '@/context/EditorContext'
 import { useCssSolution } from '@/features/task/hooks/useCssSolution'
+import GridOverlay from './GridOverlay'
 
 type CssResultProps = {
   requirements: number
@@ -28,16 +33,14 @@ const CssResult = ({ requirements, targetUrl }: CssResultProps) => {
   const [modalType, setModalType] = useState<'success' | 'failure' | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const outputRef = React.useRef<HTMLIFrameElement>(null)
+  const outputRef = useRef<HTMLIFrameElement>(null)
   const { mutate: sendSolution, isPending } = useCssSolution(taskId, userId)
-  const [firstToggle, setFirstToggle] = useState(false)
-  const [secondToggle, setSecondToggle] = useState(false)
 
   const sliderLabels = [t('showSlider'), t('hideSlider')]
   const gridLabels = [t('showGrid'), t('hideGrid')]
 
-  const handleSliderChange = (checked: boolean) => setFirstToggle(checked)
-  const handleGridChange = (checked: boolean) => setSecondToggle(checked)
+  const handleSliderChange = (checked: boolean) => setSliderToggle(checked)
+  const handleGridChange = (checked: boolean) => setGridToggle(checked)
 
   const handleCheckCompatibility = () => {
     if (!taskId || !userId) return
@@ -92,22 +95,46 @@ const CssResult = ({ requirements, targetUrl }: CssResultProps) => {
 
   return (
     <div className='flex h-full w-full flex-col items-center justify-between gap-8'>
-      <CssScreen
-        editorValue={code}
-        targetUrl={targetUrl}
-        outputRef={outputRef}
-      />
+      <div className='relative'>
+        {sliderToggle ? (
+          <Slider
+            itemOne={<CssScreen editorValue={code} outputRef={outputRef} />}
+            itemTwo={<CssScreen targetUrl={targetUrl} />}
+            handle={
+              <SliderHandler
+                linesStyle={{
+                  transform: 'scale(1.16)',
+                  color: '#000000',
+                  width: '1px',
+                }}
+                buttonStyle={{
+                  position: 'relative',
+                  backdropFilter: undefined,
+                  background: '#ffffff',
+                  color: '#000000',
+                  border: '2px solid #000000',
+                  transform: 'scale(0.7)',
+                }}
+              />
+            }
+            position={50}
+          />
+        ) : (
+          <CssScreen editorValue={code} outputRef={outputRef} />
+        )}
+        <GridOverlay show={gridToggle} />
+      </div>
       <div className='flex w-full flex-col justify-between gap-4'>
         <div className='flex justify-between'>
           <Toggler
-            checked={firstToggle}
+            checked={sliderToggle}
             onChange={handleSliderChange}
-            label={sliderLabels[Number(firstToggle)]}
+            label={sliderLabels[Number(sliderToggle)]}
           />
           <Toggler
-            checked={secondToggle}
+            checked={gridToggle}
             onChange={handleGridChange}
-            label={gridLabels[Number(secondToggle)]}
+            label={gridLabels[Number(gridToggle)]}
           />
         </div>
 

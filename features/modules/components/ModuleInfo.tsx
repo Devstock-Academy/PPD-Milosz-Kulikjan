@@ -45,7 +45,7 @@ const ModuleInfo = ({
       </div>
       <div className='flex items-center  gap-2'>
         <DifficultyIcon />
-        {t(difficultyLevel)}
+        {t((difficultyLevel || '').toLowerCase())}
       </div>
       <div className='flex items-center  gap-2'>
         <ClockIcon />

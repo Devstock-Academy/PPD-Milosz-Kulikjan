@@ -1,27 +1,23 @@
 'use client'
 
 import React from 'react'
-import ModuleCard from '@/features/modules/components/ModuleCard'
 import { useTranslations } from 'next-intl'
-import Breadcrumb from '@/features/modules/components/Breadcrumb'
+import { useSession } from 'next-auth/react'
 
-const moduleData = {
-  id: 1,
-  photoUrl: '/images/moduleImage.webp',
-  name: 'Module',
-  input:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-  output:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-  sprints: 5,
-  difficultyLevel: 'easy',
-  moduleLength: 40,
-  progress: [100, 60, 0, 0, 0, 0],
-}
+import { useModules } from '@/features/modules/hooks/useModules'
+import ModuleCard from '@/features/modules/components/ModuleCard'
+import Breadcrumb from '@/features/modules/components/Breadcrumb'
 
 const Modules = () => {
   const t = useTranslations('Modules')
-  const modulesArray = Array.from({ length: 6 }, () => moduleData)
+  const { data: session } = useSession()
+  const userId = session?.user?.id
+  const { data: modules, isLoading } = useModules(userId)
+  let modulesArray: typeof modules = []
+
+  if (Array.isArray(modules)) {
+    modulesArray = modules
+  }
 
   return (
     <div className='flex w-full flex-col justify-center gap-6 p-8 text-white lg:px-8'>
@@ -37,11 +33,49 @@ const Modules = () => {
         </div>
 
         <div className='items mx-auto flex w-full flex-wrap items-center justify-center gap-8 xl:justify-between'>
-          {modulesArray.map((module, index) => (
-            <div key={index} className='flex min-w-moduleCard  xl:flex-1'>
-              <ModuleCard module={{ ...module, id: index + 1 }} />
-            </div>
-          ))}
+          {isLoading && (
+            <div className='text-sm'>{t('loading') || 'Ładowanie...'}</div>
+          )}
+
+          {modulesArray.map((module, index) => {
+            let sprintsCount = 0
+            if (Array.isArray(module.sprints)) {
+              sprintsCount = module.sprints.length
+            } else if (typeof module.sprints === 'number') {
+              sprintsCount = module.sprints
+            } else if ((module as any)._count?.sprints) {
+              sprintsCount = (module as any)._count.sprints
+            }
+
+            let progressArray: number[] = []
+            if (Array.isArray(module.sprints)) {
+              progressArray = module.sprints.map((s) => s.progress ?? 0)
+            } else if (Array.isArray((module as any).progress)) {
+              progressArray = (module as any).progress
+            }
+
+            const cardModule = {
+              id: module.id,
+              moduleIndex: module.moduleIndex,
+              photoUrl: '/images/moduleImage.webp',
+              name: module.name || '',
+              input: module.input || '',
+              output: module.output || '',
+              sprints: sprintsCount,
+              difficultyLevel: (module.difficultyLevel || 'easy').toLowerCase(),
+              moduleLength: module.totalDuration || module.moduleLength || 0,
+              progress: progressArray,
+            }
+
+            return (
+              <div
+                key={cardModule.id}
+                className='flex min-w-moduleCard  xl:flex-1'
+              >
+                <ModuleCard module={cardModule} />
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

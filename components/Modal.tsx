@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
 import clsx from 'clsx'
 
 import type { TicketProps } from '@/features/modules/types'
@@ -26,6 +27,9 @@ const Modal = ({
 }: ModalProps) => {
   const [files, setFiles] = React.useState<File[]>([])
   const t = useTranslations('Modal')
+  const tModules = useTranslations('Modules')
+  const locale = useLocale()
+  const router = useRouter()
   const modalRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
@@ -123,7 +127,7 @@ const Modal = ({
               {ticketData.ticketName}
             </div>
             <div>
-              {t('status')}: {ticketData.ticketCheckResult}
+              {tModules('status')}: {ticketData.ticketCheckResult}
             </div>
           </div>
           <div className='flex h-0.5 w-full rounded-lg bg-white'></div>
@@ -136,7 +140,7 @@ const Modal = ({
                     difficultyStyles[ticketData.ticketDifficultyLevel]
                   )}
                 >
-                  {t(ticketData.ticketDifficultyLevel)}
+                  {tModules(ticketData.ticketDifficultyLevel)}
                 </div>
                 <div className='h-fit rounded-lg border-2 border-buttonBlue px-2 py-1 text-buttonBlue'>
                   {ticketData.ticketCategory}
@@ -158,7 +162,7 @@ const Modal = ({
             <div className='flex-1'>
               <div className='flex h-10 w-full items-center justify-center rounded-lg border-2'>
                 <span>
-                  {t('status')}: {ticketData.ticketCheckResult}
+                  {tModules('status')}: {ticketData.ticketCheckResult}
                 </span>
               </div>
             </div>
@@ -205,7 +209,19 @@ const Modal = ({
               </ul>
             </div>
           </div>
-          <button className='mt-auto flex h-10 w-full items-center justify-center rounded-lg bg-clockActive '>
+          <button
+            onClick={() => {
+              const ticketId =
+                (ticketData as any).ticketId || ticketData.ticketNumber
+              const type =
+                (ticketData as any).ticketType ||
+                (ticketData.ticketCategory || '').toString().toLowerCase()
+              const base = type === 'javascript' ? 'task' : 'css-task'
+              router.push(`/${locale}/${base}/${ticketId}`)
+              onClose()
+            }}
+            className='mt-auto flex h-10 w-full items-center justify-center rounded-lg bg-clockActive '
+          >
             {t('goToTask')}
           </button>
         </div>

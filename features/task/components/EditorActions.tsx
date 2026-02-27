@@ -63,6 +63,41 @@ const EditorActions = ({ hasErrors }: { hasErrors: boolean }) => {
           setIsModalOpen(true)
           if (result.allPassed) {
             queryClient.invalidateQueries({ queryKey: ['task', id, userId] })
+            queryClient.invalidateQueries({
+              queryKey: ['modules', userId],
+              exact: false,
+            })
+            queryClient.invalidateQueries({
+              queryKey: ['module'],
+              exact: false,
+            })
+            queryClient.invalidateQueries({
+              queryKey: ['sprints'],
+              exact: false,
+            })
+            queryClient.invalidateQueries({
+              queryKey: ['sprint'],
+              exact: false,
+            })
+            Promise.all([
+              queryClient.refetchQueries({
+                queryKey: ['modules'],
+                exact: false,
+              }),
+              queryClient.refetchQueries({
+                queryKey: ['module'],
+                exact: false,
+              }),
+              queryClient.refetchQueries({
+                queryKey: ['sprints'],
+                exact: false,
+              }),
+              queryClient.refetchQueries({
+                queryKey: ['sprint'],
+                exact: false,
+              }),
+              queryClient.refetchQueries({ queryKey: ['task'], exact: false }),
+            ]).catch(() => {})
           }
         },
         onError: (error) => {

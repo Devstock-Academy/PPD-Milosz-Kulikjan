@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 import type { SprintDetails, TicketProps } from '@/features/modules/types'
 import Ticket from './Ticket'
@@ -10,15 +10,27 @@ type KanbanBoardProps = {
   sprint: SprintDetails
 }
 
-type TicketWithId = TicketProps & { id: number }
+type TicketWithId = TicketProps & {
+  id: string | number
+  ticketId?: string
+  ticketType?: string
+}
 
 const KanbanBoard = ({ sprint }: KanbanBoardProps) => {
   const initialTickets: TicketWithId[] = (sprint.tickets ?? []).map((t) => ({
     ...t,
-    id: t.ticketNumber,
+    id: (t as any).ticketId ?? t.ticketNumber,
   }))
 
   const [tickets, setTickets] = useState<TicketWithId[]>(initialTickets)
+
+  useEffect(() => {
+    const next = (sprint.tickets ?? []).map((t) => ({
+      ...t,
+      id: (t as any).ticketId ?? t.ticketNumber,
+    }))
+    setTickets(next)
+  }, [sprint.sprintNumber, JSON.stringify(sprint.tickets)])
 
   const [modalTicket, setModalTicket] = useState<
     (TicketWithId & { ticketDescription?: string }) | null
