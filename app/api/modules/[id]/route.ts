@@ -14,7 +14,7 @@ export const GET = async (
   const userId = searchParams.get('userId')
 
   try {
-    const module = await prisma.module.findFirst({
+    const moduleRecord = await prisma.module.findFirst({
       where: { moduleIndex },
       include: {
         sprints: {
@@ -28,7 +28,7 @@ export const GET = async (
       },
     })
 
-    if (!module) {
+    if (!moduleRecord) {
       return NextResponse.json(
         { error: 'Moduł nie znaleziony' },
         { status: 404 }
@@ -36,7 +36,7 @@ export const GET = async (
     }
 
     const enrichedSprints = await Promise.all(
-      module.sprints.map(async (sprint) => {
+      (moduleRecord.sprints || []).map(async (sprint) => {
         const [jsAssignments, cssAssignments] = await Promise.all([
           prisma.javascriptAssignment.findMany({
             where: { id: { in: sprint.activities } },
@@ -158,7 +158,7 @@ export const GET = async (
       : 0
 
     return NextResponse.json({
-      ...module,
+      ...moduleRecord,
       sprints: enrichedSprints,
       totalDuration,
       totalTasks: moduleTotalTasks,
