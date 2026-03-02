@@ -29,13 +29,13 @@ const Sidebar = () => {
       }
   )[] = [
     { icon: 'vector' },
-    { href: 'dashboard', icon: 'dashboard' },
-    { href: 'ranking', icon: 'ranking' },
-    { href: 'modules', icon: 'lessons' },
-    { href: 'calendar', icon: 'calendar' },
+    { href: '/dashboard', icon: 'dashboard' },
+    { href: '/ranking', icon: 'ranking' },
+    { href: '/modules', icon: 'lessons' },
+    { href: '/calendar', icon: 'calendar' },
     { href: '/task', icon: 'task' },
-    { href: 'settings', icon: 'settings' },
-    { href: 'admin-panel', icon: 'admin' },
+    { href: '/settings', icon: 'settings' },
+    { href: '/admin-panel', icon: 'admin' },
   ]
 
   const renderMenuItem = (item: (typeof items)[number]) => {

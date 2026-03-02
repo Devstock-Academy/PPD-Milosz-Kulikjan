@@ -38,7 +38,7 @@ const ModuleDescription = ({
           {t('startModule')}
         </button>
       </div>
-      <div className='flex flex-wrap items-center  justify-center gap-8 lg:justify-start'>
+      <div className='flex flex-wrap justify-center gap-8 lg:justify-start'>
         {moduleTechs.map((tech, index) => (
           <ModuleTech
             key={`${tech.techTitle}-${index}`}

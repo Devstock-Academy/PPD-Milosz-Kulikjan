@@ -106,12 +106,25 @@ export default function TasksList({
             }
           } else {
             if (hasSolution) {
-              buttonText = t('tryAgain')
-              buttonClass = clsx(
-                'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
-                'bg-clockActive'
-              )
-              showSuccessIcon = true
+              const jsTask = task as JsTask
+              const lastStatus =
+                (jsTask.solutions?.[0]?.kanbanStatus as any) ?? null
+
+              if (lastStatus === 'done') {
+                buttonText = t('tryAgain')
+                buttonClass = clsx(
+                  'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
+                  'bg-clockActive'
+                )
+                showSuccessIcon = true
+              } else {
+                buttonText = t('finishTask')
+                buttonClass = clsx(
+                  'flex h-10 w-60 items-center justify-center gap-3 rounded-lg',
+                  'bg-buttonBlue'
+                )
+                showSuccessIcon = false
+              }
             } else {
               buttonText = t('goToTask')
               buttonClass = clsx(

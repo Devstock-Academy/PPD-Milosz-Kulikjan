@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 
 type ModuleFirstContentProps = {
   moduleNumber: number
-  moduleName: string
+  moduleName: string | undefined
   numberOfSprints?: number
   numberOfLessons: number
   difficultyLevel: string
@@ -15,6 +15,7 @@ type ModuleFirstContentProps = {
   showVideo?: boolean
   progress: number
   forSprint?: boolean
+  moduleVideo?: string
 }
 
 const ModuleFirstContent = ({
@@ -28,14 +29,19 @@ const ModuleFirstContent = ({
   showVideo = true,
   progress,
   forSprint = false,
+  moduleVideo,
 }: ModuleFirstContentProps) => {
   const t = useTranslations('Modules')
+  let title = t('module')
+  if (forSprint) {
+    title = t('sprint')
+  }
 
   return (
     <div className='flex flex-col gap-16 xl:flex-row'>
       <div className='flex min-w-0 flex-1 flex-col gap-6'>
         <h1 className='text-2xl'>
-          {t('module')} {moduleNumber} - {moduleName}
+          {title} {moduleNumber} - {moduleName}
         </h1>
         <p>{moduleDescription}</p>
         <ProgressBar progress={progress} />
@@ -52,7 +58,7 @@ const ModuleFirstContent = ({
           <div className='h-62.25 w-101.25 shrink-0 bg-white'>
             <div className='relative h-full w-full'>
               <LiteYouTubeEmbed
-                id={'NKsma2XgjL4'}
+                id={moduleVideo ?? 'NKsma2XgjL4'}
                 title={t('videoTitle')}
                 poster='hqdefault'
                 style={{

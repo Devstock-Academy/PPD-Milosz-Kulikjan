@@ -1,13 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-
 import { useTranslations } from 'next-intl'
 
 import { ClockIcon, DifficultyIcon, FolderIcon, TrueIcon } from '@/icons'
 
 type ModuleType = {
-  id: number
+  id: number | string
+  moduleIndex?: number
   photoUrl: string
   name: string
   input: string
@@ -24,6 +24,8 @@ type ModuleCardProps = {
 
 const ModuleCard = ({ module }: ModuleCardProps) => {
   const t = useTranslations('Modules')
+
+  if (!module) return <div>{t('moduleNotFound')}</div>
   const getSprintBgClass = (progress: number) => {
     if (progress >= 100) {
       return 'bg-clockActive'
@@ -65,7 +67,7 @@ const ModuleCard = ({ module }: ModuleCardProps) => {
         </div>
         <div className='flex items-center justify-center gap-2'>
           <DifficultyIcon />
-          {t(module.difficultyLevel)}
+          {t((module.difficultyLevel || '').toLowerCase())}
         </div>
         <div className='flex items-center justify-center gap-2'>
           <ClockIcon />
@@ -74,16 +76,16 @@ const ModuleCard = ({ module }: ModuleCardProps) => {
       </div>
       <div className='flex h-0.5 w-full bg-white'></div>
       <Link
-        href={`modules/module-${module.id}`}
+        href={`modules/module-${module.moduleIndex ?? module.moduleIndex}`}
         className='flex h-10 w-full items-center justify-center rounded bg-buttonBlue'
       >
         {t('enterModule')}
       </Link>
-      <div className='flex items-center gap-2'>
+      <div className='flex w-full items-center gap-2'>
         {module.progress.map((sprint, index) => (
-          <div key={index} className='flex items-center gap-2'>
+          <React.Fragment key={index}>
             <div
-              className={`flex h-8 w-8 items-center justify-center rounded-full text-xs ${getSprintBgClass(
+              className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs ${getSprintBgClass(
                 sprint
               )}`}
             >
@@ -91,9 +93,9 @@ const ModuleCard = ({ module }: ModuleCardProps) => {
               {sprint < 100 && <span>{sprint}%</span>}
             </div>
             {index < module.progress.length - 1 && (
-              <div className='flex h-0.5 w-6 bg-white'></div>
+              <div className='flex h-0.5 flex-grow bg-white'></div>
             )}
-          </div>
+          </React.Fragment>
         ))}
       </div>
     </div>

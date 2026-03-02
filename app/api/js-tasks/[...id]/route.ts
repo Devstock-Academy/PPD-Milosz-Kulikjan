@@ -248,32 +248,35 @@ export const PUT = async (
     })
 
     const allPassed = results.every((r: any) => r.testOutcome)
+    const newStatus = allPassed ? 'done' : 'in-progress'
+
+    await prisma.javascriptAssignmentSolution.upsert({
+      where: {
+        javascriptAssignmentId_userId: {
+          javascriptAssignmentId: taskId,
+          userId,
+        },
+      },
+      update: {
+        solution: [solution],
+        kanbanStatus: newStatus,
+      },
+      create: {
+        javascriptAssignmentId: taskId,
+        userId,
+        solution: [solution],
+        kanbanStatus: newStatus,
+      },
+    })
 
     if (allPassed) {
       await prisma.javascriptAssignment.update({
         where: { id: taskId },
         data: { submissions: (task.submissions || 0) + 1 },
       })
-
-      await prisma.javascriptAssignmentSolution.upsert({
-        where: {
-          javascriptAssignmentId_userId: {
-            javascriptAssignmentId: taskId,
-            userId,
-          },
-        },
-        update: {
-          solution: [solution],
-        },
-        create: {
-          javascriptAssignmentId: taskId,
-          userId,
-          solution: [solution],
-        },
-      })
     }
 
-    return NextResponse.json({ results, allPassed })
+    return NextResponse.json({ results, allPassed, newStatus })
   }
 
   return new NextResponse(null, { status: 200 })

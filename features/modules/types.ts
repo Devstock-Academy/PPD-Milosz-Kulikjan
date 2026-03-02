@@ -8,6 +8,18 @@ type ModuleTechItem = {
   techDescription: string
 }
 
+type TicketProps = {
+  ticketName: string
+  ticketNumber: number
+  ticketId?: string
+  ticketType?: string
+  ticketDifficultyLevel: Difficulty
+  ticketCategory: string
+  ticketTaskType: string
+  ticketKanbanStatus: string
+  ticketCheckResult?: string
+}
+
 type SprintDetails = {
   sprintNumber: number
   sprintName: string
@@ -16,19 +28,9 @@ type SprintDetails = {
   timeToComplete: number
   difficultyLevel: Difficulty
   techs: string[]
-  sprintPhoto: string
-  sprintProgress: number
+  sprintPhoto?: string
+  sprintProgress?: number
   tickets?: TicketProps[]
 }
 
-type TicketProps = {
-  ticketName: string
-  ticketNumber: number
-  ticketDifficultyLevel: Difficulty
-  ticketCategory: string
-  ticketTaskType: string
-  ticketKanbanStatus: string
-  ticketCheckResult?: string
-}
-
-export type { ModuleTechItem, SprintDetails, TicketProps }
+export type { ModuleTechItem, TicketProps, SprintDetails }

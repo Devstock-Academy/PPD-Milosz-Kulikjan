@@ -4,7 +4,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
-import { ClockIcon, DifficultyIcon, HTMLIcon, DocumentIcon } from '@/icons'
+import {
+  ClockIcon,
+  DifficultyIcon,
+  HTMLIcon,
+  DocumentIcon,
+  JsIcon,
+  CssIcon,
+} from '@/icons'
 
 import ProgressBar from './ProgressBar'
 
@@ -14,8 +21,9 @@ type SprintCardProps = {
   sprintDescription: string
   numberOfLessons: number
   timeToComplete: number
+  tasksCount?: number
   difficultyLevel: string
-  techs: string[]
+  techs?: string[]
   sprintPhoto: string
   sprintProgress: number
 }
@@ -27,7 +35,7 @@ const SprintCard = ({
   numberOfLessons,
   timeToComplete,
   difficultyLevel,
-  techs,
+  techs = [],
   sprintPhoto,
   sprintProgress,
 }: SprintCardProps) => {
@@ -37,11 +45,16 @@ const SprintCard = ({
   const t = useTranslations('Modules')
 
   const renderTech = (tech: string) => {
-    if (tech === 'HTML') {
-      return <HTMLIcon />
+    switch (tech) {
+      case 'HTML':
+        return <HTMLIcon />
+      case 'CSS':
+        return <CssIcon />
+      case 'JavaScript':
+        return <JsIcon />
+      default:
+        return tech
     }
-
-    return tech
   }
 
   let sprintHref = '#'
@@ -51,7 +64,7 @@ const SprintCard = ({
 
   return (
     <div className='border-dividerBg flex w-full gap-4 rounded-lg bg-borderBg p-8'>
-      <div className='bg-dividerBg h relative w-1/3 overflow-hidden rounded-lg'>
+      <div className='bg-dividerBg relative w-1/3 flex-none overflow-hidden rounded-lg'>
         <Image
           src={sprintPhoto}
           alt={t('sprintCoverAlt', { number: sprintNumber })}
@@ -61,7 +74,7 @@ const SprintCard = ({
         />
       </div>
 
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-1 flex-col gap-4'>
         <div className='flex flex-col gap-2'>
           <h2 className='text-2xl font-semibold'>
             {t('sprint')} {sprintNumber} - {sprintName}
@@ -73,18 +86,19 @@ const SprintCard = ({
             <DocumentIcon />
             {numberOfLessons} {t('lessons')}
           </span>
+
           <span className='flex items-center gap-2'>
             <ClockIcon />
             {timeToComplete}h
           </span>
           <span className='flex items-center gap-2'>
             <DifficultyIcon />
-            {t(difficultyLevel)}
+            {t((difficultyLevel || '').toLowerCase())}
           </span>
         </div>
         <div className='flex flex-wrap items-center gap-4'>
           {t('learnWhat')}
-          {techs.map((tech, index) => (
+          {(techs || []).map((tech, index) => (
             <span key={`${tech}-${index}`} className='gap-4'>
               {renderTech(tech)}
             </span>

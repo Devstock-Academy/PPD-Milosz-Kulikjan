@@ -6,6 +6,8 @@ export type JsTaskTest = {
 export type JsTaskSolution = {
   id: string
   userId: string
+  kanbanStatus?: 'todo' | 'in-progress' | 'done'
+  solution?: any[]
 }
 
 export type CssTaskSolution = {
